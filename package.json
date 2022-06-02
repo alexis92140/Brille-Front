@@ -39,5 +39,16 @@
     "husky": "^7.0.0"
   },
   "pre-commit": "lint",
-  "license": "MIT"
+  "license": "MIT",
+  "description": "A starter for React with Typescript with the fast Vite and all static code testing with Eslint and formatting with Prettier",
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexis92140/Brille-Front.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/alexis92140/Brille-Front/issues"
+  },
+  "homepage": "https://github.com/alexis92140/Brille-Front#readme"
 }
