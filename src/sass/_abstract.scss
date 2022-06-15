@@ -1,5 +1,19 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 * {
-  padding: 0;
   margin: 0;
   scroll-behavior: smooth;
+}
+html,
+body {
+  min-height: 100vh;
+}
+body {
+  background: rgba(219, 228, 221, 0.29);
+  padding: 0;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }

@@ -1,0 +1,19 @@
+// --- CENTER IN FLEX DISPLAY ---
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// --- NAVBAR ---
+@mixin nav-bar {
+  display: flex;
+}
+@mixin nav-items {
+  cursor: pointer;
+}
+
+// --- LISTS ---
+@mixin nav-items {
+  cursor: pointer;
+}
