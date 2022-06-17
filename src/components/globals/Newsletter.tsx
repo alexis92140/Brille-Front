@@ -1,5 +1,3 @@
-import '../../sass/globals/_newsletter.scss';
-
 import React from 'react';
 
 const Newsletter = () => {

@@ -1,5 +1,3 @@
-import '../../sass/globals/_account';
-
 import React from 'react';
 
 const Account = () => {

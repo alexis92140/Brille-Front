@@ -1,5 +1,3 @@
-import '../../sass/globals/_cart';
-
 import React from 'react';
 
 const Cart = () => {

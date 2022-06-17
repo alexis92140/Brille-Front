@@ -8,7 +8,7 @@ const allProducts: IAllProduct[] = [
     image: '/assets/images/bluebag.png',
     title: 'Océan',
     desc: 'cold as ice',
-    color: 'card1',
+    color: 'firstCard',
     price: '200 EUR',
   },
   {
@@ -16,7 +16,7 @@ const allProducts: IAllProduct[] = [
     image: '/assets/images/bluebag.png',
     title: 'Poudré',
     desc: 'roses are pink',
-    color: 'card2',
+    color: 'secondCard',
     price: '200 EUR',
   },
   {
@@ -24,7 +24,7 @@ const allProducts: IAllProduct[] = [
     image: '/assets/images/bluebag.png',
     title: 'Océan',
     desc: 'cold as ice',
-    color: 'card1',
+    color: 'firstCard',
     price: '200 EUR',
   },
   {
@@ -32,7 +32,7 @@ const allProducts: IAllProduct[] = [
     image: '/assets/images/bluebag.png',
     title: 'Poudré',
     desc: 'roses are pink',
-    color: 'card2',
+    color: 'secondCard',
     price: '200 EUR',
   },
   {
@@ -40,7 +40,7 @@ const allProducts: IAllProduct[] = [
     image: '/assets/images/bluebag.png',
     title: 'Océan',
     desc: 'cold as ice',
-    color: 'card1',
+    color: 'firstCard',
     price: '200 EUR',
   },
   {
@@ -48,7 +48,7 @@ const allProducts: IAllProduct[] = [
     image: '/assets/images/bluebag.png',
     title: 'Poudré',
     desc: 'roses are pink',
-    color: 'card2',
+    color: 'secondCard',
     price: '200 EUR',
   },
 ];

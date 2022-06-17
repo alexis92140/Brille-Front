@@ -1,5 +1,3 @@
-import '../sass/homepage/_homepage.scss';
-
 import React from 'react';
 
 import LandingPage from '../components/homepage/LandingPage';

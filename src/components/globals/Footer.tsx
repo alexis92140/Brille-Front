@@ -1,5 +1,3 @@
-import '../../sass/globals/_footer.scss';
-
 import React from 'react';
 
 import Newsletter from './Newsletter';

@@ -1,5 +1,3 @@
-import '../sass/about/_about';
-
 import React from 'react';
 
 const About = () => {

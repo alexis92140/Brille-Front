@@ -1,19 +1,19 @@
-import '../sass/collection/_collection.scss';
-
 import React from 'react';
 
 import allProducts from '../../data/allProducts';
 
 const Collection = () => {
   return (
-    <div>
-      <div className="Grid">
+    <div className="collection">
+      <div className="collection__grid">
         {/* map du tableau de data de allProducts */}
         {allProducts &&
           allProducts.map(({ id, image, title, desc, price, color }) => (
             // condition ternaire pour le choix des backgrounds-colors des cards
-            <div className={`${color} == "card1" ? "card1": "card2"`} key={id}>
-              <img className="img" src={image} alt="lv" />
+            <div
+              className={`${color} == "firstCard" ? "firstCard": "secondCard"`}
+              key={id}>
+              <img id="collectionBags" src={image} alt="Sacs de la marque Brille" />
               <div className="paragraph">
                 <p> {title}</p>
                 <p className="price">{price}</p>

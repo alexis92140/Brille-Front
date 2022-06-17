@@ -1,5 +1,3 @@
-import '../../sass/globals/_navbar.scss';
-
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
@@ -17,11 +15,11 @@ const Navbar = () => {
               navlinks.map(({ id, name1, path, title1, title2 }) => (
                 <NavLink key={id} to={path}>
                   <li className="navbar__li">{name1}</li>
-                  <div className="navbar__dropdown-content">
-                    <Link to="" className="navbar__dropdown-content__titles">
+                  <div className="navbar__dropdownContent">
+                    <Link to="" className="navbar__dropdownContent__titles">
                       {title1}
                     </Link>
-                    <Link to="" className="navbar__dropdown-content__titles">
+                    <Link to="" className="navbar__dropdownContent__titles">
                       {title2}
                     </Link>
                   </div>

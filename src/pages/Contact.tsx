@@ -1,5 +1,3 @@
-import '../sass/contact/_contact.scss';
-
 import React from 'react';
 
 const Contact = () => {

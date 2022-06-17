@@ -1,5 +1,3 @@
-import '../../sass/homepage/_landingpage.scss';
-
 import React from 'react';
 import ReactPlayer from 'react-player';
 
@@ -8,7 +6,7 @@ import EssentialsPage from './EssentialsPage';
 const LandingPage = () => {
   const videoSrc = '../assets/video/hpvideo.mp4';
   return (
-    <div className="landingpage">
+    <div className="landingPage">
       <ReactPlayer
         url={videoSrc}
         width="100%"

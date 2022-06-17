@@ -1,15 +1,17 @@
-.Grid {
-  height: 100vh;
-  width: fit-content;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  grid-column-gap: 5px;
-  grid-row-gap: 5px;
-  margin: auto;
+.collection {
+  &__grid {
+    height: 100vh;
+    width: fit-content;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    margin: auto;
+  }
 }
 
-.card1 {
+.firstCard {
   border: solid 0.01em;
   border-color: black;
   background: linear-gradient(#d9e1f9, #e5e9f6);
@@ -37,7 +39,7 @@
   }
 }
 
-.card2 {
+.secondCard {
   border: solid 0.01em;
   border-color: black;
   background: linear-gradient(#e5e9f6, #d9e1f9);
@@ -64,7 +66,7 @@
     opacity: 1;
   }
 }
-.img {
+#collectionBags {
   object-fit: cover;
   margin: 25%;
   max-width: 60%;

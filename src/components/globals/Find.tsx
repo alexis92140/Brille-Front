@@ -1,5 +1,3 @@
-import '../../sass/globals/_find';
-
 import React from 'react';
 
 const Find = () => {
