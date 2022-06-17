@@ -1,0 +1,25 @@
+.newsletter {
+  background: #f1f1f1;
+  padding: 2rem 16vw;
+}
+
+.newsletter form {
+  margin: 20px 0;
+  display: flex;
+}
+.newsletter form input {
+  height: 40px;
+  width: 17vw;
+  padding: 0 15px;
+  outline: none;
+  background: #f1f1f1;
+  border: none;
+  border-bottom: 1px solid #000;
+}
+.newsletter form button {
+  height: 40px;
+  width: 5rem;
+  color: white;
+  background-color: red;
+  border: none;
+}

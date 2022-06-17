@@ -1,0 +1,92 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.essentialsPage {
+  background-color: rgba(233, 246, 242, 1);
+  @media screen and (min-width: 320px) and (max-width: 1026px) {
+    text-align: center;
+  }
+
+  h1 {
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 5px;
+    font-size: 30px;
+    padding: 5%;
+    @media screen and (min-width: 320px) and (max-width: 1026px) {
+      text-align: center;
+    }
+  }
+  h2 {
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+  }
+}
+.container {
+  height: auto;
+  margin: 30px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 480px);
+  grid-template-rows: 300px 300px 300px;
+  grid-auto-flow: row;
+  grid-template-areas: 'first second third';
+  justify-content: center;
+  @media screen and (min-width: 320px) and (max-width: 1026px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.first {
+  grid-area: first;
+  background-color: rgb(220, 239, 234);
+}
+
+.second {
+  grid-area: second;
+  background-color: rgba(204, 234, 226, 1);
+  display: flex;
+  justify-content: center;
+}
+
+.third {
+  grid-area: third;
+  background-color: rgba(165, 227, 210, 1);
+  display: flex;
+  justify-content: right;
+}
+#firstbag {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  @media screen and (min-width: 320px) and (max-width: 1026px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+#secondbag {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  @media screen and (min-width: 320px) and (max-width: 1026px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+#thirdbag {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  @media screen and (min-width: 320px) and (max-width: 1026px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

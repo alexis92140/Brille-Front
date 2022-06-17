@@ -1,4 +1,4 @@
-import '../sass/contact/_contact';
+import '../sass/contact/_contact.scss';
 
 import React from 'react';
 

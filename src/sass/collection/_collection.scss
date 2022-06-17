@@ -1,0 +1,76 @@
+.Grid {
+  height: 100vh;
+  width: fit-content;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+  margin: auto;
+}
+
+.card1 {
+  border: solid 0.01em;
+  border-color: black;
+  background: linear-gradient(#d9e1f9, #e5e9f6);
+
+  .paragraph {
+    opacity: 0;
+  }
+  .price {
+    text-align: end;
+    color: rgb(156, 156, 156);
+    padding-right: 1vw;
+  }
+
+  &:hover .paragraph {
+    transition: ease-in 0.5s;
+    margin: 0 auto;
+    font-weight: 400;
+    font-size: 14px;
+    text-align: start;
+    padding-left: 2vw;
+    color: black;
+    letter-spacing: 2px;
+    max-height: 0;
+    opacity: 1;
+  }
+}
+
+.card2 {
+  border: solid 0.01em;
+  border-color: black;
+  background: linear-gradient(#e5e9f6, #d9e1f9);
+
+  .paragraph {
+    opacity: 0;
+  }
+  .price {
+    text-align: end;
+    color: rgb(156, 156, 156);
+    padding-right: 1vw;
+  }
+
+  &:hover .paragraph {
+    transition: ease-in 0.5s;
+    margin: 0 auto;
+    font-weight: 400;
+    font-size: 14px;
+    text-align: start;
+    padding-left: 2vw;
+    color: black;
+    letter-spacing: 2px;
+    max-height: 0;
+    opacity: 1;
+  }
+}
+.img {
+  object-fit: cover;
+  margin: 25%;
+  max-width: 60%;
+  height: auto;
+  @media screen and (max-width: 700px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+}
