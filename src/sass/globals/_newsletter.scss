@@ -30,11 +30,12 @@
   background: #f1f1f1;
   border: none;
   border-bottom: 1px solid #000;
+
   margin-right: 20px;
   @media screen and (min-width: 300px) and (max-width: 1020px) {
     margin-bottom: 20px; 
   }
-  
+
 }
 .newsletter form button {
   height: 40px;

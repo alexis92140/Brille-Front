@@ -8,6 +8,10 @@
     grid-column-gap: 5px;
     grid-row-gap: 5px;
     margin: auto;
+    @media screen and (max-width: 700px) {
+      grid-template-columns: repeat(1, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+    }
   }
 }
 
@@ -71,8 +75,4 @@
   margin: 25%;
   max-width: 60%;
   height: auto;
-  @media screen and (max-width: 700px) {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-  }
 }

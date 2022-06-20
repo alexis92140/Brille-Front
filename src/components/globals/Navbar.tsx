@@ -44,10 +44,14 @@ const Navbar = () => {
                 ))}
             </div>
 
+            {/* >> LOGO */}
             <Link to="/home">
               <div className="logoContainer">
-                <img src="/assets/images/closeHamburgerMenu.svg" alt="" />
-                <p className="logoContainer__text">(LOGO)</p>
+                <img
+                  src="/assets/images/logo.png"
+                  alt="Logo du site"
+                  className="logoContainer__logo"
+                />
               </div>
             </Link>
 
