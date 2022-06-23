@@ -1,36 +1,48 @@
-// Datas for the menu items
-const navLinks = [
+// Interface import declaration
+import { INavlink } from './../src/interfaces/INavlink';
+
+// Datas to map in the navbar
+const navLinks: INavlink[] = [
   {
     id: 1,
     path: '/collection',
-    name1: 'Nos sacs',
-    title1: 'Pour tous les jours',
-    title2: 'Pour une soirée élégante',
+    leftTitle: 'Nos sacs',
+    responsiveTitle: 'Nos sacs',
+    dropdown: true,
   },
   {
     id: 2,
     path: '/univers',
-    name1: 'Univers Brille',
+    leftTitle: 'Univers Brille',
+    responsiveTitle: 'Univers Brille',
+    dropdown: false,
   },
   {
     id: 3,
     path: '/contact',
-    name1: 'Contact',
+    leftTitle: 'Contact',
+    responsiveTitle: 'Contact',
+    dropdown: false,
   },
   {
     id: 4,
-    path: '',
-    name2: 'Rechercher',
+    path: '/rechercher',
+    rightTitle: 'Rechercher',
+    dropdown: false,
   },
   {
     id: 5,
     path: '/compte',
-    name2: 'Compte',
+    rightTitle: 'Compte',
+    responsiveTitle: 'Compte',
+    dropdown: false,
   },
   {
     id: 6,
     path: '/panier',
-    name2: 'Panier',
+    rightTitle: 'Panier',
+    responsiveTitle: 'Panier',
+    dropdown: false,
   },
 ];
 

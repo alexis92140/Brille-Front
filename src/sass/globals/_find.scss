@@ -1,0 +1,14 @@
+.searchContainer {
+  min-width: 100%;
+  position: absolute;
+  z-index: 99;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  top: 9rem;
+  margin: auto;
+  &__content {
+    display: flex;
+    justify-content: center;
+  }
+}

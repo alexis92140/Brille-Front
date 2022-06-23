@@ -6,7 +6,7 @@ const Newsletter = () => {
       <h2>
         <span>Newsletter</span>
       </h2>
-      <form action="?">
+      <form>
         <input type="email" placeholder="entrer votre Email" />
         <button type="submit">Valider</button>
       </form>

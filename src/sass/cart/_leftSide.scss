@@ -1,0 +1,21 @@
+.leftSide {
+  display: flex;
+  min-width: 50%;
+  height: 100%;
+  padding-left: 5rem;
+  padding-bottom: 2rem;
+  background-color: #ffe072;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  &__wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    &__title {
+      margin-left: 5px;
+      color: #000000;
+    }
+  }
+}

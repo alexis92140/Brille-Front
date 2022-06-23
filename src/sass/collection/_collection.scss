@@ -1,5 +1,6 @@
 .collection {
   &__grid {
+    margin-top: 2rem;
     height: 100vh;
     width: fit-content;
     display: grid;
@@ -8,6 +9,10 @@
     grid-column-gap: 5px;
     grid-row-gap: 5px;
     margin: auto;
+    @media screen and (max-width: 700px) {
+      grid-template-columns: repeat(1, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+    }
   }
 }
 
@@ -18,6 +23,7 @@
 
   .paragraph {
     opacity: 0;
+    padding: 3vh;
   }
   .price {
     text-align: end;
@@ -46,6 +52,7 @@
 
   .paragraph {
     opacity: 0;
+    padding: 3vh;
   }
   .price {
     text-align: end;
@@ -71,8 +78,4 @@
   margin: 25%;
   max-width: 60%;
   height: auto;
-  @media screen and (max-width: 700px) {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-  }
 }

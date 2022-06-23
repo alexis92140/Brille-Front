@@ -1,23 +1,87 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap');
 
 h1 {
-  font-family: 'Cinzel', serif;
-  font-size: 18px;
+  font-family: 'Lora', serif;
+  font-size: 30px;
+  font-weight: lighter;
+  letter-spacing: 5px;
 }
 
 h2 {
-  font-family: 'Cinzel', serif;
+  font-family: 'Lora', serif;
   font-size: 14px;
+  font-weight: lighter;
+  letter-spacing: 5px;
 }
 
 h3 {
   font-family: 'Satisfy', cursive;
+  font-size: 80px;
+}
+h4 {
+  font-family: 'Lora', serif;
   font-size: 20px;
 }
 
 p {
   font-family: 'Inter', sans-serif;
   font-size: 10px;
+}
+
+li {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: rgb(2, 2, 50);
+  text-decoration: none;
+  list-style-type: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.navbar__li {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: rgb(2, 2, 50);
+}
+.navbar__dropdown {
+  font-family: 'Inter', sans-serif;
+  font-size: 8px;
+  color: rgb(2, 2, 50);
+}
+
+.hamburgerList__title {
+  font-family: 'Inter', sans-serif;
+  font-size: 2rem;
+  color: rgb(2, 2, 50);
+}
+
+.leftSide__wrapper__title {
+  font-family: 'Lora', serif;
+  font-size: 20px;
+}
+
+.rightSide__wrapper__title {
+  font-family: 'Lora', serif;
+  font-size: 15px;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
 }

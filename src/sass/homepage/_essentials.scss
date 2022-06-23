@@ -7,14 +7,12 @@
 }
 .essentialsPage {
   background-color: rgba(233, 246, 242, 1);
+  z-index: 30;
   @media screen and (min-width: 320px) and (max-width: 1026px) {
     text-align: center;
   }
-
   h1 {
     text-align: center;
-    letter-spacing: 5px;
-    font-size: 30px;
     padding: 5%;
     @media screen and (min-width: 320px) and (max-width: 1026px) {
       text-align: center;
@@ -22,7 +20,7 @@
   }
   h2 {
     text-align: center;
-    font-size: 16px;
+    cursor: pointer;
   }
 
   &__container {
@@ -34,7 +32,7 @@
     grid-auto-flow: row;
     grid-template-areas: 'first second third';
     justify-content: center;
-    @media screen and (min-width: 320px) and (max-width: 1026px) {
+    @media screen and (min-width: 320px) and (max-width: 1254px) {
       display: flex;
       flex-direction: column;
     }

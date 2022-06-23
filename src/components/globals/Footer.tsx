@@ -4,41 +4,56 @@ import Newsletter from './Newsletter';
 
 const Footer = () => {
   return (
-    <div className="container_bas">
+    <div>
       <Newsletter />
-
       <footer>
-        <div className="container_footer">
-          {/* <ul className="container_footer_left">
+        <div className="container__footer">
+          <ul>
             <li>
-              <a href="#">Nous contacter</a>
+              <a target="_blank" href="https://www.google.fr/" rel="noreferrer">
+                Nous contacter
+              </a>
             </li>
             <li>
-              <a href="#">Mentions légales</a>
+              <a target="_blank" href="https://www.google.fr/" rel="noreferrer">
+                Mentions légales
+              </a>
             </li>
             <li>
-              <a href="#">Conditions générales de ventes </a>
-            </li>
-          </ul>
-          <ul className="container_footer_center">
-            <li>
-              <a href="#">Retours et échanges</a>
-            </li>
-            <li>
-              <a href="#">Informations de livraisons</a>
+              <a target="_blank" href="https://www.google.fr/" rel="noreferrer">
+                Conditions générales de ventes{' '}
+              </a>
             </li>
           </ul>
-          <ul className="container_footer_right">
+          <ul>
             <li>
-              <a href="#">Nous suivres</a>
+              <a target="_blank" href="https://www.google.fr/" rel="noreferrer">
+                Retours et échanges
+              </a>
             </li>
             <li>
-              <a href="#">Instagram</a>
+              <a target="_blank" href="https://www.google.fr/" rel="noreferrer">
+                Informations de livraisons
+              </a>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <a target="_blank" href="https://www.google.fr/" rel="noreferrer">
+                Twitter
+              </a>
             </li>
             <li>
-              <a href="#">Facebook</a>
+              <a target="_blank" href="https://www.google.fr/" rel="noreferrer">
+                Instagram
+              </a>
             </li>
-          </ul> */}
+            <li>
+              <a target="_blank" href="https://www.google.fr/" rel="noreferrer">
+                Facebook
+              </a>
+            </li>
+          </ul>
         </div>
       </footer>
     </div>

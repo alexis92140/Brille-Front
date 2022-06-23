@@ -1,0 +1,133 @@
+.Page {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  // Début du responsive
+  @media screen and (max-width: 700px) {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    .description {
+      align-items: center;
+      height: 70vh;
+
+      .buttonCart {
+        width: 60%;
+      }
+    }
+    .buttonColored {
+      display: flex;
+      justify-content: center;
+      height: 10%;
+      width: 100vw;
+    }
+    .pinkButton {
+      width: 15%;
+    }
+    .blueButton {
+      width: 15%;
+    }
+    .yellowButton {
+      width: 15%;
+    }
+  }
+}
+// ^ fin du résponsive ^
+//--------------------------------------------------------
+
+// Coté gauche (coté sac)
+
+.firstPagePink {
+  background-color: #f0cbc2;
+  #selectedbag {
+    object-fit: cover;
+    margin: 15%;
+    max-width: 60%;
+    overflow: hidden;
+  }
+}
+
+.firstPageSand {
+  background-color: #ffe072;
+  #selectedbag {
+    object-fit: cover;
+    margin: 15%;
+    max-width: 60%;
+    overflow: hidden;
+  }
+}
+
+.firstPage {
+  background: linear-gradient(#d9e1f9, #e5e9f6);
+  #selectedbag {
+    object-fit: cover;
+    margin: 15%;
+    max-width: 60%;
+    overflow: hidden;
+  }
+}
+
+// coté droit, descriptif, prix etc.
+.secondPage {
+  background-color: white;
+}
+
+.description {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10%;
+  margin: 3%;
+  gap: 5%;
+  .title {
+    font-size: xx-large;
+    font-weight: 200;
+  }
+  .type {
+    font-size: small;
+    color: rgb(148, 146, 146);
+  }
+  .price {
+    font-size: small;
+    color: rgb(148, 146, 146);
+  }
+  .buttonCart {
+    background-color: transparent;
+    width: 20vw;
+    height: 7vh;
+    border: solid 0.01em;
+    cursor: pointer;
+  }
+}
+
+.buttonColored {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 5vh;
+}
+.pinkButton {
+  background-color: #f0cbc2;
+  width: 5%;
+  border: none;
+  margin: 1%;
+  cursor: pointer;
+}
+.blueButton {
+  background-color: rgb(183, 212, 232);
+  width: 5%;
+  border: none;
+  margin: 1%;
+  cursor: pointer;
+}
+.yellowButton {
+  background-color: #ffe072;
+  width: 5%;
+  border: none;
+  margin: 1%;
+  cursor: pointer;
+}

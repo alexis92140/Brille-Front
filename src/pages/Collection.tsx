@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import allProducts from '../../data/allProducts';
+import GoToTop from '../components/globals/GoToTop';
 
 const Collection = () => {
   return (
@@ -13,7 +15,9 @@ const Collection = () => {
             <div
               className={`${color} == "firstCard" ? "firstCard": "secondCard"`}
               key={id}>
-              <img id="collectionBags" src={image} alt="Sacs de la marque Brille" />
+              <Link to="/selectedProduct">
+                <img id="collectionBags" src={image} alt="Sacs de la marque Brille" />
+              </Link>
               <div className="paragraph">
                 <p> {title}</p>
                 <p className="price">{price}</p>
@@ -22,6 +26,7 @@ const Collection = () => {
             </div>
           ))}
       </div>
+      <GoToTop />
     </div>
   );
 };

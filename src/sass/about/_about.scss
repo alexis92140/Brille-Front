@@ -1,0 +1,40 @@
+.about {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: rgba(236, 244, 246, 1);
+  h4 {
+    text-align: center;
+    margin-top: 10%;
+    cursor: pointer;
+    &:hover {
+      opacity: 0;
+    }
+    &__:hover + &__:paragraph {
+      opacity: 1;
+    }
+  }
+  h2 {
+    margin-bottom: 5%;
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    &__test {
+      display: flex;
+      width: 100%;
+      &__title {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    &__paragraph {
+      display: none;
+    }
+  }
+}
+#aboutImg {
+  width: 50%;
+}

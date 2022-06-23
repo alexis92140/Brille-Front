@@ -41,5 +41,22 @@ module.exports = {
         aspects: ['invalidHref', 'preferButton'],
       },
     ],
+    'jsx-a11y/anchor-is-valid': [
+      'off',
+      {
+        components: ['Link'],
+        specialLink: ['hrefLeft', 'hrefRight'],
+        aspects: ['noHref', 'invalidHref', 'preferButton'],
+      },
+    ],
+    'no-unused-vars': 'off',
   },
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      rules: {
+        'no-undef': 'off',
+      },
+    },
+  ],
 };
