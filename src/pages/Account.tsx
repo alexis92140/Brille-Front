@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+
 // import UserAccount from '../components/account/UserAccount';
 import ConnectModal from '../components/account/ConnectModal';
-
 import GoToTop from '../components/globals/GoToTop';
 
 const Account = () => {
@@ -19,7 +19,7 @@ const Account = () => {
         </div>
       )} */}
       {/* {user ? <UserAccount /> : <ConnectModal />} */}
-      <ConnectModal/>
+      <ConnectModal />
       <GoToTop />
     </div>
   );

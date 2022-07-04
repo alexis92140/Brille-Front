@@ -26,33 +26,27 @@ const Collection = () => {
   return (
     <div className="collection">
       <div className="collection__grid">
-        {/* map du tableau de data de allProducts */}
+        {/* map de la base de données */}
         {allProducts &&
           allProducts.map(
-            ({
-              id,
-              productImage,
-              productName,
-              productPrice,
-              productDesc,
-              productStock,
-            }) => (
+            ({ id, productImage, productName, productPrice, productDesc }) => (
               // condition ternaire pour le choix des backgrounds-colors des cards
-              <div
-                // className={${color} == "firstCard" ? "firstCard": "secondCard"}
-                key={id}>
+              // className={${color} == "firstCard" ? "firstCard": "secondCard"}
+              <div className="collection__grid__firstCard" key={id}>
+                {/* link vers la page détaillé du produit sélectionné */}
                 <Link to="/selectedProduct">
                   <img
-                    id="collectionBags"
+                    className="collection__grid__firstCard__collectionBags"
                     src={productImage}
                     alt="Sacs de la marque Brille"
                   />
                 </Link>
-                <div className="paragraph">
+                <div className="collection__grid__firstCard__paragraph">
                   <p> {productName}</p>
-                  <p className="price">{productPrice}</p>
                   <p> {productDesc}</p>
-                  <p> {productStock}</p>
+                  <p className="collection__grid__firstCard__paragraph__price">
+                    {productPrice}€
+                  </p>
                 </div>
               </div>
             ),
