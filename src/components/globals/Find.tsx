@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
+import SearchBar from 'material-ui-search-bar';
+// ---- react-animated-css package  -----
+import { Animated } from 'react-animated-css';
 
 // ---- @mui components -----
 import Button from '@mui/material/Button';
-import SearchBar from 'material-ui-search-bar';
-
-// ---- react-animated-css package  -----
-import { Animated } from 'react-animated-css';
 
 // ---- Imported components -----
 import IProduct from '../../interfaces/IProduct';
@@ -70,29 +71,61 @@ const Find = () => {
           {allProducts &&
             allProducts
               .filter(
-                ({ productName }) =>
+                ({ productName, productDesc }) =>
                   productName.toLowerCase().includes(userChoice.toLowerCase()) ||
+                  productDesc.toLowerCase().includes(userChoice.toLowerCase()) ||
                   !userChoice,
               )
-              .map(({ id, productImage, productName }) => (
-                <Animated
-                  key={id}
-                  animationIn="fadeIn"
-                  animationOut="fadeOut"
-                  isVisible={true}>
-                  <div className="searchContainer__collectionWrapper__container">
-                    <img
-                      id="collectionBags"
-                      src={productImage}
-                      alt="Sacs de la marque Brille"
-                      className="searchContainer__collectionWrapper__container__image"
-                    />
-                    <p className="searchContainer__collectionWrapper__container__text">
-                      {productName}
-                    </p>
-                  </div>
-                </Animated>
-              ))}
+              .map(
+                ({
+                  id,
+                  productImage,
+                  productName,
+                  productDesc,
+                  productPrice,
+                  productStock,
+                }) => (
+                  <Animated
+                    key={id}
+                    animationIn="fadeIn"
+                    animationOut="fadeOut"
+                    isVisible={true}>
+                    <div className="searchContainer__collectionWrapper__container">
+                      <Link to="/selectedProduct">
+                        <img
+                          id="collectionBags"
+                          src={productImage}
+                          alt="Sacs de la marque Brille"
+                          className={
+                            productStock > '0'
+                              ? 'searchContainer__collectionWrapper__container__imageAvailable'
+                              : 'searchContainer__collectionWrapper__container__imageNotAvailable'
+                          }
+                        />
+                      </Link>
+                      <p className="searchContainer__collectionWrapper__container__text">
+                        {productName}
+                      </p>
+                      <p className="searchContainer__collectionWrapper__container__text">
+                        {productPrice} Eur
+                      </p>
+                      <p className="searchContainer__collectionWrapper__container__text">
+                        {productDesc}
+                      </p>
+
+                      {Number(productStock) > 0 ? (
+                        <p className="searchContainer__collectionWrapper__container__available">
+                          Disponible
+                        </p>
+                      ) : (
+                        <p className="searchContainer__collectionWrapper__container__notAvailable">
+                          Victime de son succès
+                        </p>
+                      )}
+                    </div>
+                  </Animated>
+                ),
+              )}
         </div>
       </div>
       <GoToTop />

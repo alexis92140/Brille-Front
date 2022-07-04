@@ -38,12 +38,29 @@
     justify-content: space-around;
     align-items: center;
     text-align: center;
-    margin-top: 7rem;
+    margin-top: 12rem;
 
     &__container {
-      &__image {
+      &__imageAvailable {
         width: 400px;
         height: 400px;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+      &__imageNotAvailable {
+        width: 400px;
+        height: 400px;
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+      &__available {
+        color: rgb(2, 172, 2);
+      }
+      &__notAvailable {
+        color: crimson;
       }
     }
   }
