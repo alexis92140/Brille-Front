@@ -1,16 +1,17 @@
-import React from 'react';
-import TextField from '@mui/material/TextField';
-import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormControl from '@mui/material/FormControl';
+import React, { useState } from 'react';
+
+import EmailIcon from '@mui/icons-material/Email';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import EmailIcon from '@mui/icons-material/Email';
+import FormControl from '@mui/material/FormControl';
+import IconButton from '@mui/material/IconButton';
+import Input from '@mui/material/Input';
+import InputAdornment from '@mui/material/InputAdornment';
+import InputLabel from '@mui/material/InputLabel';
 
 const SignUp = () => {
-  const [values, setValues] = React.useState<any>({
+  // ---- STATES ----
+  const [values, setValues] = useState({
     password: '',
     showPassword: false,
   });
@@ -18,6 +19,7 @@ const SignUp = () => {
     setValues({ ...values, [prop]: e.target.value });
   };
 
+  // ---- Functions to handle the password display
   const handleClickShowPassword = () => {
     setValues({
       ...values,
@@ -32,22 +34,30 @@ const SignUp = () => {
   return (
     <div className="signUpContainer">
       <p className="signUpContainer__title">CONNEXION</p>
-      <p className="signUpContainer__title">
+      <p className="signUpContainer__subtitle">
         Veuillez indiquer votre email et mot de passe :
       </p>
+
       <div className="signUpContainer__email">
-        <TextField
-          sx={{ m: 1, width: '40ch' }}
-          id="standard-basic"
-          label="Email"
-          variant="standard"
-        />
+        <FormControl sx={{ m: 1, width: '40ch' }} variant="standard">
+          <InputLabel htmlFor="standard-adornment-password">Email</InputLabel>
+          <Input
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton aria-label="email icon">{<EmailIcon />}</IconButton>
+              </InputAdornment>
+            }
+            required
+          />
+        </FormControl>
       </div>
+
       <div className="signUpContainer__password">
         <FormControl sx={{ m: 1, width: '40ch' }} variant="standard">
           <InputLabel htmlFor="standard-adornment-password">Mot de passe</InputLabel>
+
           <Input
-            id="standard-adornment-password" 
+            id="standard-adornment-password"
             type={values.showPassword ? 'text' : 'password'}
             value={values.password}
             onChange={handleChange('password')}
@@ -61,6 +71,7 @@ const SignUp = () => {
                 </IconButton>
               </InputAdornment>
             }
+            required
           />
         </FormControl>
         {values.password !== '' && (
