@@ -1,0 +1,15 @@
+.signUpContainer {
+  &__title {
+    margin: 2rem 0 1rem 2rem;
+  }
+  &__password {
+    margin: 2rem 0 1rem 2rem;
+  }
+  &__email {
+    margin: 2rem 0 1rem 2.4rem;
+  }
+  &__forgotPassword {
+    padding: 0.5rem 0 1rem 3rem;
+    cursor: pointer;
+  }
+}

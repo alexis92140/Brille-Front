@@ -1,22 +1,17 @@
 import React, { useState } from 'react';
-// import SignUp from './SignUp';
+
+import SignUp from './SignUp';
 // import Login from './Login';
 
 const ConnectModal = () => {
-  // const [signUp, setSetSignUp] = useState(true);
-
-  // const signUpTrueHandler = () => {
-  //   setSetSignUp(true);
-  // };
-  // const signUpFalseHandler = () => {
-  //   setSetSignUp(false);
-  // };
+  const [signUp, setSetSignUp] = useState(true);
 
   return (
-    <div className="connectModal__container">
-      <p>MODALE DE CONNECTION</p>
-
-      {/* {signUp ? <SignUp /> : <Login />} */}
+    <div className="connectModal">
+      <div className="connectModal__container">
+        <SignUp />
+        {/* <Login /> */}
+      </div>
     </div>
   );
 };
