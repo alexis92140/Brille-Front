@@ -72,7 +72,7 @@ const About = () => {
                 {index % 2 === 0 ? (
                   <>
                     <div className="about__container__test__title">
-                      {/* <h4> {title}</h4> */}
+                      <h4> Descriptif des matériaux</h4>
                     </div>
                     {/* <div className="about__container__paragraph">{text}</div> */}
                     <img id="aboutImg" src={image} alt="Images descriptive du texte" />
@@ -81,7 +81,7 @@ const About = () => {
                   <>
                     <img id="aboutImg" src={image} alt="Images descriptive du texte" />
                     <div className="about__container__test__title">
-                      {/* <h4>{title}</h4> */}
+                      <h4>Descriptif de la marque</h4>
                     </div>
                     {/* <div className="about__container__paragraph">{text}</div> */}
                   </>
