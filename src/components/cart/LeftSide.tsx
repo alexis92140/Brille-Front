@@ -2,6 +2,7 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 // ! ----- Props typing -----
 interface IProps {
@@ -60,6 +61,16 @@ const LeftSide: FC<IProps> = ({
             onChange={handleEmail}
           />
         </Box>
+        <div className="leftSide__wrapper__textContainer">
+          <p className="leftSide__wrapper__textContainer__left">
+            Continuer en tant qu&apos;invité
+          </p>
+          <Link to="/compte">
+            <p className="leftSide__wrapper__textContainer__right">
+              <span> Me connecter</span>
+            </p>
+          </Link>
+        </div>
       </div>
     </div>
   );

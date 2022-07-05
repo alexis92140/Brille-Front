@@ -4,7 +4,7 @@
 @import 'sass/mixins';
 @import 'sass/index';
 @import 'sass/collection/collection';
-@import 'sass/globals/account';
+@import 'sass/globals/contact';
 @import 'sass/globals/cart';
 @import 'sass/globals/find';
 @import 'sass/globals/footer';
@@ -18,3 +18,5 @@
 @import 'sass/globals/_cartRecap';
 @import 'sass/cart/leftSide';
 @import 'sass/cart/rightSide';
+@import 'sass/account/connectModal';
+@import 'sass/account/signup';

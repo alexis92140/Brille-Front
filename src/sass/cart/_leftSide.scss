@@ -17,5 +17,11 @@
       margin-left: 5px;
       color: #000000;
     }
+    &__textContainer {
+      display: flex;
+      gap: 6.1rem;
+      margin-top: 2rem;
+      cursor: pointer;
+    }
   }
 }

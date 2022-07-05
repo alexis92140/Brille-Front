@@ -1,9 +1,15 @@
+import 'react-toastify/dist/ReactToastify.css';
+
 import React, { useState } from 'react';
+// import de toastify
+import { toast, ToastContainer } from 'react-toastify';
 
 import GoToTop from '../globals/GoToTop';
 
 const SelectedProduct = () => {
   const [color, setColor] = useState('firstPage');
+  //ajouter la notif avec le message souhaité
+  const notify = () => toast('Produit ajouté au panier!');
 
   return (
     <div className="Page">
@@ -34,9 +40,12 @@ const SelectedProduct = () => {
               onClick={() => setColor('firstPageSand')}
             />
           </div>
-          <button type="button" className="buttonCart">
+          {/* ici ajout de toasty en onclick */}
+          <button onClick={notify} type="button" className="buttonCart">
             AJOUTER
           </button>
+          {/* ici import du composant  */}
+          <ToastContainer />
         </div>
       </div>
       <GoToTop />

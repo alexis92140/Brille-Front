@@ -1,5 +1,8 @@
 .about {
   display: flex;
+  width: 90%;
+  margin: auto;
+  place-content: center;
   flex-direction: column;
   text-align: center;
   background-color: rgba(236, 244, 246, 1);

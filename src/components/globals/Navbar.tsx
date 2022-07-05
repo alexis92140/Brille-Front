@@ -15,20 +15,30 @@ import navlinks from '../../../data/navLinks';
 import Dropdown from './Dropdown';
 
 const Navbar = () => {
-  // STATE (manage the hamburger menu)
+  // ! STATES :
+  // Manage the hamburger menu
   const [isOpened, setIsOpened] = useState(false);
+  //Manage navbar background-color
+  const [color, setColor] = useState(false);
 
-  // FUNCTIONS (manage the hamburger menu)
+  // ! FUNCTIONS :
+  // Manage the hamburger menu
   const closeMenu = () => {
     setIsOpened(false);
   };
+  //Change navbar background-color when scrolling
+  const changeColor = () => {
+    window.scrollY >= 20 ? setColor(true) : setColor(false);
+  };
+
+  window.addEventListener('scroll', changeColor);
 
   return (
     <div>
       <StickyNav>
         <nav className="navbar">
           {/* ---- NAVBAR ---- */}
-          <ul className="navbar__ul">
+          <ul className={color ? 'navbar__ul__headerColor' : 'navbar__ul'}>
             {/* >> Nav: Left Side*/}
             <div className="navbar__ul__container">
               <div className="navbar__dropdown">

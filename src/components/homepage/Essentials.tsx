@@ -5,8 +5,10 @@ const Essentials = () => {
   return (
     <div className="essentialsPage">
       <div>
-        <h1> LES ESSENTIELS </h1>
-        <Link to="collection">
+        <Link to="/collection">
+          <h1> LES ESSENTIELS </h1>
+        </Link>
+        <Link to="/collection">
           <h2> LA COLLECTION </h2>
         </Link>
       </div>

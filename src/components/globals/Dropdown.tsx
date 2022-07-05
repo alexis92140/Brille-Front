@@ -9,7 +9,7 @@ const Dropdown = () => {
           <li>Toute la collection</li>
         </NavLink>
         <NavLink to="">
-          <li>Les Essentiels</li>
+          <li>Les Essentiels / Bonjour</li>
         </NavLink>
       </div>
 
