@@ -1,13 +1,13 @@
-import React from 'react';
-import TextField from '@mui/material/TextField';
-import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormControl from '@mui/material/FormControl';
+import EmailIcon from '@mui/icons-material/Email';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import EmailIcon from '@mui/icons-material/Email';
+import FormControl from '@mui/material/FormControl';
+import IconButton from '@mui/material/IconButton';
+import Input from '@mui/material/Input';
+import InputAdornment from '@mui/material/InputAdornment';
+import InputLabel from '@mui/material/InputLabel';
+import TextField from '@mui/material/TextField';
+import React from 'react';
 
 const SignUp = () => {
   const [values, setValues] = React.useState<any>({
@@ -47,7 +47,7 @@ const SignUp = () => {
         <FormControl sx={{ m: 1, width: '40ch' }} variant="standard">
           <InputLabel htmlFor="standard-adornment-password">Mot de passe</InputLabel>
           <Input
-            id="standard-adornment-password" 
+            id="standard-adornment-password"
             type={values.showPassword ? 'text' : 'password'}
             value={values.password}
             onChange={handleChange('password')}
