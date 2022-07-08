@@ -1,3 +1,4 @@
+
 .contact{
     &__head{
         img{
@@ -11,7 +12,9 @@
     margin-bottom :5rem;
     max-width: 1000px;
     background-color: #d9e1f9;
+
     height: 90vh;
+
     box-sizing: border-box;
     border: radius 15px;
     box-shadow: 10px 10px 50px -10px #d6d6d6;
@@ -35,6 +38,7 @@
         position: absolute;
         margin-top: 8rem;
         margin-left: 3rem;
+
 
         @media screen and (max-width: 900px) {
             flex-direction: column;
@@ -92,9 +96,11 @@
         
     }
 
+
     }
 }
 }
+
 
 .button{
     @media screen and (max-width: 900px){
@@ -103,3 +109,4 @@
         min-width:400px;
     }
 }
+
