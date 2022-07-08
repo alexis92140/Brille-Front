@@ -50,8 +50,10 @@ const Contact = () => {
               label="Votre demande"
               placeholder="Ecrivez votre texte ici"
               multiline
+
               rows={4}
               sx={{ m: 1, width: '100%' }}
+
             />
           </div>
           <div className="contact__container__form__button">

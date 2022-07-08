@@ -42,7 +42,7 @@ const Newsletter = () => {
       <form onSubmit={postNewsletter}>
         <input
           type="email"
-          placeholder="entrez votre Email"
+          placeholder="Entrez votre email"
           onChange={(e: React.FormEvent<HTMLInputElement>) =>
             setEmail(e.currentTarget.value)
           }
