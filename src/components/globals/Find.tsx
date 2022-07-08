@@ -25,7 +25,7 @@ const Find = () => {
   // >> Axios to get all Products
   useEffect(() => {
     const getAllProducts = async () => {
-      let url: string = 'http://localhost:8000/api/products';
+      let url: string = 'https://brille-handbags.herokuapp.com/api/products';
 
       const { data } = await axios.get<IProduct[]>(url, {
         withCredentials: true,

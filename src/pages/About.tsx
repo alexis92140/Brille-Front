@@ -18,7 +18,7 @@ const About = () => {
     // je recupère les images:
     const getAllImages = async () => {
       // indispensable quand on veut utiliser async/await dans un useEffect
-      let url: string = 'http://localhost:8000/api/images';
+      let url: string = 'https://brille-handbags.herokuapp.com/api/images';
 
       const { data } = await axios.get<IImage[]>(url, {
         withCredentials: true,
@@ -32,7 +32,7 @@ const About = () => {
     // je recupère UN titre
     const getOnePage = async () => {
       // indispensable quand on veut utiliser async/await dans un useEffect
-      let url: string = 'http://localhost:8000/api/pages/:idPage';
+      let url: string = 'https://brille-handbags.herokuapp.com/api/pages/:idPage';
       const { data } = await axios.get<IPage[]>(url, {
         withCredentials: true,
       });
@@ -45,7 +45,7 @@ const About = () => {
     // je recupère UN paragraphe
     const getOneParagraph = async () => {
       // indispensable quand on veut utiliser async/await dans un useEffect
-      let url: string = 'http://localhost:8000/api/paragraph/4';
+      let url: string = 'https://brille-handbags.herokuapp.com/api/paragraph/4';
       const { data } = await axios.get<IParagraphs[]>(url, {
         withCredentials: true,
       });
