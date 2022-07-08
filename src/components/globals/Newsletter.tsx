@@ -16,7 +16,10 @@ const Newsletter = () => {
   const postNewsletter = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
-      await axios.post<INewsletter>('https://brille-handbags.herokuapp.com/api/newsletters', { email });
+      await axios.post<INewsletter>(
+        'https://brille-handbags.herokuapp.com/api/newsletters',
+        { email },
+      );
       setEmail('');
     } catch (err) {
       if (axios.isAxiosError(err)) {
