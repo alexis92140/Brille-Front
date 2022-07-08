@@ -1,5 +1,6 @@
 // ---- @mui components -----
 import Button from '@mui/material/Button';
+import { blue } from '@mui/material/colors';
 import axios from 'axios';
 import SearchBar from 'material-ui-search-bar';
 import React, { useEffect, useState } from 'react';
@@ -43,6 +44,7 @@ const Find = () => {
         <div className="searchContainer__inputContainer">
           <Animated animationIn="fadeInLeft" animationOut="fadeOut" isVisible={true}>
             <SearchBar
+              style={{ color: blue[500] }}
               className="searchContainer__inputContainer__input"
               value={userChoice}
               placeholder="Recherche"
