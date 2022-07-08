@@ -12,7 +12,9 @@
     margin-bottom :5rem;
     max-width: 1000px;
     background-color: #d9e1f9;
-    height: 750px;
+
+    height: 90vh;
+
     box-sizing: border-box;
     border: radius 15px;
     box-shadow: 10px 10px 50px -10px #d6d6d6;
@@ -36,6 +38,18 @@
         position: absolute;
         margin-top: 8rem;
         margin-left: 3rem;
+
+
+        @media screen and (max-width: 900px) {
+            flex-direction: column;
+        }
+        .button{
+            @media screen and (max-width: 900px){
+                width: auto;
+                height: auto;
+                min-width:400px;
+            }
+        }
     }
     &__mail{
         display: flex;
@@ -44,6 +58,10 @@
         position: absolute;
         margin-top: 14rem;
         margin-left: 3rem;
+
+        @media screen and (max-width: 900px) {
+            margin-top:16rem;
+        }
     }
     &__textArea{
         display: flex;
@@ -52,20 +70,43 @@
         position: absolute;
         margin-top: 22rem;
         margin-left: 3rem;
+        margin-right: 3rem;
+
+        @media screen and (max-width: 900px) {
+            min-width: 600px;
+        }
 
     }
     &__button{
         display: flex;
         justify-content:space-between;
-        min-width:870px;
+        min-width:850px;
         margin:auto;
         position: absolute;
         margin-top: 35rem;
         margin-left: 4rem;
+
+        @media screen and (max-width: 900px) {
+            flex-direction: column;
+        }
+        button {
+            @media screen and (max-width: 900px) {
+            margin-top:3rem;
+        }}
         
     }
 
+
     }
 }
+}
+
+
+.button{
+    @media screen and (max-width: 900px){
+        width: auto;
+        height: auto;
+        min-width:400px;
+    }
 }
 

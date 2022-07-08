@@ -1,6 +1,8 @@
 // ---- @mui components -----
 import Button from '@mui/material/Button';
+
 import { blue } from '@mui/material/colors';
+
 import axios from 'axios';
 import SearchBar from 'material-ui-search-bar';
 import React, { useEffect, useState } from 'react';
@@ -26,7 +28,7 @@ const Find = () => {
   // >> Axios to get all Products
   useEffect(() => {
     const getAllProducts = async () => {
-      let url: string = 'http://localhost:8000/api/products';
+      let url: string = 'https://brille-handbags.herokuapp.com/api/products';
 
       const { data } = await axios.get<IProduct[]>(url, {
         withCredentials: true,

@@ -15,11 +15,12 @@ const About = () => {
   // Ici j'appel mon interface paragraphe pour UN paragraphe >>
   // const [oneParagraph, setOneParagraph] = useState<IParagraphs[]>();
 
-  // useEffect(() => {
-  //   // je recupère les images:
-  //   const getAllImages = async () => {
-  //     // indispensable quand on veut utiliser async/await dans un useEffect
-  //     let url: string = 'http://localhost:8000/api/images';
+
+  useEffect(() => {
+    // je recupère les images:
+    const getAllImages = async () => {
+      // indispensable quand on veut utiliser async/await dans un useEffect
+      let url: string = 'https://brille-handbags.herokuapp.com/api/images';
 
   //     const { data } = await axios.get<IImage[]>(url, {
   //       withCredentials: true,
@@ -30,29 +31,33 @@ const About = () => {
 
   //   getAllImages();
 
-  //   // je recupère UN titre
-  //   const getOnePage = async () => {
-  //     // indispensable quand on veut utiliser async/await dans un useEffect
-  //     let url: string = 'http://localhost:8000/api/pages/2/paragraphs';
-  //     const { data } = await axios.get<IPage[]>(url, {
-  //       withCredentials: true,
-  //     });
-  //     setOnePage(data);
-  //     console.log(data);
-  //   };
+
+    // je recupère UN titre
+    const getOnePage = async () => {
+      // indispensable quand on veut utiliser async/await dans un useEffect
+      let url: string = 'https://brille-handbags.herokuapp.com/api/pages/:idPage';
+      const { data } = await axios.get<IPage[]>(url, {
+        withCredentials: true,
+      });
+      setOnePage(data);
+      console.log(data);
+    };
+
 
   //   getOnePage();
 
-  //   // je recupère UN paragraphe
-  //   const getOneParagraph = async () => {
-  //     // indispensable quand on veut utiliser async/await dans un useEffect
-  //     let url: string = 'http://localhost:8000/api/paragraph/4';
-  //     const { data } = await axios.get<IParagraphs[]>(url, {
-  //       withCredentials: true,
-  //     });
-  //     setOneParagraph(data);
-  //     console.log(data);
-  //   };
+
+    // je recupère UN paragraphe
+    const getOneParagraph = async () => {
+      // indispensable quand on veut utiliser async/await dans un useEffect
+      let url: string = 'https://brille-handbags.herokuapp.com/api/paragraph/4';
+      const { data } = await axios.get<IParagraphs[]>(url, {
+        withCredentials: true,
+      });
+      setOneParagraph(data);
+      console.log(data);
+    };
+
 
   //   getOneParagraph();
   // }, []);

@@ -1,3 +1,4 @@
+
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */
 
 import EmailIcon from '@mui/icons-material/Email';
@@ -7,10 +8,13 @@ import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
+
 import IconButton from '@mui/material/IconButton';
 import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
+
+
 import React, { useState } from 'react';
 // import { GoogleLoginButton } from 'react-social-login-buttons';
 import { createButton } from 'react-social-login-buttons';
@@ -23,6 +27,7 @@ const config = {
   style: { background: '#3b5998' },
   activeStyle: { background: '#293e69' },
 };
+
 
 const SignUp = () => {
   // ------ STATES ------
