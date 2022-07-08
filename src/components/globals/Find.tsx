@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-
-import SearchBar from 'material-ui-search-bar';
-// ---- react-animated-css package  -----
-import { Animated } from 'react-animated-css';
-
 // ---- @mui components -----
 import Button from '@mui/material/Button';
+
+import { blue } from '@mui/material/colors';
+
+import axios from 'axios';
+import SearchBar from 'material-ui-search-bar';
+import React, { useEffect, useState } from 'react';
+// ---- react-animated-css package  -----
+import { Animated } from 'react-animated-css';
+import { Link } from 'react-router-dom';
 
 // ---- Imported components -----
 import IProduct from '../../interfaces/IProduct';
@@ -27,7 +28,7 @@ const Find = () => {
   // >> Axios to get all Products
   useEffect(() => {
     const getAllProducts = async () => {
-      let url: string = 'http://localhost:8000/api/products';
+      let url: string = 'https://brille-handbags.herokuapp.com/api/products';
 
       const { data } = await axios.get<IProduct[]>(url, {
         withCredentials: true,
@@ -45,6 +46,7 @@ const Find = () => {
         <div className="searchContainer__inputContainer">
           <Animated animationIn="fadeInLeft" animationOut="fadeOut" isVisible={true}>
             <SearchBar
+              style={{ color: blue[500] }}
               className="searchContainer__inputContainer__input"
               value={userChoice}
               placeholder="Recherche"

@@ -41,11 +41,13 @@ const Navbar = () => {
           <ul className={color ? 'navbar__ul__headerColor' : 'navbar__ul'}>
             {/* >> Nav: Left Side*/}
             <div className="navbar__ul__container">
-              <div className="navbar__dropdown">
+              {/* Dropdown menu feature not confirmed yet */}
+              {/* <div className="navbar__dropdown">
                 <Fade clear>
                   <Dropdown />
                 </Fade>
-              </div>
+              </div> */}
+
               {navlinks &&
                 navlinks.map(({ id, leftTitle, path }) => (
                   <NavLink key={id} to={path}>
