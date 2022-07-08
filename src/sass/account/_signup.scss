@@ -6,15 +6,36 @@
 
   &__title {
     margin: 2rem 0 2rem 0;
-  }
-  &__password {
-    margin: 2rem 0 1rem 0;
+    letter-spacing: 2px;
   }
   &__email {
     margin: 2rem 0 1rem 0;
   }
-  &__forgotPassword {
-    padding: 0.5rem;
-    cursor: pointer;
+  &__password {
+    margin: 0rem 0 1rem 0;
+  }
+  &__choices {
+    width: 95%;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__separator {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    &__line {
+      width: 90%;
+      height: 2px;
+      margin-top: 2rem;
+      background-color: rgba(0, 0, 0, 0.285);
+    }
+    p {
+      margin-top: 2rem;
+      font-size: 1rem;
+    }
   }
 }
