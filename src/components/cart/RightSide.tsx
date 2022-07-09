@@ -6,18 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import React from 'react';
 
-// ! ----- Props typing -----
-// interface IProps {
-//   firstname: string;
-//   setFirstname: (active: string) => void;
-//   lastname: string;
-//   setLastname: (active: string) => void;
-//   email: string;
-//   setEmail: (active: string) => void;
-//   handleFirstname: (e: React.ChangeEvent<HTMLInputElement>) => void;
-//   handleLastname: (e: React.ChangeEvent<HTMLInputElement>) => void;
-//   handleEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
-// }
+// ----------------------------------------------------------------
 
 const RightSide = () => {
   return (

@@ -6,6 +6,8 @@ import SignUp from './SignUp';
 // import Login from './Login';
 // import IImage from '../../interfaces/IImage';
 
+// ----------------------------------------------------------------
+
 const ConnectModal = () => {
   // const [heroBackground, SetHeroBackground] = useState<IImage[]>();
 

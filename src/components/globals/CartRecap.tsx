@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import LeftSide from '../cart/LeftSide';
 import RightSide from '../cart/RightSide';
 
+// ----------------------------------------------------------------
+
 const CartRecap = () => {
   // >> ----- STATES -----
   const [firstname, setFirstname] = useState('');

@@ -1,8 +1,6 @@
 // ---- @mui components -----
 import Button from '@mui/material/Button';
-
 import { blue } from '@mui/material/colors';
-
 import axios from 'axios';
 import SearchBar from 'material-ui-search-bar';
 import React, { useEffect, useState } from 'react';
@@ -14,7 +12,7 @@ import { Link } from 'react-router-dom';
 import IProduct from '../../interfaces/IProduct';
 import GoToTop from '../globals/GoToTop';
 
-// -------------------- COMPONENT ---------------------------------
+// ----------------------------------------------
 const Find = () => {
   // ---- States -----
   const [allProducts, setAllProducts] = useState<IProduct[]>();

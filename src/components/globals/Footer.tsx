@@ -1,6 +1,7 @@
 import React from 'react';
-
 import Newsletter from './Newsletter';
+
+// ----------------------------------------------------------------
 
 const Footer = () => {
   return (
