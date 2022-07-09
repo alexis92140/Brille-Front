@@ -16,6 +16,7 @@
     "@emotion/styled": "^11.9.3",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.8.4",
+    "@mui/system": "^5.8.7",
     "axios": "^0.24.0",
     "hamburger-react": "^2.5.0",
     "material-ui-search-bar": "^1.0.0",

@@ -21,6 +21,11 @@
     justify-content: space-between;
     align-items: center;
   }
+
+  &__forgotPassword {
+    margin-top: 1rem;
+  }
+
   &__socials {
     display: flex;
     flex-direction: column;

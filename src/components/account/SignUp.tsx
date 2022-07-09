@@ -1,6 +1,4 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */
-import React, { useState } from 'react';
-
 import EmailIcon from '@mui/icons-material/Email';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -12,9 +10,12 @@ import IconButton from '@mui/material/IconButton';
 import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
+import React, { useState } from 'react';
 import { GoogleLoginButton } from 'react-social-login-buttons';
 import { FacebookLoginButton } from 'react-social-login-buttons';
 import { InstagramLoginButton } from 'react-social-login-buttons';
+import { pink } from '@mui/material/colors';
+import { grey } from '@mui/material/colors';
 
 // --------------------------------------------------------------------------
 
@@ -117,6 +118,7 @@ const SignUp = () => {
           />
         </FormControl>
       </div>
+
       <div className="signUpContainer__choices">
         <FormControlLabel
           control={
@@ -125,17 +127,43 @@ const SignUp = () => {
               onChange={handleCheck}
               inputProps={{ 'aria-label': 'controlled' }}
               size="small"
+              sx={{
+                color: grey[700],
+                '&.Mui-checked': {
+                  color: pink[700],
+                },
+              }}
             />
           }
           label="Rester connecté"
           role="button"
         />
         <div onClick={handleClick}>
-          <Button variant="text" size="small">
+          <Button
+            variant="text"
+            size="small"
+            sx={{
+              color: grey[700],
+              '&.Mui-checked': {
+                color: pink[700],
+              },
+            }}>
             S&apos;inscrire
           </Button>
         </div>
       </div>
+
+      {/* ----- FORGOTTEN PASSWORD ? ----- */}
+      <div className="signUpContainer__forgotPassword">
+        <Button
+          variant="text"
+          sx={{
+            color: grey[700],
+          }}>
+          Mot de passe oublié ?
+        </Button>
+      </div>
+
       <div className="signUpContainer__socials">
         <GoogleLoginButton
           onClick={displayHello}
