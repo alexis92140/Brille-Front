@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import GoToTop from '../components/globals/GoToTop';
 import IProduct from '../interfaces/IProduct';
@@ -35,12 +35,14 @@ const Collection = () => {
               // className={${color} == "firstCard" ? "firstCard": "secondCard"}
               <div className="collection__grid__firstCard" key={id}>
                 {/* link vers la page détaillé du produit sélectionné */}
-                <Link to="/selectedProduct">
-                  <img
-                    className="collection__grid__firstCard__collectionBags"
-                    src={productImage}
-                    alt="Sacs de la marque Brille"
-                  />
+                <Link to={`/selectedProduct/${id}`}>
+                  <div>
+                    <img
+                      className="collection__grid__firstCard__collectionBags"
+                      src={productImage}
+                      alt="Sacs de la marque Brille"
+                    />
+                  </div>
                 </Link>
                 <div className="collection__grid__firstCard__paragraph">
                   <p> {productName}</p>
