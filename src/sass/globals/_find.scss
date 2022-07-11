@@ -41,6 +41,11 @@
     margin-top: 12rem;
 
     &__container {
+      &__text {
+        letter-spacing: 2px;
+        font-weight: 400;
+        font-size: 16px;
+      }
       &__imageAvailable {
         width: 400px;
         height: 400px;

@@ -28,7 +28,7 @@ function App() {
           <Route path="/Rechercher" element={<Find />} />
           <Route path="/compte" element={<Account />} />
           <Route path="/panier" element={<Cart />} />
-          <Route path="/selectedProduct" element={<SelectedProduct />} />
+          <Route path="/selectedProduct/:id" element={<SelectedProduct />} />
         </Routes>
         <Footer />
       </HashRouter>

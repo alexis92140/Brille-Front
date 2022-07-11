@@ -11,30 +11,97 @@
     grid-template-rows: repeat(1, 1fr);
     height: auto;
   }
-  .description {
-    align-items: center;
-    height: 70vh;
+  &__secondPage {
+    background-color: white;
+    height: auto;
+    @media screen and (max-width: 1050px) {
+      height: 70vh;
+    }
 
-    .buttonCart {
-      width: 60%;
+    &__description {
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 15%;
+      margin: 3%;
+
+      &__title {
+        padding: 1vh;
+        font-size: xx-large;
+        font-weight: 200;
+      }
+      &__type {
+        padding: 1vh;
+        font-size: small;
+        color: rgb(148, 146, 146);
+      }
+      &__price {
+        padding: 1vh;
+        font-size: small;
+        color: rgb(148, 146, 146);
+      }
+      &__buttonCartContainer {
+        padding-top: 1vh;
+        &__buttonCart {
+          background-color: transparent;
+          width: 20vw;
+          height: 7vh;
+          border: solid 0.01em;
+          cursor: pointer;
+          @media screen and (max-width: 1050px) {
+            width: 95%;
+          }
+        }
+      }
+      &__buttonColoredContainer {
+        padding: 1vh;
+        &__buttonColored {
+          display: flex;
+          flex-direction: row;
+          gap: 1%;
+          width: 100%;
+          height: 5vh;
+          @media screen and (max-width: 1450px) {
+            gap: 2%;
+          }
+
+          .pinkButton {
+            background-color: #f0cbc2;
+            width: 10%;
+            border: none;
+            margin: 1%;
+            cursor: pointer;
+            @media screen and (max-width: 1450px) {
+              width: 15%;
+            }
+          }
+          .blueButton {
+            background-color: rgb(183, 212, 232);
+            width: 10%;
+            border: none;
+            margin: 1%;
+            cursor: pointer;
+            @media screen and (max-width: 1450px) {
+              width: 15%;
+            }
+          }
+          .yellowButton {
+            background-color: #ffe072;
+            width: 10%;
+            border: none;
+            margin: 1%;
+            cursor: pointer;
+            @media screen and (max-width: 1450px) {
+              width: 15%;
+            }
+          }
+        }
+      }
     }
   }
-  .buttonColored {
-    display: flex;
-    height: 10%;
-    width: 100vw;
-  }
-  .pinkButton {
-    width: 15%;
-  }
-  .blueButton {
-    width: 15%;
-  }
-  .yellowButton {
-    width: 15%;
-  }
 
-  // ^ fin du résponsive ^
   //--------------------------------------------------------
 
   // Coté gauche (coté sac)
@@ -73,81 +140,4 @@
   }
 
   // coté droit, descriptif, prix etc.
-  .secondPage {
-    background-color: white;
-    height: auto;
-    @media screen and (max-width: 1050px) {
-      height: 70vh;
-    }
-  }
-
-  .description {
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 10%;
-    margin: 3%;
-    gap: 5%;
-    .title {
-      font-size: xx-large;
-      font-weight: 200;
-    }
-    .type {
-      font-size: small;
-      color: rgb(148, 146, 146);
-    }
-    .price {
-      font-size: small;
-      color: rgb(148, 146, 146);
-    }
-    .buttonCart {
-      background-color: transparent;
-      width: 20vw;
-      height: 7vh;
-      border: solid 0.01em;
-      cursor: pointer;
-      @media screen and (max-width: 1050px) {
-        width: 95%;
-      }
-    }
-  }
-
-  .buttonColored {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 5vh;
-  }
-  .pinkButton {
-    background-color: #f0cbc2;
-    width: 6%;
-    border: none;
-    margin: 1%;
-    cursor: pointer;
-    @media screen and (max-width: 1450px) {
-      width: 6%;
-    }
-  }
-  .blueButton {
-    background-color: rgb(183, 212, 232);
-    width: 6%;
-    border: none;
-    margin: 1%;
-    cursor: pointer;
-    @media screen and (max-width: 1450px) {
-      width: 6%;
-    }
-  }
-  .yellowButton {
-    background-color: #ffe072;
-    width: 6%;
-    border: none;
-    margin: 1%;
-    cursor: pointer;
-    @media screen and (max-width: 1450px) {
-      width: 6%;
-    }
-  }
 }

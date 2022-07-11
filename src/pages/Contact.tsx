@@ -10,6 +10,8 @@ import GoToTop from '../components/globals/GoToTop';
 import IImage from '../interfaces/IImage';
 import IPage from '../interfaces/IPage';
 
+// ----------------------------------------------------------------
+
 const Contact = () => {
   // Ici j'appel mon interface image >>
   const [allImages, setAllImages] = useState<IImage[]>();

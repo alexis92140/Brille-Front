@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 import IProduct from '../../interfaces/IProduct';
 import GoToTop from '../globals/GoToTop';
 
-// -------------------- COMPONENT ---------------------------------
+// ----------------------------------------------
 const Find = () => {
   // ---- States -----
   const [allProducts, setAllProducts] = useState<IProduct[]>();
@@ -91,7 +91,7 @@ const Find = () => {
                     animationOut="fadeOut"
                     isVisible={true}>
                     <div className="searchContainer__collectionWrapper__container">
-                      <Link to="/selectedProduct">
+                      <Link to={`/selectedProduct/${id}`}>
                         <img
                           id="collectionBags"
                           src={productImage}
@@ -106,12 +106,8 @@ const Find = () => {
                       <p className="searchContainer__collectionWrapper__container__text">
                         {productName}
                       </p>
-                      <p className="searchContainer__collectionWrapper__container__text">
-                        {productPrice} Eur
-                      </p>
-                      <p className="searchContainer__collectionWrapper__container__text">
-                        {productDesc}
-                      </p>
+                      <p className="searchContainer__collectionWrapper__container__text"></p>
+                      <p className="searchContainer__collectionWrapper__container__text"></p>
 
                       {Number(productStock) > 0 ? (
                         <p className="searchContainer__collectionWrapper__container__available">

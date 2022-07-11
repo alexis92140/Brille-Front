@@ -1,10 +1,12 @@
-import axios from 'axios';
+// import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 import Hero from './Hero';
 import SignUp from './SignUp';
 // import Login from './Login';
 // import IImage from '../../interfaces/IImage';
+
+// ----------------------------------------------------------------
 
 const ConnectModal = () => {
   // const [heroBackground, SetHeroBackground] = useState<IImage[]>();

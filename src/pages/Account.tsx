@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import ConnectModal from '../components/account/ConnectModal';
 import GoToTop from '../components/globals/GoToTop';
 
+// ----------------------------------------------------------------
+
 const Account = () => {
   // const [user, setUser] = useState(null);
 
