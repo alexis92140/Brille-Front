@@ -14,6 +14,8 @@ import navlinks from '../../../data/navLinks';
 // ----- Component -----
 import Dropdown from './Dropdown';
 
+// ----------------------------------------------------------------
+
 const Navbar = () => {
   // ! STATES :
   // Manage the hamburger menu

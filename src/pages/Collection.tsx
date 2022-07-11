@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import GoToTop from '../components/globals/GoToTop';
 import IProduct from '../interfaces/IProduct';
 
+// ----------------------------------------------------------------
+
 const Collection = () => {
   const [allProducts, setAllProducts] = useState<IProduct[]>();
 

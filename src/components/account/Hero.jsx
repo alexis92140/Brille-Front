@@ -13,6 +13,8 @@ import React from 'react';
 // }
 // const LeftSide: FC<IProps> = ({
 
+// ----------------------------------------------------------------
+
 const Hero = () => {
   return (
     <div className="heroContainer">

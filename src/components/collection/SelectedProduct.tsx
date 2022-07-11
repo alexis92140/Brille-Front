@@ -6,6 +6,8 @@ import { toast, ToastContainer } from 'react-toastify';
 
 import GoToTop from '../globals/GoToTop';
 
+// ----------------------------------------------------------------
+
 const SelectedProduct = () => {
   const [color, setColor] = useState('firstPage');
   //ajouter la notif avec le message souhaité
