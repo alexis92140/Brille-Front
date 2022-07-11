@@ -4,6 +4,8 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
+import { pink } from '@mui/material/colors';
+import { grey } from '@mui/material/colors';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import IconButton from '@mui/material/IconButton';
@@ -14,8 +16,6 @@ import React, { useState } from 'react';
 import { GoogleLoginButton } from 'react-social-login-buttons';
 import { FacebookLoginButton } from 'react-social-login-buttons';
 import { InstagramLoginButton } from 'react-social-login-buttons';
-import { pink } from '@mui/material/colors';
-import { grey } from '@mui/material/colors';
 
 // --------------------------------------------------------------------------
 
