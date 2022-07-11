@@ -6,6 +6,8 @@ import { toast, ToastContainer } from 'react-toastify';
 
 import INewsletter from '../../interfaces/INewsletter';
 
+// ----------------------------------------------------------------
+
 const Newsletter = () => {
   const [email, setEmail] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>(
@@ -16,7 +18,9 @@ const Newsletter = () => {
   const postNewsletter = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
-      await axios.post<INewsletter>('http://localhost:8000/api/newsletters', { email });
+      await axios.post<INewsletter>(`${import.meta.env.VITE_DB_URL}api/newsletters`, {
+        email,
+      });
       setEmail('');
     } catch (err) {
       if (axios.isAxiosError(err)) {

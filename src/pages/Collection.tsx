@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import GoToTop from '../components/globals/GoToTop';
 import IProduct from '../interfaces/IProduct';
 
+// ----------------------------------------------------------------
+
 const Collection = () => {
   const [allProducts, setAllProducts] = useState<IProduct[]>();
 
@@ -12,7 +14,6 @@ const Collection = () => {
     const getAllProducts = async () => {
       // indispensable quand on veut utiliser async/await dans un useEffect
       let url: string = `${import.meta.env.VITE_API_URL}/api/products`;
-
       const { data } = await axios.get<IProduct[]>(url, {
         withCredentials: true,
       });

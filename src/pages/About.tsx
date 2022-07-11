@@ -8,6 +8,8 @@ import IImage from '../interfaces/IImage';
 import IPage from '../interfaces/IPage';
 import IParagraph from '../interfaces/IParagraph';
 
+// ----------------------------------------------------------------
+
 const About = () => {
   // Ici j'appel mon interface image >>
   const [images, setImages] = useState<IImage[]>([]);

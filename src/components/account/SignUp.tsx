@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */
-
 import EmailIcon from '@mui/icons-material/Email';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -12,31 +11,34 @@ import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
 import React, { useState } from 'react';
-// import { GoogleLoginButton } from 'react-social-login-buttons';
-import { createButton } from 'react-social-login-buttons';
+import { GoogleLoginButton } from 'react-social-login-buttons';
+import { FacebookLoginButton } from 'react-social-login-buttons';
+import { InstagramLoginButton } from 'react-social-login-buttons';
+import { pink } from '@mui/material/colors';
+import { grey } from '@mui/material/colors';
 
-// ---- Config for the SignIn google button------
-const config = {
-  text: 'Log in with Facebook',
-  icon: 'facebook',
-  iconFormat: (name) => `fa fa-${name}`,
-  style: { background: '#3b5998' },
-  activeStyle: { background: '#293e69' },
-};
+// --------------------------------------------------------------------------
 
 const SignUp = () => {
-  // ------ STATES ------
+  // >> STATES
+
+  // ---- for the password ----
   const [values, setValues] = useState({
     password: '',
     showPassword: false,
   });
+  // ---- for the password ----
   const handleChange = (prop: string) => (e: { target: { value: any } }) => {
     setValues({ ...values, [prop]: e.target.value });
   };
+  // ---- for the checkbox ----
   const [isChecked, setIsChecked] = React.useState<boolean>(false);
+  // ---- for the login button ----
   const [isClick, setIsClick] = React.useState<boolean>(false);
 
-  // ---- Functions to handle the password display -----
+  // >> MY FUNCTIONS
+
+  // ---- to handle the password display -----
   const handleClickShowPassword = () => {
     setValues({
       ...values,
@@ -48,17 +50,26 @@ const SignUp = () => {
     e.preventDefault();
   };
 
-  // ---- Functions to handle the checkbox ------
+  // ---- to handle the checkbox ------
   const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(e.target.checked);
   };
 
-  // ---- Functions to handle the forgotten password ------
+  // ---- to handle the forgotten password ------
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     setIsClick(!isClick);
   };
 
-  // const MyFacebookLoginButton = createButton(config);
+  // ---- to handle click on socials buttons ------
+  const displayHello = () => alert('Social Authentication OK !');
+
+  // >> MY VARIABLES
+
+  // ------ store the social icons styles ------
+  const socialIconAlign: string | any = 'center';
+  const facebookText: string = 'Se connecter avec Facebook';
+  const googleText: string = 'Se connecter avec Google';
+  const instagramText: string = 'Se connecter avec Instagram';
 
   // ------------------ RETURN --------------------------------
   return (
@@ -107,6 +118,7 @@ const SignUp = () => {
           />
         </FormControl>
       </div>
+
       <div className="signUpContainer__choices">
         <FormControlLabel
           control={
@@ -115,23 +127,60 @@ const SignUp = () => {
               onChange={handleCheck}
               inputProps={{ 'aria-label': 'controlled' }}
               size="small"
+              sx={{
+                color: grey[700],
+                '&.Mui-checked': {
+                  color: pink[700],
+                },
+              }}
             />
           }
           label="Rester connecté"
           role="button"
         />
         <div onClick={handleClick}>
-          <Button variant="text" size="small">
+          <Button
+            variant="text"
+            size="small"
+            sx={{
+              color: grey[700],
+              '&.Mui-checked': {
+                color: pink[700],
+              },
+            }}>
             S&apos;inscrire
           </Button>
         </div>
       </div>
-      <div className="signUpContainer__separator">
-        <div className="signUpContainer__separator__line"></div>
-        <p>Ou</p>
-        <div className="signUpContainer__separator__line"> </div>
+
+      {/* ----- FORGOTTEN PASSWORD ? ----- */}
+      <div className="signUpContainer__forgotPassword">
+        <Button
+          variant="text"
+          sx={{
+            color: grey[700],
+          }}>
+          Mot de passe oublié ?
+        </Button>
       </div>
-      {/* <MyFacebookLoginButton onClick={() => alert('Hello')} /> */}
+
+      <div className="signUpContainer__socials">
+        <GoogleLoginButton
+          onClick={displayHello}
+          text={googleText}
+          align={socialIconAlign}
+        />
+        <FacebookLoginButton
+          onClick={displayHello}
+          text={facebookText}
+          align={socialIconAlign}
+        />
+        <InstagramLoginButton
+          onClick={displayHello}
+          text={instagramText}
+          align={socialIconAlign}
+        />
+      </div>
     </div>
   );
 };

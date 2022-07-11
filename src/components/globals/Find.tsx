@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 import IProduct from '../../interfaces/IProduct';
 import GoToTop from '../globals/GoToTop';
 
-// -------------------- COMPONENT ---------------------------------
+// ----------------------------------------------
 const Find = () => {
   // ---- States -----
   const [allProducts, setAllProducts] = useState<IProduct[]>();
@@ -26,7 +26,7 @@ const Find = () => {
   // >> Axios to get all Products
   useEffect(() => {
     const getAllProducts = async () => {
-      let url: string = 'http://localhost:8000/api/products';
+      let url: string = 'https://brille-handbags.herokuapp.com/api/products';
 
       const { data } = await axios.get<IProduct[]>(url, {
         withCredentials: true,
