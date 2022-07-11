@@ -7,6 +7,8 @@ import GoToTop from '../components/globals/GoToTop';
 // import IPage from '../interfaces/IPage';
 // import IParagraphs from '../interfaces/IParagraphs';
 
+// ----------------------------------------------------------------
+
 const About = () => {
   // Ici j'appel mon interface image >>
   // const [allImages, setAllImages] = useState<IImage[]>();

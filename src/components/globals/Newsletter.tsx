@@ -6,6 +6,8 @@ import { toast, ToastContainer } from 'react-toastify';
 
 import INewsletter from '../../interfaces/INewsletter';
 
+// ----------------------------------------------------------------
+
 const Newsletter = () => {
   const [email, setEmail] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>(

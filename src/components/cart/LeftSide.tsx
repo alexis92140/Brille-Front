@@ -17,6 +17,8 @@ interface IProps {
   handleEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
+// ----------------------------------------------------------------
+
 const LeftSide: FC<IProps> = ({
   firstname,
   lastname,
