@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 // ---- Imported components -----
 import IProduct from '../../interfaces/IProduct';
-import GoToTop from '../globals/GoToTop';
+import GoToTop from './GoToTop';
 
 // ----------------------------------------------
 const Find = () => {

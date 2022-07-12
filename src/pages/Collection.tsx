@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-
+import FilterProduct from '../components/globals/FilterProduct';
 import GoToTop from '../components/globals/GoToTop';
 import IProduct from '../interfaces/IProduct';
 
@@ -26,6 +26,7 @@ const Collection = () => {
 
   return (
     <div className="collection">
+      <FilterProduct />
       <div className="collection__grid">
         {/* map de la base de données */}
         {allProducts &&
