@@ -184,7 +184,7 @@ const LoginModal = () => {
         <div className="loginModal__logged">
           <p>
             Vous n&apos;avez pas compte ?
-            <Link to="/compte">
+            <Link to="/moncompte">
               <span>S&apos;inscrire</span>
             </Link>
           </p>

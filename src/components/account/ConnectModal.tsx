@@ -7,10 +7,11 @@ import { grey } from '@mui/material/colors';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
-import React, { useState } from 'react';
 import axios from 'axios';
-import IUser from '../../interfaces/IUser';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+
+import IUser from '../../interfaces/IUser';
 // import { GoogleLoginButton } from 'react-social-login-buttons';
 // import { FacebookLoginButton } from 'react-social-login-buttons';
 
@@ -32,7 +33,7 @@ const ConnectModal = () => {
   const [password, setPassword] = useState<string>('');
 
   // ---- for the phoneNumber ----
-  const [phoneNumber, setPhoneNumber] = useState<string>('');
+  // const [phoneNumber, setPhoneNumber] = useState<string>('');
 
   // ---- for the confirmed password ----
   const [confirmedPassword, setConfirmedPassword] = useState<string>('');
@@ -73,9 +74,9 @@ const ConnectModal = () => {
   };
 
   // ---- to update PhoneNumber change  ------
-  const handlePhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPhoneNumber(e.target.value);
-  };
+  // const handlePhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setPhoneNumber(e.target.value);
+  // };
 
   // ---- to update Email change  ------
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -115,21 +116,10 @@ const ConnectModal = () => {
   // };
 
   // ---- to handle the form submit  ------
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setEmail('');
-    setFirstName('');
-    setLastName('');
-    setPhoneNumber('');
-    setPassword('');
-    setAddress1('');
-    setAddress2('');
-    setPassword('');
-    setConfirmedPassword('');
-    setZipCode('');
-    setCity('');
-    setIsChecked(false);
-  };
+  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   setIsChecked(false);
+  // };
 
   // ---- to check if password === confirmed password  ------
   // const checkPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -144,13 +134,14 @@ const ConnectModal = () => {
   // const googleText: string = 'Se connecter avec Google';
 
   // ------ Pattern for the email input ------
-  // const emailPattern = new RegExp('A[A-Z0-9+_.-]+@[A-Z0-9.-]+Z');
+  const emailPattern = new RegExp(
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+  );
 
   // >> AXIOS
 
-  const postUser = async (e: React.FormEvent<HTMLFormElement>) => {
+  const postUser = async () => {
     try {
-      e.preventDefault();
       await axios.post<IUser>(`${import.meta.env.VITE_DB_URL}api/users`, {
         firstName,
         lastName,
@@ -158,23 +149,13 @@ const ConnectModal = () => {
         password,
         address1,
       });
-      setEmail('');
-      setFirstName('');
-      setLastName('');
-      setPhoneNumber('');
-      setPassword('');
-      setAddress1('');
-      setAddress2('');
-      setPassword('');
-      setConfirmedPassword('');
-      setZipCode('');
-      setCity('');
       setIsChecked(false);
+      console.log(email, password, address1);
     } catch (err) {
       if (axios.isAxiosError(err)) {
         // pour gérer les erreurs de type axios
         if (err.response?.status === 401) {
-          setErrorMessage('Le mot de passe ne correspond pas');
+          setErrorMessage(`Veuillez vérifier l'email ou le mot de passe`);
         }
       } else {
         // pour gérer les erreurs non axios
@@ -188,7 +169,7 @@ const ConnectModal = () => {
     <div className="connectModal">
       <p className="connectModal__title">INSCRIPTION</p>
 
-      <p>{errorMessage}</p>
+      <p className="connectModal__title__error">{errorMessage && errorMessage}</p>
 
       <form onSubmit={postUser}>
         {/* ----- FIRST NAME ----- */}
@@ -226,7 +207,7 @@ const ConnectModal = () => {
         </div>
 
         {/* ----- PHONE NUMBER ----- */}
-        <div className="connectModal__">
+        {/* <div className="connectModal__">
           <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
             <TextField
               id="outlined-basic"
@@ -240,7 +221,7 @@ const ConnectModal = () => {
               required
             />
           </FormControl>
-        </div>
+        </div> */}
 
         {/* ----- EMAIL INPUT ----- */}
         <div className="connectModal__">
@@ -379,10 +360,10 @@ const ConnectModal = () => {
             {email !== '' &&
             firstName !== '' &&
             lastName !== '' &&
-            password === confirmedPassword &&
-            email.match(emailPattern) &&
             password !== '' &&
+            email.match(emailPattern) &&
             confirmedPassword !== '' &&
+            password === confirmedPassword &&
             address1 !== '' &&
             zipCode !== '' &&
             city !== '' ? (
@@ -430,6 +411,7 @@ const ConnectModal = () => {
         /> */}
 
       {/* ----- LOG IN ----- */}
+
       <div className="connectModal__logged">
         <p>
           Vous avez déjà un compte ?
