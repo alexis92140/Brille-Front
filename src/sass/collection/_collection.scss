@@ -1,14 +1,15 @@
 .collection {
   &__grid {
-    margin-top: 2rem;
+    margin-top: 10rem;
     height: auto;
-    width: 80vw;
+    width: 110vw;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 5px;
     grid-row-gap: 5px;
-    margin: auto;
+   
+    
 
     @media screen and (max-width: 1400px) {
       grid-template-columns: repeat(2, 1fr);
