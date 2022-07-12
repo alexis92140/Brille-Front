@@ -29,6 +29,9 @@
         display:flex;
         justify-content: center;
         align-items: center;
+        // @media screen and (max-width: 900px) {
+        //     min-width: 100%
+        // }
     }
     &__form{
         &__credentials{
@@ -75,24 +78,23 @@
         @media screen and (max-width: 900px) {
             min-width: 600px;
         }
+        @media screen and (max-width: 700px) {
+            min-width: 400px;
+        }
+        @media screen and (max-width: 500px) {
+            min-width: 300px;
+        }
+        
 
     }
     &__button{
         display: flex;
         justify-content:space-between;
-        min-width:850px;
+        min-width:45%;
         margin:auto;
         position: absolute;
         margin-top: 35rem;
         margin-left: 4rem;
-
-        @media screen and (max-width: 900px) {
-            flex-direction: column;
-        }
-        button {
-            @media screen and (max-width: 900px) {
-            margin-top:3rem;
-        }}
         
     }
 
