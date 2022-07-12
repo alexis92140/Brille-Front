@@ -61,17 +61,27 @@ const Contact = () => {
         <div className="contact__container__titleWrapper">
           <h1>Nous contacter</h1>
         </div>
-        <form className="contact__container__form">
+        <form  
+              action="https://getform.io/f/e3635432-5c41-4623-a26f-1e7063e12bc9"
+              method="POST"
+              target="_blank"
+            
+              className="contact__container__form">
+          
           <div className="contact__container__form__credentials">
             <TextField
               id="standard-basic"
+              type="text"
+              name="Nom"
               label="Nom"
               variant="standard"
               sx={{ m: 1, width: '40ch' }}
             />
             <TextField
               id="standard-basic"
+              type="text"
               label="Prénom"
+              name="Prénom"
               variant="standard"
               sx={{ m: 1, width: '40ch' }}
             />
@@ -79,7 +89,9 @@ const Contact = () => {
           <div className="contact__container__form__mail">
             <TextField
               id="standard-basic"
+              type="email"
               label="Email"
+              name="Email"
               variant="standard"
               sx={{ m: 1, width: '40ch' }}
             />
@@ -87,7 +99,9 @@ const Contact = () => {
           <div className="contact__container__form__textArea">
             <TextField
               id="outlined-multiline-static"
+              type="text"
               label="Votre demande"
+              name="votre demande"
               placeholder="Ecrivez votre texte ici"
               multiline
               rows={4}
@@ -100,7 +114,7 @@ const Contact = () => {
               label="Je ne suis pas un robot"
               sx={{ '& .MuiSvgIcon-root': { fontSize: 32 } }}
             />
-            <Button variant="contained" endIcon={<SendIcon />}>
+            <Button type="submit" variant="contained" endIcon={<SendIcon />}>
               Envoyer
             </Button>
           </div>
