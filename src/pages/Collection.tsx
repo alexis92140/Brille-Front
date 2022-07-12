@@ -13,7 +13,7 @@ const Collection = () => {
   useEffect(() => {
     const getAllProducts = async () => {
       // indispensable quand on veut utiliser async/await dans un useEffect
-      let url: string = `${import.meta.env.VITE_API_URL}/api/products`;
+      let url: string = `${import.meta.env.VITE_API_URL}/api/products/`;
       const { data } = await axios.get<IProduct[]>(url, {
         withCredentials: true,
       });

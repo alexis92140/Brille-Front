@@ -5,26 +5,25 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-
 import GoToTop from '../components/globals/GoToTop';
 import IImage from '../interfaces/IImage';
 import IPage from '../interfaces/IPage';
 
-// ----------------------------------------------------------------
 
 const Contact = () => {
+  
   // Ici j'appel mon interface image >>
-  const [allImages, setAllImages] = useState<IImage[]>();
+  const [allImages, setAllImages] = useState<IImage>();
   // Ici j'appel mon interface page pour UNE page >>
-  const [onePage, setOnePage] = useState<IPage[]>();
+  const [onePage, setOnePage] = useState<IPage>();
 
   useEffect(() => {
     //   // je recupère les images:
     const getAllImages = async () => {
       //     // indispensable quand on veut utiliser async/await dans un useEffect
-      let url: string = 'https://brille-handbags.herokuapp.com/api/images/';
+      let url: string = `${import.meta.env.VITE_API_URL}/api/pages/21/images`;
 
-      const { data } = await axios.get<IImage[]>(url, {
+      const { data } = await axios.get<IImage>(url, {
         withCredentials: true,
       });
       setAllImages(data);
@@ -32,13 +31,13 @@ const Contact = () => {
     };
 
     getAllImages();
-
+   
     //   // je recupère UN titre
     const getOnePage = async () => {
       //     // indispensable quand on veut utiliser async/await dans un useEffect
-      let url: string = 'https://brille-handbags.herokuapp.com/api/pages/21/images/';
-
-      const { data } = await axios.get<IPage[]>(url, {
+      let url: string = `${import.meta.env.VITE_API_URL}/api/pages/21`;
+  
+      const { data } = await axios.get<IPage>(url, {
         withCredentials: true,
       });
       setOnePage(data);
@@ -46,22 +45,20 @@ const Contact = () => {
     };
 
     getOnePage();
+    
   }, []);
 
   return (
     <div className="contact">
       <div className="contact__head">
-        {allImages &&
-          allImages.map(
-            ({ id, image }, index) => (
-              <img id="img" src={image} key={id} alt="plage bleu" />
-            ),
-            //  <img
-            //   id="plage"
-            //   src="../../../assets/images/plage_bleu_marion.png"
-            //   alt="plage bleu"
-            // /{'>'}
-          )}
+        
+             <img
+              id="plage"
+              // src={allImages ?.image}
+              src="../../public/assets/images/plage_bleu_marion.png"
+              alt="plage bleu"
+            />
+          
       </div>
 
       <div className="contact__container">
