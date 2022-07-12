@@ -5,6 +5,9 @@ import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import Footer from '../src/components/globals/Footer';
 import Navbar from '../src/components/globals/Navbar';
+import Login from './components/account/Login';
+import PasswordForgot from './components/account/PasswordForgot';
+import UserAccount from './components/account/UserAccount';
 import SelectedProduct from './components/collection/SelectedProduct';
 import Find from './components/globals/Find';
 import About from './pages/About';
@@ -19,6 +22,7 @@ function App() {
     <div className="App">
       <HashRouter>
         <Navbar />
+
         <Routes>
           <Route path="*" element={<Landing />} />
           <Route path="/home" element={<Landing />} />
@@ -27,9 +31,15 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/Rechercher" element={<Find />} />
           <Route path="/compte" element={<Account />} />
+          <Route path="/moncompte" element={<UserAccount />} />
           <Route path="/panier" element={<Cart />} />
+          <Route path="/seconnecter" element={<Login />} />
+          <Route path="/nouveaumotdepasse" element={<PasswordForgot />} />
+          <Route path="/selectedProduct" element={<SelectedProduct />} />
           <Route path="/selectedProduct/:id" element={<SelectedProduct />} />
+
         </Routes>
+
         <Footer />
       </HashRouter>
     </div>
