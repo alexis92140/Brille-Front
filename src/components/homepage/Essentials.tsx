@@ -1,9 +1,29 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+
+import IImage from '../../interfaces/IImage';
 
 // ----------------------------------------------------------------
 
 const Essentials = () => {
+  const { id } = useParams();
+  const [images, setImages] = useState<IImage>();
+
+  useEffect(() => {
+    const getImages = async () => {
+      // indispensable quand on veut utiliser async/await dans un useEffect
+      let url: string = `${import.meta.env.VITE_API_URL}/api/images/${id}`;
+
+      const { data } = await axios.get<IImage>(url, {
+        withCredentials: true,
+      });
+      setImages(data);
+      console.log(data);
+    };
+    getImages();
+  }, [id]);
   return (
     <div className="essentialsPage">
       <div>
