@@ -76,7 +76,9 @@ const About = () => {
                     </div>
                     <img
                       id="aboutImg"
-                      src={images.filter((image) => image.id === idImage)[0].image}
+                      src={
+                        images && images.filter((image) => image.id === idImage)[0].image
+                      }
                       alt="Images descriptive du texte"
                     />
                   </>
@@ -84,7 +86,9 @@ const About = () => {
                   <>
                     <img
                       id="aboutImg"
-                      src={images.filter((image) => image.id === idImage)[0].image}
+                      src={
+                        images && images.filter((image) => image.id === idImage)[0].image
+                      }
                       alt="Images descriptive du texte"
                     />
                     <div className="about__container__block">
