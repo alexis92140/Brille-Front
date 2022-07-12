@@ -1,76 +1,70 @@
 // import axios from 'axios';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
-import aboutInfo from '../../data/aboutInfo';
+// import aboutInfo from '../../data/aboutInfo';
 import GoToTop from '../components/globals/GoToTop';
-// import IImage from '../interfaces/IImage';
-// import IPage from '../interfaces/IPage';
-// import IParagraphs from '../interfaces/IParagraphs';
+import IImage from '../interfaces/IImage';
+import IPage from '../interfaces/IPage';
+import IParagraph from '../interfaces/IParagraph';
 
 // ----------------------------------------------------------------
 
 const About = () => {
   // Ici j'appel mon interface image >>
-  // const [allImages, setAllImages] = useState<IImage[]>();
-  // Ici j'appel mon interface page pour UNE page >>
-  // const [onePage, setOnePage] = useState<IPage[]>();
-  // Ici j'appel mon interface paragraphe pour UN paragraphe >>
-  // const [oneParagraph, setOneParagraph] = useState<IParagraphs[]>();
+  const [images, setImages] = useState<IImage[]>([]);
+  // Ici j'appel mon interface page >>
+  const [page, setPage] = useState<IPage>();
+  // Ici j'appel mon interface paragraphe>>
+  const [paragraphs, setParagraphs] = useState<IParagraph[]>();
 
-  // useEffect(() => {
-  //   // je recupère les images:
-  //   const getAllImages = async () => {
-  //     // indispensable quand on veut utiliser async/await dans un useEffect
-  //     let url: string = 'http://localhost:8000/api/images';
+  useEffect(() => {
+    // je recupère la page:
+    const getPage = async () => {
+      // indispensable quand on veut utiliser async/await dans un useEffect
+      let url: string = `${import.meta.env.VITE_API_URL}/api/pages/11`;
 
-  //     const { data } = await axios.get<IImage[]>(url, {
-  //       withCredentials: true,
-  //     });
-  //     setAllImages(data);
-  //     console.log(data);
-  //   };
+      const { data } = await axios.get<IPage>(url, {
+        withCredentials: true,
+      });
+      setPage(data);
+    };
 
-  //   getAllImages();
+    getPage();
+    const getImage = async () => {
+      // indispensable quand on veut utiliser async/await dans un useEffect
+      let url: string = `${import.meta.env.VITE_API_URL}/api/pages/11/images`;
 
-  //   // je recupère UN titre
-  //   const getOnePage = async () => {
-  //     // indispensable quand on veut utiliser async/await dans un useEffect
-  //     let url: string = 'http://localhost:8000/api/pages/2/paragraphs';
-  //     const { data } = await axios.get<IPage[]>(url, {
-  //       withCredentials: true,
-  //     });
-  //     setOnePage(data);
-  //     console.log(data);
-  //   };
+      const { data } = await axios.get<IImage[]>(url, {
+        withCredentials: true,
+      });
+      setImages(data);
+    };
 
-  //   getOnePage();
+    getImage();
 
-  //   // je recupère UN paragraphe
-  //   const getOneParagraph = async () => {
-  //     // indispensable quand on veut utiliser async/await dans un useEffect
-  //     let url: string = 'http://localhost:8000/api/paragraph/4';
-  //     const { data } = await axios.get<IParagraphs[]>(url, {
-  //       withCredentials: true,
-  //     });
-  //     setOneParagraph(data);
-  //     console.log(data);
-  //   };
+    const getParagraph = async () => {
+      // indispensable quand on veut utiliser async/await dans un useEffect
+      let url: string = `${import.meta.env.VITE_API_URL}/api/pages/11/paragraphs`;
 
-  //   getOneParagraph();
-  // }, []);
+      const { data } = await axios.get<IParagraph[]>(url, {
+        withCredentials: true,
+      });
+      setParagraphs(data);
+    };
+
+    getParagraph();
+  }, []);
+
+  console.log(images);
 
   return (
     <div className="about">
       {/* ici je suis supposée recupérer le title de page>> */}
-      {/* <h4> {onePage.title} ici titre mais ça marche pas grrr </h4> */}
-      <h1> Univers brille </h1>
-      <h2> Découvrez Brille</h2>
+      <h1> {page?.name} </h1>
       <div className="about__container">
-        {/* ici je map : images pour afficher les images de la bdd */}
-        {/* {allImages &&
-          allImages.map(({ id, image }, index) => ( */}
-        {aboutInfo &&
-          aboutInfo.map(({ id, title, text, image }, index) => (
+        {paragraphs &&
+          paragraphs.map(({ id, title, description, idImage }, index) => (
             <div key={id}>
               <div className="about__container__idx">
                 {' '}
@@ -78,16 +72,24 @@ const About = () => {
                   <>
                     <div className="about__container__block">
                       <h4 className="about__container__idx__title">{title}</h4>
-                      <p className="about__container__idx__paragraph">{text}</p>
+                      <p className="about__container__idx__paragraph">{description}</p>
                     </div>
-                    <img id="aboutImg" src={image} alt="Images descriptive du texte" />
+                    <img
+                      id="aboutImg"
+                      src={images.filter((image) => image.id === idImage)[0].image}
+                      alt="Images descriptive du texte"
+                    />
                   </>
                 ) : (
                   <>
-                    <img id="aboutImg" src={image} alt="Images descriptive du texte" />
+                    <img
+                      id="aboutImg"
+                      src={images.filter((image) => image.id === idImage)[0].image}
+                      alt="Images descriptive du texte"
+                    />
                     <div className="about__container__block">
                       <h4 className="about__container__idx__title">{title}</h4>
-                      <p className="about__container__idx__paragraph">{text}</p>
+                      <p className="about__container__idx__paragraph">{description}</p>
                     </div>
                   </>
                 )}
