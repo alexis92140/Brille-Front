@@ -36,6 +36,8 @@ function App() {
           <Route path="/seconnecter" element={<Login />} />
           <Route path="/nouveaumotdepasse" element={<PasswordForgot />} />
           <Route path="/selectedProduct" element={<SelectedProduct />} />
+          <Route path="/selectedProduct/:id" element={<SelectedProduct />} />
+
         </Routes>
 
         <Footer />
