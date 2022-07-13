@@ -1,17 +1,27 @@
+import '../../utils/cartAction';
+
 import DeleteIcon from '@mui/icons-material/Delete';
 import PaymentsIcon from '@mui/icons-material/Payments';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import FormControl from '@mui/material/FormControl';
 import IconButton from '@mui/material/IconButton';
-// ----- MUI Components -----
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // ---------------------------------------------------------------
 
 const RightSide = () => {
+  const [quantity, setQuantity] = useState<number>(1);
+
+  const handleChange = (e: SelectChangeEvent) => {
+    setQuantity(Number(e.target.value) || 0);
+  };
+
   return (
     <div className="right">
       {/* Right part of the Cart component */}
@@ -27,6 +37,7 @@ const RightSide = () => {
             <p className="right__wrapper__firstPart__firstContainer__article">
               1 article
             </p>
+
             <p className="right__wrapper__firstPart__firstContainer__price">200 €</p>
           </div>
           <div className="right__wrapper__firstPart__secondContainer">
@@ -52,19 +63,54 @@ const RightSide = () => {
             <p>Sac ocean</p>
 
             <div className="right__wrapper__secondPart__container__firstWrapper__secondParagraph">
-              <p>Quantité : 1</p>
+              <p>Quantité : {quantity}</p>
 
               {/* ---- Product final price ---- */}
-              <p className="right__wrapper__secondPart__container__firstWrapper__secondParagraph__textContent">
-                200€
-              </p>
+              <div>
+                <p className="right__wrapper__secondPart__container__firstWrapper__secondParagraph__textContent">
+                  200€
+                </p>
+              </div>
             </div>
           </div>
-          <Stack direction="row" alignItems="center" spacing={1}>
-            <IconButton aria-label="delete" size="small">
-              <DeleteIcon fontSize="inherit" />
-            </IconButton>
-          </Stack>
+          <div className="right__wrapper__secondPart__container__firstWrapper__secondParagraph__wrapper">
+            <>
+              <IconButton
+                aria-label="delete"
+                size="small"
+                sx={{
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}>
+                <FormControl sx={{ m: 3, width: '100%' }} size="small">
+                  <InputLabel id="demo-select-small">N°</InputLabel>
+                  <Select
+                    labelId="demo-select-small"
+                    id="demo-select-small"
+                    value={Number(quantity)}
+                    label="Number"
+                    onChange={handleChange}>
+                    <MenuItem value="">
+                      <em>1</em>
+                    </MenuItem>
+                    <MenuItem value={2}>2</MenuItem>
+                    <MenuItem value={3}>3</MenuItem>
+                    <MenuItem value={4}>4</MenuItem>
+                    <MenuItem value={5}>5</MenuItem>
+                    <MenuItem value={6}>6</MenuItem>
+                    <MenuItem value={7}>7</MenuItem>
+                    <MenuItem value={8}>8</MenuItem>
+                    <MenuItem value={9}>9</MenuItem>
+                    <MenuItem value={10}>10</MenuItem>
+                  </Select>
+                </FormControl>
+              </IconButton>
+              <div className="right__wrapper__secondPart__container__firstWrapper__trash">
+                <DeleteIcon id="trash" fontSize="inherit" />
+              </div>
+            </>
+          </div>
         </div>
 
         <div className="right__wrapper__secondPart__secondWrapper">
