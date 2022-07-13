@@ -61,13 +61,11 @@ const Contact = () => {
         <div className="contact__container__titleWrapper">
           <h1>Nous contacter</h1>
         </div>
-        <form  
-              action="https://getform.io/f/e3635432-5c41-4623-a26f-1e7063e12bc9"
-              method="POST"
-              target="_blank"
-            
-              className="contact__container__form">
-          
+        <form
+          action="https://getform.io/f/e3635432-5c41-4623-a26f-1e7063e12bc9"
+          method="POST"
+          target="_blank" 
+          className="contact__container__form">
           <div className="contact__container__form__credentials">
             <TextField
               id="standard-basic"
