@@ -37,13 +37,6 @@ const navLinks: INavlink[] = [
     responsiveTitle: 'Compte',
     dropdown: false,
   },
-  {
-    id: 6,
-    path: '/panier',
-    rightTitle: 'Panier',
-    responsiveTitle: 'Panier',
-    dropdown: false,
-  },
 ];
 
 export default navLinks;
