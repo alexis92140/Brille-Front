@@ -64,7 +64,7 @@ const LoginModal = () => {
   const googleText: string = 'Se connecter avec Google';
 
   // ------ Pattern for the email input ------
-  const emailPattern = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/gi;
+  const emailPattern = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,3}');
 
   // ------------------ RETURN --------------------------------
   return (
@@ -139,7 +139,7 @@ const LoginModal = () => {
                       color: pink[700],
                     },
                   }}>
-                  S&apos;inscrire
+                  Se Connecter
                 </Button>
               </Link>
             ) : (
@@ -153,7 +153,7 @@ const LoginModal = () => {
                     color: pink[700],
                   },
                 }}>
-                S&apos;inscrire
+                Se Connecter
               </Button>
             )}
           </div>
@@ -184,7 +184,7 @@ const LoginModal = () => {
         <div className="loginModal__logged">
           <p>
             Vous n&apos;avez pas compte ?
-            <Link to="/compte">
+            <Link to="/moncompte">
               <span>S&apos;inscrire</span>
             </Link>
           </p>

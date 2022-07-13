@@ -1,7 +1,7 @@
 import React from 'react';
 
-// import UserAccount from '../components/account/UserAccount';
 import SignUp from '../components/account/SignUp';
+// import UserAccount from '../components/account/UserAccount';
 import GoToTop from '../components/globals/GoToTop';
 
 // ----------------------------------------------------------------
@@ -13,6 +13,7 @@ const Account = () => {
     <div className="app-header">
       {/* {user ? <UserAccount /> : <ConnectModal />} */}
       <SignUp />
+      {/* <UserAccount /> */}
       <GoToTop />
     </div>
   );

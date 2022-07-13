@@ -67,9 +67,9 @@ const LeftSide: FC<IProps> = ({
           <p className="leftSide__wrapper__textContainer__left">
             Continuer en tant qu&apos;invité
           </p>
-          <Link to="/compte">
+          <Link to="/seconnecter">
             <p className="leftSide__wrapper__textContainer__right">
-              <span> Me connecter</span>
+              <span> Se connecter</span>
             </p>
           </Link>
         </div>
