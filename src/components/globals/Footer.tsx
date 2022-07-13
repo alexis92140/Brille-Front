@@ -41,22 +41,46 @@ const Footer = () => {
           </ul>
           <ul className="reseaux">
             <li>
-              <a className="twitter" target="_blank" href="https://www.google.fr/" rel="noreferrer">
+              <a
+                className="twitter"
+                target="_blank"
+                href="https://www.google.fr/"
+                rel="noreferrer">
                 Twitter
               </a>
-              <img className="logoTwitter" src="../../../public/assets/images/twitter.svg"/>
+              <img
+                className="logoTwitter"
+                alt="twitter"
+                src="../../../public/assets/images/twitter.svg"
+              />
             </li>
             <li>
-              <a className="instagram" target="_blank" href="https://www.google.fr/" rel="noreferrer">
+              <a
+                className="instagram"
+                target="_blank"
+                href="https://www.google.fr/"
+                rel="noreferrer">
                 Instagram
               </a>
-              <img className="logoInstagram" src="../../../public/assets/images/instagram.svg"/>
+              <img
+                className="logoInstagram"
+                alt="instagram"
+                src="../../../public/assets/images/instagram.svg"
+              />
             </li>
             <li>
-              <a className="facebook" target="_blank" href="https://www.google.fr/" rel="noreferrer">
+              <a
+                className="facebook"
+                target="_blank"
+                href="https://www.google.fr/"
+                rel="noreferrer">
                 Facebook
               </a>
-              <img className="logoFacebook" src="../../../public/assets/images/facebook.svg"/>
+              <img
+                className="logoFacebook"
+                alt="Facebook"
+                src="../../../public/assets/images/facebook.svg"
+              />
             </li>
           </ul>
         </div>
