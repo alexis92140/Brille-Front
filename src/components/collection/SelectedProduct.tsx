@@ -1,11 +1,14 @@
 import 'react-toastify/dist/ReactToastify.css';
 
+import { dialogContentTextClasses } from '@mui/material';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 // import de toastify
 import { Id, toast, ToastContainer } from 'react-toastify';
 
+import addItem from '../../Context/ShoppingCartContext';
+import ShoppingCartContext from '../../Context/ShoppingCartContext';
 import IProduct from '../../interfaces/IProduct';
 import GoToTop from '../globals/GoToTop';
 
@@ -32,6 +35,9 @@ const SelectedProduct = () => {
   const [color, setColor] = useState('firstPage');
   //ajouter la notif avec le message souhaité
   const notify = () => toast('Produit ajouté au panier!');
+
+  const { addItem, cartItems } = useContext(ShoppingCartContext);
+  console.log(cartItems);
 
   return (
     <div className="Page">
@@ -74,7 +80,7 @@ const SelectedProduct = () => {
                 <GoToTop />
                 <div className="Page__secondPage__description__buttonCartContainer">
                   <button
-                    onClick={notify}
+                    onClick={() => addItem(Number(id || '0'))}
                     type="button"
                     className="Page__secondPage__description__buttonCartContainer__buttonCart">
                     AJOUTER

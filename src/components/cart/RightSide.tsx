@@ -4,9 +4,12 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import IconButton from '@mui/material/IconButton';
 // ----- MUI Components -----
 import Stack from '@mui/material/Stack';
-import React from 'react';
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-// ----------------------------------------------------------------
+// ---------------------------------------------------------------
 
 const RightSide = () => {
   return (
@@ -28,8 +31,9 @@ const RightSide = () => {
           </div>
           <div className="right__wrapper__firstPart__secondContainer">
             <p>TOTAL</p>
-            <p>200 €</p>
+            <p>200€</p>
           </div>
+
           <div className="separator"> </div>
         </div>
       </div>
@@ -45,14 +49,14 @@ const RightSide = () => {
           />
           {/* ---- Product description and quantity ---- */}
           <div className="right__wrapper__secondPart__container__firstWrapper__textContent">
-            <p>Le sac poudré</p>
+            <p>Sac ocean</p>
 
             <div className="right__wrapper__secondPart__container__firstWrapper__secondParagraph">
               <p>Quantité : 1</p>
 
               {/* ---- Product final price ---- */}
               <p className="right__wrapper__secondPart__container__firstWrapper__secondParagraph__textContent">
-                200 Eur
+                200€
               </p>
             </div>
           </div>
@@ -65,15 +69,17 @@ const RightSide = () => {
 
         <div className="right__wrapper__secondPart__secondWrapper">
           {/* ---- Call to action buttons ---- */}
+          <Link to="/collection">
+            <button
+              className="right__wrapper__secondPart__secondWrapper__buttons"
+              type="button">
+              <span>CONTINUER MES ACHATS</span>
 
-          <button
-            className="right__wrapper__secondPart__secondWrapper__buttons"
-            type="button">
-            <span>CONTINUER MES ACHATS</span>
-            <span>
-              <ShoppingBagIcon />
-            </span>
-          </button>
+              <span>
+                <ShoppingBagIcon />
+              </span>
+            </button>
+          </Link>
 
           <button
             className="right__wrapper__secondPart__secondWrapper__buttons"
