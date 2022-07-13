@@ -50,7 +50,7 @@ const SelectedProduct = () => {
                   {oneProduct.productDesc}
                 </p>
                 <p className="Page__secondPage__description__price">
-                  {oneProduct.productPrice}
+                  {oneProduct.productPrice} €
                 </p>
                 <div className="Page__secondPage__description__buttonColoredContainer">
                   <div className="Page__secondPage__description__buttonColoredContainer__buttonColored">

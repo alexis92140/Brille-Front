@@ -23,10 +23,10 @@
   }
 
   &__container {
-    margin-top: 1rem;
-    align-items: center;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 480px);
+    margin-top: 1rem;
+    gap: 6.9rem;
+    grid-template-columns: repeat(auto-fill, 400px);
     grid-auto-flow: row;
     @media screen and (min-width: 320px) and (max-width: 1254px) {
       display: flex;
@@ -35,14 +35,16 @@
   }
 
   &__Images {
+    width: 100%;
     background-color: rgb(204, 235, 226);
     display: flex;
   }
 }
 
 #bags {
-  height: 480px;
+  height: 400px;
   object-fit: contain;
+
   @media screen and (min-width: 320px) and (max-width: 1026px) {
     display: flex;
     flex-direction: column;

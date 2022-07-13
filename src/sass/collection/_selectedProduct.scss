@@ -1,6 +1,7 @@
 .Page {
-  height: auto;
+  height: 100vh;
   display: grid;
+  justify-content: center;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
@@ -108,9 +109,14 @@
 
   .firstPagePink {
     background-color: #f0cbc2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     #selectedbag {
       object-fit: contain;
-      margin: 15%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       max-width: 60%;
       overflow: hidden;
     }
@@ -118,9 +124,15 @@
 
   .firstPageSand {
     background-color: #ffe072;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     #selectedbag {
       object-fit: contain;
-      margin: 15%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       max-width: 60%;
       overflow: hidden;
     }
@@ -128,9 +140,15 @@
 
   .firstPage {
     background: linear-gradient(#d9e1f9, #e5e9f6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     #selectedbag {
       object-fit: contain;
-      margin: 15%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       max-width: 60%;
       overflow: hidden;
     }
