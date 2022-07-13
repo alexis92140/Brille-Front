@@ -21,6 +21,7 @@
     list-style-type: none;
   }
   li {
+
     @media screen and (min-width: 300px) and (max-width: 1020px) {
       text-align: center;
     }
@@ -28,6 +29,23 @@
       text-decoration: none;
       color: #333;
       vertical-align: 3em;
+    }
+    a.twitter, a.facebook, a.instagram{
+      
+      @media screen and (min-width: 1020px) { 
+        display:none;
+       
+      }
+    }
+    img{
+      @media screen and (max-width: 1020px){
+        display:none;
+        column-gap: 1rem;
+        
+      }
+    }
+    ul.reseaux{
+      flex-direction: row;
     }
   }
 }

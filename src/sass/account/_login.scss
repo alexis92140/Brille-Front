@@ -1,0 +1,26 @@
+.loginContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__sign {
+    width: 100%;
+    height: 100vh;
+    padding-top: 5rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    background-color: #d9e1f9;
+    box-shadow: 0 8px 24px rgba(149, 157, 165, 0.2);
+  }
+  &__hero {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}

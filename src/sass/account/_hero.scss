@@ -8,29 +8,10 @@
   &__title {
     position: absolute;
     width: 300px;
-    margin: 5rem 0 0 2rem;
+    margin: 10rem 0 0 2rem;
 
     h1 {
       opacity: 0.6;
-
-      // &:hover {
-      //   background: linear-gradient(
-      //     to right,
-      //     midnightblue,
-      //     midnightblue 50%,
-      //     rgb(85, 105, 168) 50%
-      //   );
-      //   background-clip: text;
-      //   -webkit-background-clip: text;
-      //   -webkit-text-fill-color: transparent;
-      //   background-size: 200% 100%;
-      //   background-position: 100%;
-      //   transition: background-position 1s ease;
-      //   &:hover {
-      //     background-position: 0 100%;
-      //   }
-      // }
-
       animation: colorChange 2s ease-in-out infinite alternate;
 
       @keyframes colorChange {

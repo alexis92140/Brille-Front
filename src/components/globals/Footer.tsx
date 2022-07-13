@@ -39,21 +39,48 @@ const Footer = () => {
               </a>
             </li>
           </ul>
-          <ul>
+          <ul className="reseaux">
             <li>
-              <a target="_blank" href="https://www.google.fr/" rel="noreferrer">
+              <a
+                className="twitter"
+                target="_blank"
+                href="https://www.google.fr/"
+                rel="noreferrer">
                 Twitter
               </a>
+              <img
+                className="logoTwitter"
+                alt="twitter"
+                src="../../../public/assets/images/twitter.svg"
+              />
             </li>
             <li>
-              <a target="_blank" href="https://www.google.fr/" rel="noreferrer">
-                Instagram
+              <a
+                className="instagram"
+                target="_blank"
+                href="https://www.google.fr/"
+                rel="noreferrer">
+                Instagramm
               </a>
+              <img
+                className="logoInstagram"
+                alt="instagram"
+                src="../../../public/assets/images/instagram.svg"
+              />
             </li>
             <li>
-              <a target="_blank" href="https://www.google.fr/" rel="noreferrer">
-                Facebook
+              <a
+                className="facebook"
+                target="_blank"
+                href="https://www.google.fr/"
+                rel="noreferrer">
+                Facebookk
               </a>
+              <img
+                className="logoFacebook"
+                alt="Facebook"
+                src="../../../public/assets/images/facebook.svg"
+              />
             </li>
           </ul>
         </div>

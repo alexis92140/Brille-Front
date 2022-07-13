@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 // ---- Imported components -----
 import IProduct from '../../interfaces/IProduct';
-import GoToTop from '../globals/GoToTop';
+import GoToTop from './GoToTop';
 
 // ----------------------------------------------
 const Find = () => {
@@ -67,7 +67,9 @@ const Find = () => {
             )}
           </Animated>
         </div>
-        <div className="searchContainer__collectionWrapper">
+
+        <div className="collection__grid">
+          {/* map de la base de données */}
           {allProducts &&
             allProducts
               .filter(
@@ -76,52 +78,29 @@ const Find = () => {
                   productDesc.toLowerCase().includes(userChoice.toLowerCase()) ||
                   !userChoice,
               )
-              .map(
-                ({
-                  id,
-                  productImage,
-                  productName,
-                  productDesc,
-                  productPrice,
-                  productStock,
-                }) => (
-                  <Animated
-                    key={id}
-                    animationIn="fadeIn"
-                    animationOut="fadeOut"
-                    isVisible={true}>
-                    <div className="searchContainer__collectionWrapper__container">
-                      <Link to={`/selectedProduct/${id}`}>
-                        <img
-                          id="collectionBags"
-                          src={productImage}
-                          alt="Sacs de la marque Brille"
-                          className={
-                            productStock > '0'
-                              ? 'searchContainer__collectionWrapper__container__imageAvailable'
-                              : 'searchContainer__collectionWrapper__container__imageNotAvailable'
-                          }
-                        />
-                      </Link>
-                      <p className="searchContainer__collectionWrapper__container__text">
-                        {productName}
-                      </p>
-                      <p className="searchContainer__collectionWrapper__container__text"></p>
-                      <p className="searchContainer__collectionWrapper__container__text"></p>
-
-                      {Number(productStock) > 0 ? (
-                        <p className="searchContainer__collectionWrapper__container__available">
-                          Disponible
-                        </p>
-                      ) : (
-                        <p className="searchContainer__collectionWrapper__container__notAvailable">
-                          Victime de son succès
-                        </p>
-                      )}
+              .map(({ id, productImage, productName, productPrice, productDesc }) => (
+                // condition ternaire pour le choix des backgrounds-colors des cards
+                // className={${color} == "firstCard" ? "firstCard": "secondCard"}
+                <div className="collection__grid__firstCard" key={id}>
+                  {/* link vers la page détaillé du produit sélectionné */}
+                  <Link to={`/selectedProduct/${id}`}>
+                    <div>
+                      <img
+                        className="collection__grid__firstCard__collectionBags"
+                        src={productImage}
+                        alt="Sacs de la marque Brille"
+                      />
                     </div>
-                  </Animated>
-                ),
-              )}
+                  </Link>
+                  <div className="collection__grid__firstCard__paragraph">
+                    <p> {productName}</p>
+                    <p> {productDesc}</p>
+                    <p className="collection__grid__firstCard__paragraph__price">
+                      {productPrice}€
+                    </p>
+                  </div>
+                </div>
+              ))}
         </div>
       </div>
       <GoToTop />

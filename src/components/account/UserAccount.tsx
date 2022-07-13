@@ -1,9 +1,15 @@
 import React from 'react';
 
+import UserProfile from './UserProfile';
+
+// ----------------------------------------------------------------
+
 const UserAccount = () => {
   return (
-    <div>
-      <h1>USER ACCOUNT</h1>
+    <div className="userAccountContainer">
+      <div className="userAccountContainer__profil">
+        <UserProfile />
+      </div>
     </div>
   );
 };

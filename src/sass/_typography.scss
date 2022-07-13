@@ -25,6 +25,10 @@ h4 {
   font-family: 'Lora', serif;
   font-size: 20px;
 }
+h5 {
+  font-family: 'Satisfy', cursive;
+  font-size: 32px;
+}
 
 p {
   font-family: 'Inter', sans-serif;
@@ -60,24 +64,27 @@ button {
   color: #ffffff;
 }
 
-.leftSide__wrapper__title {
-  font-family: 'Lora', serif;
-  font-size: 20px;
-}
-
-.rightSide__wrapper__title {
-  font-family: 'Lora', serif;
-  font-size: 15px;
-}
-
-.signUpContainer__title {
+.connectModal__title {
   font-family: 'Lora', sans-serif;
   font-weight: bold;
   font-size: 20px;
 }
-.signUpContainer__subtitle {
+
+.connectModal__subtitle {
   font-family: 'Lora', sans-serif;
   font-size: 15px;
+}
+
+.loginModal__title {
+  font-family: 'Lora', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.passwordForgotContainer__title {
+  font-family: 'Lora', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 a:link {

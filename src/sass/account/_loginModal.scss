@@ -1,19 +1,13 @@
-.connectModal {
+.loginModal {
   display: flex;
-
   height: auto;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
   &__title {
-    margin: 0 0 1rem 0;
+    margin: 3 0 0 0;
     letter-spacing: 2px;
-    &__error {
-      color: rgb(255, 60, 60);
-      font-size: larger;
-      letter-spacing: 1px;
-    }
   }
 
   &__email {
