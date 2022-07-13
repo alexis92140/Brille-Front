@@ -36,6 +36,17 @@
       width: 100%;
       display: flex;
       justify-content: space-around;
+
+      &__leftSide {
+        &__zip {
+          margin-bottom: 2rem;
+        }
+      }
+      &__rightSide {
+        &__oldpassword {
+          margin-bottom: 2rem;
+        }
+      }
     }
   }
 }

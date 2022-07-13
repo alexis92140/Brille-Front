@@ -272,7 +272,7 @@ const ConnectModal = () => {
             />
           </FormControl>
         </div>
-        {/* ----- ADDRESSLin1 INPUT ----- */}
+        {/* ----- ADDRESSLINE 1 INPUT ----- */}
         <div className="connectModal__address">
           <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
             <TextField
@@ -288,7 +288,7 @@ const ConnectModal = () => {
             />
           </FormControl>
         </div>
-        {/* ----- ADDRESSLine2 INPUT ----- */}
+        {/* ----- ADDRESSLINE 2 INPUT ----- */}
         <div className="connectModal__address">
           <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
             <TextField

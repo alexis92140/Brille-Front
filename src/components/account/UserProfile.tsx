@@ -30,7 +30,13 @@ const UserProfile = () => {
   const [email, setEmail] = useState<string>('');
 
   // ---- for the password ----
-  const [password, setPassword] = useState<string>('');
+  const [oldPassword, setOldPassword] = useState<string>('');
+
+  // ---- for the password ----
+  const [newPassword, setNewPassword] = useState<string>('');
+
+  // ---- for the password ----
+  const [confirmedPassword, setConfirmedPassword] = useState<string>('');
 
   // ---- for the phoneNumber ----
   const [phoneNumber, setPhoneNumber] = useState<string>('');
@@ -81,22 +87,32 @@ const UserProfile = () => {
   };
 
   // ---- to update PhoneNumber change  ------
-  // const handlePhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setPhoneNumber(e.target.value);
-  // };
+  const handlePhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPhoneNumber(e.target.value);
+  };
 
   // ---- to update Email change  ------
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  // ---- to uptade Password change  ------
-  const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
+  // ---- to uptade Old Password change  ------
+  const handleOldPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setOldPassword(e.target.value);
+  };
+
+  // ---- to uptade New Password change  ------
+  const handleNewPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewPassword(e.target.value);
+  };
+
+  // ---- to confirm New Password change  ------
+  const UpdateNewPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setConfirmedPassword(e.target.value);
   };
 
   // ---- to uptade Password change  ------
-  const handleConfirmPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleConfirmedPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setConfirmedPassword(e.target.value);
   };
 
@@ -186,8 +202,11 @@ const UserProfile = () => {
         <form>
           <div className="userProfile__settings__container">
             <div className="userProfile__settings__container__leftSide">
+              <p className="userProfile__settings__container__leftSide__title">
+                Données personnelles
+              </p>
               {/* ----- FIRST NAME ----- */}
-              <div className="connectModal__">
+              <div className="userProfile__settings__container__leftSide">
                 <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
                   <TextField
                     id="outlined-basic"
@@ -196,9 +215,8 @@ const UserProfile = () => {
                     label="Prénom"
                     type="text"
                     autoComplete="current-text"
-                    variant="outlined"
+                    variant="standard"
                     size="small"
-                    required
                   />
                 </FormControl>
               </div>
@@ -213,9 +231,8 @@ const UserProfile = () => {
                     label="Nom"
                     type="text"
                     autoComplete="current-text"
-                    variant="outlined"
+                    variant="standard"
                     size="small"
-                    required
                   />
                 </FormControl>
 
@@ -229,63 +246,168 @@ const UserProfile = () => {
                       label="Email"
                       type="email"
                       autoComplete="current-password"
-                      variant="outlined"
+                      variant="standard"
                       size="small"
-                      required
                     />
                   </FormControl>
+                </div>
+
+                {/* ----- PHONE NUMBER ----- */}
+                <div className="userProfile__settings__container__leftSide">
+                  <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
+                    <TextField
+                      id="outlined-basic"
+                      value={phoneNumber}
+                      // onChange={handlePhoneNumber}
+                      label="Téléphone"
+                      type="tel"
+                      autoComplete="current-password"
+                      variant="standard"
+                      size="small"
+                    />
+                  </FormControl>
+                </div>
+
+                {/* ----- ADDRESSLINE 1 INPUT ----- */}
+                <div className="userProfile__settings__container__leftSide">
+                  <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
+                    <TextField
+                      id="outlined-basic"
+                      value={address1}
+                      label="Adresse 1"
+                      type="text"
+                      onChange={handleAddress1}
+                      autoComplete="current-password"
+                      variant="standard"
+                      size="small"
+                    />
+                  </FormControl>
+                </div>
+
+                {/* ----- ADDRESSLINE 2 INPUT ----- */}
+                <div className="userProfile__settings__container__leftSide">
+                  <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
+                    <TextField
+                      id="outlined-basic"
+                      value={address2}
+                      label="Adresse 2"
+                      type="text"
+                      onChange={handleAddress2}
+                      autoComplete="current-password"
+                      variant="standard"
+                      size="small"
+                    />
+                  </FormControl>
+                </div>
+
+                {/* ----- ZIPCODE AND COUNTRY INPUT ----- */}
+                <div className="userProfile__settings__container__leftSide__zip">
+                  <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
+                    <TextField
+                      id="outlined-basic"
+                      value={zipCode}
+                      onChange={handleZipCode}
+                      label="Code postal"
+                      type="number"
+                      variant="standard"
+                      size="small"
+                    />
+                  </FormControl>
+                </div>
+                <div className="userProfile__settings__container__leftSide">
+                  <Button
+                    variant="contained"
+                    component="label"
+                    color="secondary"
+                    size="small"
+                    onClick={handleSubmit}>
+                    Modifier
+                    <input type="file" hidden onChange={handleImageChange} />
+                  </Button>
                 </div>
               </div>
             </div>
 
             <div className="userProfile__settings__container__rightSide">
-              {/* ----- PASSWORD INPUT ----- */}
+              <p>Changer mon mot de passe</p>
+              {/* ----- OLD PASSWORD INPUT ----- */}
               <div className="">
                 <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
                   <TextField
                     id="standard-password-input"
-                    value={password}
-                    label="Mot de passe"
+                    value={oldPassword}
+                    label="Ancien mot de passe"
                     type="password"
-                    onChange={handlePassword}
+                    onChange={handleOldPassword}
                     autoComplete="current-password"
-                    variant="outlined"
+                    variant="standard"
                     size="small"
                     required
                   />
                 </FormControl>
               </div>
-              {/* ----- PASSWORD CONFIRMATION INPUT ----- */}
-              <div className="">
+
+              {/* ----- NEW PASSWORD INPUT ----- */}
+              <div className="userProfile__settings__container__rightSide">
+                <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
+                  <TextField
+                    id="standard-password-input"
+                    value={newPassword}
+                    label="Nouveau mot de passe"
+                    type="password"
+                    onChange={handleNewPassword}
+                    autoComplete="current-password"
+                    variant="standard"
+                    size="small"
+                    required
+                  />
+                </FormControl>
+              </div>
+
+              {/* ----- CONFIRMED PASSWORD INPUT ----- */}
+
+              <div className="userProfile__settings__container__rightSide">
                 <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
                   <TextField
                     id="standard-password-input"
                     // value={confirmedPassword}
-                    label="Confirmation"
+                    label="Confirmer le nouveau mot de passe"
                     type="password"
-                    onChange={handleConfirmPassword}
+                    onChange={handleConfirmedPassword}
                     autoComplete="current-password"
-                    variant="outlined"
+                    variant="standard"
                     size="small"
                     required
                   />
                 </FormControl>
               </div>
-              {/* ----- ADDRESSLin1 INPUT ----- */}
-              <div className="">
+
+              {/* ----- OLD PASSWORD INPUT ----- */}
+              <div className="userProfile__settings__container__rightSide__oldpassword">
                 <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
                   <TextField
-                    id="outlined-basic"
-                    value={address1}
-                    label="Adresse 1"
-                    type="text"
-                    onChange={handleAddress1}
+                    id="standard-password-input"
+                    value={oldPassword}
+                    label="Ancien mot de passe"
+                    type="password"
+                    onChange={handleOldPassword}
                     autoComplete="current-password"
-                    variant="outlined"
+                    variant="standard"
                     size="small"
                     required
                   />
                 </FormControl>
+              </div>
+              <div className="userProfile__settings__container__rightSide">
+                <Button
+                  variant="contained"
+                  component="label"
+                  color="secondary"
+                  size="small"
+                  onClick={handleSubmit}>
+                  Confirmer
+                  <input type="file" hidden onChange={handleImageChange} />
+                </Button>
               </div>
             </div>
           </div>
