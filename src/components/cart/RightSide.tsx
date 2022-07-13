@@ -31,7 +31,7 @@ const RightSide = () => {
           </div>
           <div className="right__wrapper__firstPart__secondContainer">
             <p>TOTAL</p>
-            <p>200€</p>
+            <p>€</p>
           </div>
 
           <div className="separator"> </div>
