@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import Newsletter from './Newsletter';
 
 // ----------------------------------------------------------------
@@ -12,18 +12,18 @@ const Footer = () => {
         <div className="container__footer">
           <ul>
             <li>
-              <a target="_blank" href="https://www.google.fr/" rel="noreferrer">
-                Nous contacter
-              </a>
+            <Link to="/contact">
+              Nous contacter
+              </Link>
             </li>
             <li>
-              <a target="_blank" href="https://www.google.fr/" rel="noreferrer">
+              <a target="_blank" href="https://www.brillehandbags.com/mentions-l%C3%A9gales" rel="noreferrer">
                 Mentions légales
               </a>
             </li>
             <li>
-              <a target="_blank" href="https://www.google.fr/" rel="noreferrer">
-                Conditions générales de ventes{' '}
+              <a target="_blank" href="https://www.brillehandbags.com/conditions-d-utilisation" rel="noreferrer">
+                Conditions générales de ventes
               </a>
             </li>
           </ul>
@@ -34,53 +34,37 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <a target="_blank" href="https://www.google.fr/" rel="noreferrer">
+              <a target="_blank" href="https://www.laposte.fr/" rel="noreferrer">
                 Informations de livraisons
               </a>
             </li>
           </ul>
           <ul className="reseaux">
+            
             <li>
               <a
-                className="twitter"
-                target="_blank"
-                href="https://www.google.fr/"
-                rel="noreferrer">
-                Twitter
-              </a>
-              <img
-                className="logoTwitter"
-                alt="twitter"
-                src="../../../public/assets/images/twitter.svg"
-              />
-            </li>
-            <li>
-              <a
-                className="instagram"
-                target="_blank"
-                href="https://www.google.fr/"
-                rel="noreferrer">
-                Instagramm
-              </a>
+             target="_blank"
+             href="https://www.instagram.com/brille_handbags/"
+             rel="noreferrer">
+              
               <img
                 className="logoInstagram"
                 alt="instagram"
                 src="../../../public/assets/images/instagram.svg"
               />
+              </a>
             </li>
             <li>
               <a
-                className="facebook"
                 target="_blank"
-                href="https://www.google.fr/"
+                href="https://fr-fr.facebook.com/"
                 rel="noreferrer">
-                Facebookk
-              </a>
               <img
                 className="logoFacebook"
                 alt="Facebook"
                 src="../../../public/assets/images/facebook.svg"
               />
+              </a>
             </li>
           </ul>
         </div>
