@@ -80,7 +80,6 @@ const Footer = () => {
                 className="logoFacebook"
                 alt="Facebook"
                 src="../../../public/assets/images/facebook.svg"
-                
               />
             </li>
           </ul>
