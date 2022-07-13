@@ -48,7 +48,7 @@
         margin: 2rem 3rem;
 
         &__firstWrapper {
-          width: 90%;
+          width: 100%;
           display: flex;
           align-items: center;
           margin-bottom: 2rem;
@@ -80,6 +80,14 @@
 
             &__textContent {
               padding-top: 1rem;
+            }
+
+            &__wrapper {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              cursor: pointer;
             }
           }
         }
@@ -157,6 +165,10 @@
     }
   }
 }
+
+// #trash {
+//   margin-top: 5px;
+// }
 
 // ! Line to separate the two parts the right side Cart component
 .separator {

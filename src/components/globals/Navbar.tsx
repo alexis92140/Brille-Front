@@ -1,16 +1,18 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */
 // ----- Package components -----
 import 'react-js-stickynav/dist/index.css';
+
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Badge, { BadgeProps } from '@mui/material/Badge';
+import IconButton from '@mui/material/IconButton';
+import { styled } from '@mui/material/styles';
 import { Sling as Hamburger } from 'hamburger-react';
 import React, { useState } from 'react';
 import { StickyNav } from 'react-js-stickynav';
 import { Link, NavLink } from 'react-router-dom';
+
 import navlinks from '../../../data/navLinks';
 import Dropdown from './Dropdown';
-import Badge, { BadgeProps } from '@mui/material/Badge';
-import { styled } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 // ---------------Cart icon style config ----------------------------
 
