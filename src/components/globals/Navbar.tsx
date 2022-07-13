@@ -7,11 +7,12 @@ import Badge, { BadgeProps } from '@mui/material/Badge';
 import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
 import { Sling as Hamburger } from 'hamburger-react';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { StickyNav } from 'react-js-stickynav';
 import { Link, NavLink } from 'react-router-dom';
 
 import navlinks from '../../../data/navLinks';
+import ShoppingCartContext from '../../Context/ShoppingCartContext';
 import Dropdown from './Dropdown';
 
 // ---------------Cart icon style config ----------------------------
@@ -45,6 +46,8 @@ const Navbar = () => {
   };
 
   window.addEventListener('scroll', changeColor);
+
+  const { cartItems } = useContext(ShoppingCartContext);
 
   return (
     <div>
@@ -89,7 +92,7 @@ const Navbar = () => {
               ))}
               <Link to="/panier" onClick={closeMenu}>
                 <IconButton aria-label="cart">
-                  <StyledBadge badgeContent={1} color="secondary">
+                  <StyledBadge badgeContent={cartItems.length} color="secondary">
                     <ShoppingCartIcon />
                   </StyledBadge>
                 </IconButton>

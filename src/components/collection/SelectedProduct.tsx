@@ -37,7 +37,6 @@ const SelectedProduct = () => {
   const notify = () => toast('Produit ajouté au panier!');
 
   const { addItem, cartItems } = useContext(ShoppingCartContext);
-  console.log(cartItems);
 
   return (
     <div className="Page">
