@@ -39,9 +39,8 @@ const Essentials = () => {
   return (
     <div className="essentialsPage">
       <div>
-        <Link to="/collection">
-          <h1> {title?.name} </h1>
-        </Link>
+        <h1> {title?.name} </h1>
+
         <Link to="/collection">
           <h2> LA COLLECTION </h2>
         </Link>
