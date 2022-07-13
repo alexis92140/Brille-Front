@@ -31,6 +31,8 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/Rechercher" element={<Find />} />
           <Route path="/compte" element={<Account />} />
+          <Route path="/panier/:id" element={<Cart />} />
+          <Route path="/panier/" element={<Cart />} />
           <Route path="/moncompte" element={<UserAccount />} />
           <Route path="/panier" element={<Cart />} />
           <Route path="/seconnecter" element={<Login />} />
