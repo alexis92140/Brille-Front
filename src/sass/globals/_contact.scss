@@ -89,8 +89,9 @@
     }
     &__button{
         display: flex;
-        justify-content:space-between;
-        min-width:45%;
+        justify-content:space-around;
+        min-width:900px;
+        
         margin:auto;
         position: absolute;
         margin-top: 35rem;
