@@ -1,5 +1,3 @@
-import '../../utils/cartAction';
-
 import DeleteIcon from '@mui/icons-material/Delete';
 import PaymentsIcon from '@mui/icons-material/Payments';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
