@@ -60,7 +60,7 @@ const Footer = () => {
                 target="_blank"
                 href="https://www.google.fr/"
                 rel="noreferrer">
-                Instagram
+                Instagramm
               </a>
               <img
                 className="logoInstagram"
@@ -74,12 +74,13 @@ const Footer = () => {
                 target="_blank"
                 href="https://www.google.fr/"
                 rel="noreferrer">
-                Facebook
+                Facebookk
               </a>
               <img
                 className="logoFacebook"
                 alt="Facebook"
                 src="../../../public/assets/images/facebook.svg"
+                
               />
             </li>
           </ul>
