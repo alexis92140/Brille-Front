@@ -32,11 +32,11 @@ const Find = () => {
         withCredentials: true,
       });
       setAllProducts(data);
-      console.log(data);
     };
 
     getAllProducts();
   }, []);
+
   return (
     <div>
       {/* --- SEARCH BAR --- */}

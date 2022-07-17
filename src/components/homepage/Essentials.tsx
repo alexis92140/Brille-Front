@@ -20,7 +20,6 @@ const Essentials = () => {
         withCredentials: true,
       });
       setImages(data);
-      console.log(data);
     };
     getImages();
 
@@ -32,7 +31,6 @@ const Essentials = () => {
         withCredentials: true,
       });
       setTitle(data);
-      console.log(data);
     };
     getTitle();
   }, []);
