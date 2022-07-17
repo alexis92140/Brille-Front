@@ -4,7 +4,6 @@ import { dialogContentTextClasses } from '@mui/material';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-// import de toastify
 import { Id, toast, ToastContainer } from 'react-toastify';
 
 import addItem from '../../Context/ShoppingCartContext';
@@ -76,7 +75,6 @@ const SelectedProduct = () => {
                     />
                   </div>
                 </div>
-                <GoToTop />
                 <div className="Page__secondPage__description__buttonCartContainer">
                   <button
                     onClick={() => addItem(Number(id || '0'))}
@@ -91,6 +89,7 @@ const SelectedProduct = () => {
           </div>
         </>
       )}
+      <GoToTop />
     </div>
   );
 };

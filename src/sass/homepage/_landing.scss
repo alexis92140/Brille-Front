@@ -35,7 +35,7 @@ h5 {
   width: 10rem;
   height: 10rem;
   transform: translate(-50%, -50%);
-  // z-index: -3;
+  z-index: -3;
   @media screen and (min-width: 320px) and (max-width: 1026px) {
     visibility: hidden;
   }

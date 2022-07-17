@@ -1,19 +1,33 @@
 .connectModal {
   display: flex;
-
   height: auto;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 99;
 
   &__title {
     margin: 0 0 1rem 0;
     letter-spacing: 2px;
-    &__error {
-      color: rgb(255, 60, 60);
-      font-size: larger;
-      letter-spacing: 1px;
-    }
+  }
+  &__error {
+    color: rgb(255, 60, 60);
+    font-size: larger;
+    letter-spacing: 2px;
+  }
+
+  &__instructions {
+    color: rgb(255, 60, 60);
+  }
+
+  &__noInstructions {
+    position: absolute;
+    color: rgb(255, 60, 60);
+    top: -50rem;
+  }
+
+  &__errorHidden {
+    display: none;
   }
 
   &__email {
