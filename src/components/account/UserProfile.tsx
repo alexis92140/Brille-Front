@@ -6,8 +6,12 @@ import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import React, { useState } from 'react';
+import Switch from '@mui/material/Switch';
 
 import { storage } from '../../utils/firebase';
+
+// ---------------- @mui/material switch button setting ---------------
+const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
 // ----------------------------------------------------------------
 
@@ -167,6 +171,7 @@ const UserProfile = () => {
 
   return (
     <div className="userProfile">
+      {/* ------ AVATAR ------- */}
       <div className="userProfile__avatarContainer">
         <Avatar src={url} sx={{ width: 125, height: 125 }}>
           <p className="userProfile__avatarContainer__initials">JB</p>
@@ -196,6 +201,8 @@ const UserProfile = () => {
           </Button>
         )}
       </div>
+
+      {/* ------ FORM LEFT SIDE ------- */}
       <div className="userProfile__settings">
         <h4>Paramètres du compte</h4>
 
@@ -314,6 +321,8 @@ const UserProfile = () => {
                     />
                   </FormControl>
                 </div>
+
+                {/* ------ FORM LEFT SIDE BUTTON------- */}
                 <div className="userProfile__settings__container__leftSide">
                   <Button
                     variant="contained"
@@ -322,12 +331,12 @@ const UserProfile = () => {
                     size="small"
                     onClick={handleSubmit}>
                     Modifier
-                    <input type="file" hidden onChange={handleImageChange} />
                   </Button>
                 </div>
               </div>
             </div>
 
+            {/* ------ FORM RIGHT SIDE ------- */}
             <div className="userProfile__settings__container__rightSide">
               <p>Changer mon mot de passe</p>
               {/* ----- OLD PASSWORD INPUT ----- */}
@@ -365,7 +374,6 @@ const UserProfile = () => {
               </div>
 
               {/* ----- CONFIRMED PASSWORD INPUT ----- */}
-
               <div className="userProfile__settings__container__rightSide">
                 <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
                   <TextField
@@ -382,23 +390,8 @@ const UserProfile = () => {
                 </FormControl>
               </div>
 
-              {/* ----- OLD PASSWORD INPUT ----- */}
-              <div className="userProfile__settings__container__rightSide__oldpassword">
-                <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
-                  <TextField
-                    id="standard-password-input"
-                    value={oldPassword}
-                    label="Ancien mot de passe"
-                    type="password"
-                    onChange={handleOldPassword}
-                    autoComplete="current-password"
-                    variant="standard"
-                    size="small"
-                    required
-                  />
-                </FormControl>
-              </div>
-              <div className="userProfile__settings__container__rightSide">
+              {/* ------ FORM RIGHT SIDE BUTTON------- */}
+              <div className="userProfile__settings__container__rightSide__button">
                 <Button
                   variant="contained"
                   component="label"
@@ -406,8 +399,17 @@ const UserProfile = () => {
                   size="small"
                   onClick={handleSubmit}>
                   Confirmer
-                  <input type="file" hidden onChange={handleImageChange} />
                 </Button>
+              </div>
+
+              {/* ------ FORM RIGHT SIDE SWITCH BUTTONS------- */}
+              <div className="userProfile__settings__container__rightSide__switch">
+                <p>Notifications SMS</p>
+                <Switch {...label} color="secondary" />
+              </div>
+              <div className="userProfile__settings__container__rightSide__switch">
+                <p>Notifications Email</p>
+                <Switch {...label} color="secondary" />
               </div>
             </div>
           </div>

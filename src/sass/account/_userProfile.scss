@@ -8,7 +8,9 @@
     0 32px 16px rgba(0, 0, 0, 0.09);
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(8px);
+  z-index: 99;
 
+  //>> AVATAR
   &__avatarContainer {
     min-width: 30%;
     height: 100%;
@@ -24,6 +26,8 @@
       font-size: 1rem;
     }
   }
+
+  //>> FORM
   &__settings {
     width: 70%;
     height: 100%;
@@ -32,19 +36,41 @@
     h4 {
       margin: 1rem 0 3rem 1rem;
     }
+
     &__container {
       width: 100%;
       display: flex;
       justify-content: space-around;
 
+      &__rightSide {
+        &__button {
+          margin-top: 2rem;
+          margin-bottom: 2.5rem;
+        }
+        &__oldpassword {
+          margin-bottom: 2rem;
+        }
+        &__switch {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 13px;
+          p {
+            font-size: 13px;
+          }
+        }
+        p {
+          font-size: 14px;
+        }
+      }
+
       &__leftSide {
         &__zip {
           margin-bottom: 2rem;
         }
-      }
-      &__rightSide {
-        &__oldpassword {
-          margin-bottom: 2rem;
+        p {
+          font-size: 14px;
         }
       }
     }

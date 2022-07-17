@@ -24,11 +24,11 @@
     "firebase": "^9.9.0",
     "hamburger-react": "^2.5.0",
     "material-ui-search-bar": "^1.0.0",
-    "react": "^17.0.2",
+    "react": "^18.2.0",
     "react-animated-css": "^1.2.1",
     "react-burger-menu": "^3.0.8",
     "react-cookie": "^4.1.1",
-    "react-dom": "^17.0.2",
+    "react-dom": "^18.2.0",
     "react-hide-on-scroll": "^1.1.4",
     "react-icons": "^4.4.0",
     "react-js-stickynav": "^1.0.2",
@@ -41,10 +41,10 @@
   },
   "devDependencies": {
     "@types/jest": "^28.1.2",
-    "@types/node": "^18.0.0",
-    "@types/react": "^17.0.47",
+    "@types/node": "^18.0.5",
+    "@types/react": "^18.0.15",
     "@types/react-burger-menu": "^2.8.3",
-    "@types/react-dom": "^17.0.17",
+    "@types/react-dom": "^18.0.6",
     "@types/react-router": "^5.1.18",
     "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
@@ -69,11 +69,11 @@
   "main": ".eslintrc.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexis92140/Brille-Front.git"
+    "url": "git+https://github.com/nahabee/Brille-Front.git"
   },
   "author": "",
   "bugs": {
-    "url": "https://github.com/alexis92140/Brille-Front/issues"
+    "url": "https://github.com/nahabee/Brille-Front/issues"
   },
-  "homepage": "https://github.com/alexis92140/Brille-Front#readme"
+  "homepage": "https://github.com/nahabee/Brille-Front#readme"
 }

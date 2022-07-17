@@ -12,7 +12,6 @@
   }
   &__error {
     color: rgb(255, 60, 60);
-    font-size: larger;
     letter-spacing: 2px;
   }
 
@@ -32,13 +31,6 @@
 
   &__email {
     margin: 2 0 0 0;
-  }
-
-  &__address {
-    &__infos {
-      display: flex;
-      gap: 3rem;
-    }
   }
 
   &__choices {

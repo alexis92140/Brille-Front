@@ -27,10 +27,6 @@ const EMAIL_REGEX: any = new RegExp(
 // ------ Pattern for the user input ------
 const USER_REGEX: any = /^[A-z][A-z0-9-_]{3,23}$/;
 
-// ------ Pattern for the addresses input ------
-const ADDRESS_REGEX: any =
-  /((^[0-9]*).?((BIS)|(TER)|(QUATER))?)?((\W+)|(^))(([a-z]+.)*)([0-9]{5})?.(([a-z'']+.)*)$/;
-
 // ------ Pattern for the ZIPCODE input ------
 const ZIPCODE_REGEX: any = /[0-9]{5}/g;
 
@@ -45,10 +41,6 @@ const ConnectModal = () => {
   const firstNameRef = useRef<HTMLInputElement>(null);
   const lastNameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
-  const addressLine1Ref = useRef<HTMLInputElement>(null);
-  const addressLine2Ref = useRef<HTMLInputElement>(null);
-  const zipCodeRef = useRef<HTMLInputElement>(null);
-  const cityRef = useRef<HTMLInputElement>(null);
   const errorRef = useRef<HTMLInputElement>(null);
 
   // >> STATES<<
@@ -77,22 +69,6 @@ const ConnectModal = () => {
   const [isValidedMatch, setIsValidedMatch] = useState(false);
   const [isMatchFocused, setIsMatchFocused] = useState(false);
 
-  // ---- for the addressLine1 ----
-  const [address1, setAddress1] = useState<string>('');
-  const [isValidAddress, setIsValidAddress] = useState<boolean>(false);
-
-  // ---- for the addressLine2 ----
-  const [address2, setAddress2] = useState<string>('');
-  const [isValidAddress2, setIsValidAddress2] = useState<boolean>(false);
-
-  // ---- for the zipCode ----
-  const [zipCode, setZipCode] = useState<string>('');
-  const [isValidedZipCode, setIsValidedZipCode] = useState<boolean>(false);
-
-  // ---- for the City----
-  const [city, setCity] = useState<string>('');
-  const [isValidedCity, setIsValidedCity] = useState<boolean>(false);
-
   // ---- for the checkbox ----
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
@@ -119,24 +95,6 @@ const ConnectModal = () => {
   // ---- to update Email change  ------
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
-  };
-
-  // ---- to uptade AddressLine1 change  ------
-  const handleAddress1 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAddress1(e.target.value);
-  };
-
-  // ---- to uptade AddressLine2 change  ------
-  const handleAddress2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAddress2(e.target.value);
-  };
-  // ---- to uptade zipCode change  ------
-  const handleZipCode = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setZipCode(e.target.value);
-  };
-  // ---- to uptade AddressLine2 change  ------
-  const handleCity = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCity(e.target.value);
   };
 
   // >> USE EFFECTS
@@ -173,29 +131,9 @@ const ConnectModal = () => {
     setIsValidedMatch(match);
   }, [password, matchPassword]);
 
-  // ---- for the address1 ----
-  useEffect(() => {
-    setIsValidAddress(ADDRESS_REGEX.test(address1));
-  }, [address1]);
-
-  // ---- for the address2 ----
-  useEffect(() => {
-    setIsValidAddress2(ADDRESS_REGEX.test(address2));
-  }, [address2]);
-
-  // ---- for the ZipCode ----
-  useEffect(() => {
-    setIsValidedZipCode(ZIPCODE_REGEX.test(zipCode));
-  }, [zipCode]);
-
-  // ---- for the City ----
-  useEffect(() => {
-    setIsValidedCity(ADDRESS_REGEX.test(city));
-  }, [city]);
-
   useEffect(() => {
     setErrorMessage('');
-  }, [firstName, lastName, password, email, matchPassword, address1, zipCode, city]);
+  }, [firstName, lastName, password, email, matchPassword]);
 
   // const validatePhoneNumber = (phone: string) => {
   //   const pattern = /^\(?(\d{2})\)?[- ]?(\d{2})[- ]?(\d{2})[- ]?(\d{2})[- ]?(\d{2})$/;
@@ -207,24 +145,33 @@ const ConnectModal = () => {
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
-      await axios.post<IUser>(
-        `${import.meta.env.VITE_DB_URL}api/users`,
-        JSON.stringify({
-          firstName,
-          lastName,
-          email,
-          password,
-        }),
-      );
+      await axios.post<IUser>(`${import.meta.env.VITE_DB_URL}api/users`, {
+        admin: 1,
+        firstName,
+        lastName,
+        email,
+        password,
+      });
+      setFirstName('');
+      setLastName('');
+      setIsChecked(false);
+      setEmail('');
+      setPassword('');
     } catch (err) {
       if (axios.isAxiosError(err)) {
         // pour gérer les erreurs de type axios
-        if (err.response?.status === 401) {
-          setErrorMessage(`Veuillez vérifier l'email ou le mot de passe`);
+        if (err.response?.status === 404) {
+          setErrorMessage(`Pas de réponse du serveur.`);
+        } else if (err.response?.status === 409) {
+          setErrorMessage(`Le compte est déjà utilisé`);
         }
       } else {
         // pour gérer les erreurs non axios
-        if (err instanceof Error) setErrorMessage(errorMessage);
+        if (err instanceof Error)
+          setErrorMessage(`L'inscription n'a pas abouti ... Veuillez recommencer.`);
+      }
+      if (null !== errorRef.current) {
+        errorRef.current.focus();
       }
     }
   };
@@ -499,128 +446,6 @@ const ConnectModal = () => {
             </p>
           </FormControl>
         </div>
-
-        {/* ----- ADDRESSLINE 1 INPUT ----- */}
-        <div className="connectModal__address">
-          <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
-            {!isValidAddress ? (
-              <TextField
-                type="text"
-                id="addresseLine1"
-                ref={addressLine1Ref}
-                autoComplete="off"
-                onChange={handleAddress1}
-                label="Adresse 1"
-                variant="outlined"
-                size="small"
-              />
-            ) : (
-              <TextField
-                type="text"
-                id="addressLine1"
-                ref={addressLine1Ref}
-                autoComplete="off"
-                onChange={handleAddress1}
-                label="Adresse 1"
-                variant="outlined"
-                size="small"
-                color={isValidAddress && 'success'}
-              />
-            )}
-          </FormControl>
-        </div>
-
-        {/* ----- ADDRESSLINE 2 INPUT ----- */}
-        <div className="connectModal__address">
-          <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
-            {!isValidAddress2 ? (
-              <TextField
-                type="text"
-                id="addresseLine2"
-                ref={addressLine2Ref}
-                autoComplete="off"
-                onChange={handleAddress2}
-                label="Adresse 2"
-                variant="outlined"
-                size="small"
-              />
-            ) : (
-              <TextField
-                type="text"
-                id="addressLine2"
-                ref={addressLine2Ref}
-                autoComplete="off"
-                onChange={handleAddress2}
-                label="Adresse 2"
-                variant="outlined"
-                size="small"
-                color={isValidAddress2 && 'success'}
-              />
-            )}
-          </FormControl>
-        </div>
-
-        {/* ----- ZIPCODE AND COUNTRY INPUT ----- */}
-        <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
-          <div className="connectModal__address__infos">
-            {!isValidedZipCode ? (
-              <div className="connectModal__address__zipCode">
-                <TextField
-                  type="number"
-                  id="zipCode"
-                  ref={zipCodeRef}
-                  autoComplete="off"
-                  onChange={handleZipCode}
-                  label="Code Postal"
-                  variant="outlined"
-                  size="small"
-                />
-              </div>
-            ) : (
-              <div className="connectModal__address__zipCode">
-                <TextField
-                  type="number"
-                  id="zipCode"
-                  ref={zipCodeRef}
-                  autoComplete="off"
-                  onChange={handleZipCode}
-                  label="Code Postal"
-                  variant="outlined"
-                  size="small"
-                  color={isValidedZipCode && 'success'}
-                />
-              </div>
-            )}
-            {!isValidedCity ? (
-              <div className="connectModal__address__city">
-                <TextField
-                  type="text"
-                  id="outlined-basic"
-                  ref={cityRef}
-                  onChange={handleCity}
-                  label="Ville"
-                  variant="outlined"
-                  size="small"
-                  autoComplete="off"
-                />
-              </div>
-            ) : (
-              <div className="connectModal__address__city">
-                <TextField
-                  type="text"
-                  id="outlined-basic"
-                  ref={cityRef}
-                  onChange={handleCity}
-                  label="Ville"
-                  variant="outlined"
-                  size="small"
-                  autoComplete="off"
-                  color={isValidedCity && 'success'}
-                />
-              </div>
-            )}
-          </div>
-        </FormControl>
 
         {/* ----- CHECKBOX & LOGIN BUTTON ----- */}
         <div className="connectModal__choices">
