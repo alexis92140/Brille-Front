@@ -49,13 +49,6 @@ const LoginModal = () => {
     setPassword(e.target.value);
   };
 
-  // ---- to handle the error message  ------
-  // const displayError = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   password !== assword &&
-  //     setErrorMessage('Le mot de passe ne correspond pas ... veuillez réessayer.');
-  // };
-
   // >> MY VARIABLES
 
   // ------ store the social icons styles ------
@@ -184,7 +177,7 @@ const LoginModal = () => {
         <div className="loginModal__logged">
           <p>
             Vous n&apos;avez pas compte ?
-            <Link to="/moncompte">
+            <Link to="/compte">
               <span>S&apos;inscrire</span>
             </Link>
           </p>

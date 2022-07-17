@@ -17,7 +17,6 @@ const Newsletter = () => {
 
   const postNewsletter = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
-      
       await axios.post<INewsletter>(`${import.meta.env.VITE_API_URL}/api/newsletters`, {
         email,
       });

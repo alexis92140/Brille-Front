@@ -1,3 +1,5 @@
+import 'react-toastify/dist/ReactToastify.css';
+
 import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
@@ -5,7 +7,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
 
 import GoToTop from '../components/globals/GoToTop';
@@ -13,23 +14,16 @@ import IImage from '../interfaces/IImage';
 import IPage from '../interfaces/IPage';
 
 const Contact = () => {
-
-
   const notify = () => toast(' Votre message à bien été envoyé !!  ');
 
-
-  
   // Ici j'appel mon interface image >>
   const [allImages, setAllImages] = useState<IImage>();
   // Ici j'appel mon interface page pour UNE page >>
   const [onePage, setOnePage] = useState<IPage>();
 
   useEffect(() => {
-
     const notify = () => toast('Votre message à bien été envoyé !!');
 
-    
-    
     //   // je recupère les images:
     const getAllImages = async () => {
       //     // indispensable quand on veut utiliser async/await dans un useEffect
@@ -39,21 +33,19 @@ const Contact = () => {
         withCredentials: true,
       });
       setAllImages(data[0]);
-      
     };
 
     getAllImages();
 
     // je recupère UN titre
     const getOnePage = async () => {
-       // indispensable quand on veut utiliser async/await dans un useEffect
+      // indispensable quand on veut utiliser async/await dans un useEffect
       let url: string = `${import.meta.env.VITE_API_URL}/api/pages/21`;
 
       const { data } = await axios.get<IPage>(url, {
         withCredentials: true,
       });
       setOnePage(data);
-      
     };
 
     getOnePage();
@@ -62,11 +54,7 @@ const Contact = () => {
   return (
     <div className="contact">
       <div className="contact__head">
-        <img
-          id="plage"
-          src={allImages ?.image}
-          alt="plage bleu"
-        />
+        <img id="plage" src={allImages?.image} alt="plage bleu" />
       </div>
 
       <div className="contact__container">
@@ -124,8 +112,11 @@ const Contact = () => {
               label="Je ne suis pas un robot"
               sx={{ '& .MuiSvgIcon-root': { fontSize: 32 } }}
             />
-            <Button onClick={notify} type="submit" 
-            variant="contained" endIcon={<SendIcon />}>
+            <Button
+              onClick={notify}
+              type="submit"
+              variant="contained"
+              endIcon={<SendIcon />}>
               Envoyer
             </Button>
             <ToastContainer />

@@ -14,10 +14,10 @@ import { Link } from 'react-router-dom';
 // ---------------------------------------------------------------
 
 const RightSide = () => {
-  const [quantity, setQuantity] = useState<number>(1);
+  const [quantity, setQuantity] = useState<string>('1');
 
   const handleChange = (e: SelectChangeEvent) => {
-    setQuantity(Number(e.target.value) || 0);
+    setQuantity(e.target.value || '0');
   };
 
   return (
@@ -86,7 +86,7 @@ const RightSide = () => {
                   <Select
                     labelId="demo-select-small"
                     id="demo-select-small"
-                    value={Number(quantity)}
+                    value={quantity}
                     label="Number"
                     onChange={handleChange}>
                     <MenuItem value="">
