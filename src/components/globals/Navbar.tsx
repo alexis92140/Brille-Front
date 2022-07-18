@@ -1,15 +1,17 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */
-import React, { useContext, useState } from 'react';
+import 'react-js-stickynav/dist/index.css';
+
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Badge, { BadgeProps } from '@mui/material/Badge';
 import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
 import { Sling as Hamburger } from 'hamburger-react';
+import React, { useContext, useState } from 'react';
 import { StickyNav } from 'react-js-stickynav';
 import { Link, NavLink } from 'react-router-dom';
+
 import navlinks from '../../../data/navLinks';
 import ShoppingCartContext from '../../Context/ShoppingCartContext';
-import 'react-js-stickynav/dist/index.css';
 
 // ---------------Cart icon style config ----------------------------
 
@@ -52,6 +54,7 @@ const Navbar = () => {
 
   // To use the cartItems function from the ShoppingCartContext file
   const { cartItems } = useContext(ShoppingCartContext);
+  console.log(cartItems);
 
   return (
     <div>

@@ -42,30 +42,33 @@ const Find = () => {
       {/* --- SEARCH BAR --- */}
       <div className="searchContainer">
         <div className="searchContainer__inputContainer">
-          <Animated animationIn="fadeInLeft" animationOut="fadeOut" isVisible={true}>
-            <SearchBar
-              style={{ color: blue[500] }}
-              className="searchContainer__inputContainer__input"
-              value={userChoice}
-              placeholder="Recherche"
-              onChange={(newValue) => setUserChoice(newValue)}
-            />
-          </Animated>
-          {console.log(userChoice)}
+          <>
+            <Animated animationIn="fadeInLeft" animationOut="fadeOut" isVisible={true}>
+              <SearchBar
+                style={{ color: blue[500] }}
+                className="searchContainer__inputContainer__input"
+                value={userChoice}
+                placeholder="Recherche"
+                onChange={(newValue) => setUserChoice(newValue)}
+              />
+            </Animated>
+          </>
         </div>
 
         {/* --- PRODUCT ITEMS FILTER & MAPPING --- */}
         <div className="searchContainer__displayAll">
-          <Animated animationIn="fadeInRight" animationOut="fadeOut" isVisible={true}>
-            {userChoice !== '' && (
-              <Button
-                variant="text"
-                className="searchContainer__displayAll__button"
-                onClick={showCollection}>
-                VOIR TOUTE LA COLLECTION
-              </Button>
-            )}
-          </Animated>
+          <>
+            <Animated animationIn="fadeInRight" animationOut="fadeOut" isVisible={true}>
+              {userChoice !== '' && (
+                <Button
+                  variant="text"
+                  className="searchContainer__displayAll__button"
+                  onClick={showCollection}>
+                  VOIR TOUTE LA COLLECTION
+                </Button>
+              )}
+            </Animated>
+          </>
         </div>
 
         <div className="collection__grid">

@@ -1,70 +1,103 @@
-import React, { createContext, useState } from 'react';
-import { useContext } from 'react';
+import React, { createContext, ReactNode, useContext, useState } from 'react';
 
+// >> INTERFACES
+interface ShoppingCartProviderProps {
+  children: ReactNode;
+}
 interface ShoppingCart {
-  addItem: (id: number) => void;
-  deleteItem: (id: number) => void;
-  modifyItem: (id: number, newQuantity: number) => void;
+  getItemQuantity: (id: number) => void;
+  increaseCartQuantity: (id: number) => void;
+  decreaseCartQuantity: (id: number) => void;
+  removeFromCart: (id: number) => void;
   cartItems: CartItem[];
 }
+
+// >> TYPE
 
 type CartItem = {
   id: number;
   quantity: number;
 };
 
-interface ShoppingCartProviderProps {
-  children: React.ReactNode;
-}
+// >> Create context of ShoppingCart
 
 const ShoppingCartContext = createContext<ShoppingCart>({
-  addItem: (id) => {},
-  deleteItem: (id) => {},
-  modifyItem: (id) => {},
+  getItemQuantity: (id: number) => {},
+  increaseCartQuantity: (id: number) => {},
+  decreaseCartQuantity: (id: number) => {},
+  removeFromCart: (id: number) => {},
   cartItems: [],
 });
 
-export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({
-  children,
-}) => {
-  // variable d'état contenant un tableau d'objet de mon panier
+export const useShoppingCart = () => {
+  return useContext(ShoppingCartContext);
+};
+
+// >> MAIN SHOPPING CART PROVIDER FUNCTION
+export const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
+  // -- STATES --
+  //contient le tableau d'objet de mon panier
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  // fonction pour ajouter un objet au panier, à partir de son ID
-  const addItem = (idItem: number) => {
-    // je met dans mon cartItem mon nouvel objet et tout ce qu'il ya déja dans cartItems
-    // on ajoute au panier (cartItems) une nouvelle case qui va contenir
-    //{
-    // id: idItem,
-    // quantity: 1
-    //}
-    setCartItems([{ id: idItem, quantity: 1 }, ...cartItems]);
-  };
-  // fonction pour supprimer un objet du panier, à partir de son ID
-  const deleteItem = (idItem: number) => {
-    setCartItems(cartItems.filter((item) => item.id !== idItem));
+
+  // >> All the functions
+
+  // ? Pour récuperer la quantité de produits
+  const getItemQuantity = (id: number) => {
+    return cartItems.find((item) => item.id === id)?.quantity || 0;
   };
 
-  //fonction modify quantity, en paramétre quantity et IDitem
-
-  const modifyItem = (idItem: number, newQuantity: number) => {
-    // ce positioner sur le bon objet (id == idItem),
-    const myItemToModify = cartItems.find((item) => item.id == idItem) || {
-      id: 0,
-      quantity: 0,
-    };
-
-    // modifier sa quantity en newQuantity
-
-    myItemToModify.quantity = newQuantity;
-
-    // le set dans cartItems
-    setCartItems([myItemToModify, ...cartItems.filter((item) => item.id !== idItem)]);
+  // ? fonction pour ajouter un objet au panier, à partir de son ID
+  const increaseCartQuantity = (id: number) => {
+    // Pour actualiser le cartItem
+    setCartItems((currItems) => {
+      if (currItems.find((item) => item.id === id) == null) {
+        return [...currItems, { id, quantity: 0 }];
+      } else {
+        return currItems.map((item) => {
+          if (item.id === id) {
+            return { ...item, quantity: item.quantity + 1 };
+          } else {
+            return item;
+          }
+        });
+      }
+    });
   };
 
-  console.log(cartItems);
+  // ? fonction pour ajouter un objet au panier, à partir de son ID
+  const decreaseCartQuantity = (id: number) => {
+    // Pour actualiser le cartItem
+    setCartItems((currItems) => {
+      if (currItems.find((item) => item.id === id)?.quantity === 1) {
+        return currItems.filter((item) => item.id !== id);
+      } else {
+        return currItems.map((item) => {
+          if (item.id === id) {
+            return { ...item, quantity: item.quantity - 1 };
+          } else {
+            return item;
+          }
+        });
+      }
+    });
+  };
+
+  // ? fonction pour supprimer un objet du panier, à partir de son ID
+  const removeFromCart = (id: number) => {
+    setCartItems((currItems) => {
+      return currItems.filter((item) => item.id !== id);
+    });
+  };
 
   return (
-    <ShoppingCartContext.Provider value={{ addItem, deleteItem, modifyItem, cartItems }}>
+    <ShoppingCartContext.Provider
+      value={{
+        cartItems,
+        getItemQuantity,
+        increaseCartQuantity,
+        decreaseCartQuantity,
+        removeFromCart,
+      }}>
       {children}
     </ShoppingCartContext.Provider>
   );

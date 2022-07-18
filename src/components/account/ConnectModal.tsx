@@ -124,8 +124,6 @@ const ConnectModal = () => {
   // ---- for the confirmed password ----
   useEffect(() => {
     const result = PWD_REGEX.test(password);
-    console.log(result);
-    console.log(password);
     setIsValidedPassword(result);
     const match = password === matchPassword;
     setIsValidedMatch(match);
