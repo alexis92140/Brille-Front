@@ -1,29 +1,35 @@
 import React, { createContext, useState } from 'react';
-import { useContext } from 'react';
 
+// >> INTERFACES
 interface ShoppingCart {
+  // getItemQuantity: (id: number) => number;
   addItem: (id: number) => void;
   deleteItem: (id: number) => void;
   modifyItem: (id: number, newQuantity: number) => void;
   cartItems: CartItem[];
 }
+interface ShoppingCartProviderProps {
+  children: React.ReactNode;
+}
+
+// >> TYPE
 
 type CartItem = {
   id: number;
   quantity: number;
 };
 
-interface ShoppingCartProviderProps {
-  children: React.ReactNode;
-}
+// >> TYPING the ShoppingCartContext
 
 const ShoppingCartContext = createContext<ShoppingCart>({
+  // getItemQuantity: (id) => ,
   addItem: (id) => {},
   deleteItem: (id) => {},
   modifyItem: (id) => {},
   cartItems: [],
 });
 
+// >> SHOPPING CART PROVIDER
 export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({
   children,
 }) => {
@@ -60,8 +66,6 @@ export const ShoppingCartProvider: React.FC<ShoppingCartProviderProps> = ({
     // le set dans cartItems
     setCartItems([myItemToModify, ...cartItems.filter((item) => item.id !== idItem)]);
   };
-
-  console.log(cartItems);
 
   return (
     <ShoppingCartContext.Provider value={{ addItem, deleteItem, modifyItem, cartItems }}>

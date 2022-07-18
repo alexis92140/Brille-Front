@@ -1,12 +1,11 @@
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import TextField from '@mui/material/TextField';
-import axios from 'axios';
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import React, { useState } from 'react';
 import Switch from '@mui/material/Switch';
+import TextField from '@mui/material/TextField';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { toast, ToastContainer } from 'react-toastify';
 
 import { storage } from '../../utils/firebase';
 
@@ -62,7 +61,6 @@ const UserProfile = () => {
   // ---- to handle the image changement
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement> | any) => {
     let files = e.target.files[0];
-    console.log(files);
     files && setImage(files);
   };
 
@@ -137,6 +135,70 @@ const UserProfile = () => {
   const handleCity = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCity(e.target.value);
   };
+
+  // ------ Toastify packages config ------
+  const notifyInfos = () => {
+    if (firstName !== '' && lastName !== '' && email !== '') {
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />;
+
+      toast.success('Votre compte a bien été actualisé', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+
+  const notifyPassword = () => {
+    if (
+      oldPassword !== '' &&
+      newPassword !== '' &&
+      confirmedPassword === newPassword &&
+      oldPassword !== newPassword
+    ) {
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />;
+
+      toast.success('Veuillez vérifier votre boite mail', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+      setOldPassword('');
+      setNewPassword('');
+      setConfirmedPassword('');
+    }
+  };
+
+  // --------------------------------------------
 
   // ---------generates the color based on the name of the person
   // function stringToColor(string: string) {
@@ -307,19 +369,35 @@ const UserProfile = () => {
                   </FormControl>
                 </div>
 
-                {/* ----- ZIPCODE AND COUNTRY INPUT ----- */}
-                <div className="userProfile__settings__container__leftSide__zip">
-                  <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
-                    <TextField
-                      id="outlined-basic"
-                      value={zipCode}
-                      onChange={handleZipCode}
-                      label="Code postal"
-                      type="number"
-                      variant="standard"
-                      size="small"
-                    />
-                  </FormControl>
+                {/* ----- ZIPCODE AND CITY INPUT ----- */}
+                <div className="userProfile__settings__container__leftSide__zipAndCity">
+                  <div className="userProfile__settings__container__leftSide__zip">
+                    <FormControl sx={{ m: 1, width: '20ch' }} variant="standard">
+                      <TextField
+                        id="outlined-basic"
+                        value={zipCode}
+                        onChange={handleZipCode}
+                        label="Code postal"
+                        type="number"
+                        variant="standard"
+                        size="small"
+                      />
+                    </FormControl>
+                  </div>
+
+                  <div className="userProfile__settings__container__leftSide__city">
+                    <FormControl sx={{ m: 1, width: '20ch' }} variant="standard">
+                      <TextField
+                        id="outlined-basic"
+                        value={city}
+                        onChange={handleCity}
+                        label="Ville"
+                        type="text"
+                        variant="standard"
+                        size="small"
+                      />
+                    </FormControl>
+                  </div>
                 </div>
 
                 {/* ------ FORM LEFT SIDE BUTTON------- */}
@@ -390,15 +468,21 @@ const UserProfile = () => {
                 </FormControl>
               </div>
 
-              {/* ------ FORM RIGHT SIDE BUTTON------- */}
+              {/* ------ FORM RIGHT SIDE BUTTON ------- */}
               <div className="userProfile__settings__container__rightSide__button">
                 <Button
                   variant="contained"
                   component="label"
                   color="secondary"
                   size="small"
-                  onClick={handleSubmit}>
-                  Confirmer
+                  onClick={notifyPassword}>
+                  {oldPassword !== '' &&
+                  newPassword !== '' &&
+                  confirmedPassword === newPassword ? (
+                    <p>Confirmer</p>
+                  ) : (
+                    <p>Changer mon mot de passe</p>
+                  )}
                 </Button>
               </div>
 
