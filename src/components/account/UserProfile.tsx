@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import React, { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 
 import { storage } from '../../utils/firebase';

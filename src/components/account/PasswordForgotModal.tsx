@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */
 import 'react-toastify/dist/ReactToastify.css';
+
 import Button from '@mui/material/Button';
 import { pink, purple, red } from '@mui/material/colors';
 import { grey } from '@mui/material/colors';

@@ -54,6 +54,7 @@ const Navbar = () => {
 
   // To use the cartItems function from the ShoppingCartContext file
   const { cartItems } = useContext(ShoppingCartContext);
+  console.log(cartItems);
 
   return (
     <div>

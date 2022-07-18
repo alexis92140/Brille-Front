@@ -1,10 +1,10 @@
 import 'react-toastify/dist/ReactToastify.css';
+
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 
-import addItem from '../../Context/ShoppingCartContext';
 import ShoppingCartContext from '../../Context/ShoppingCartContext';
 import IProduct from '../../interfaces/IProduct';
 import GoToTop from '../globals/GoToTop';
@@ -38,8 +38,8 @@ const SelectedProduct = () => {
   const notify = () => toast('Produit ajouté au panier!');
 
   // >> VARIABLES
-  // Recover the addItem function from the context
-  const { addItem } = useContext(ShoppingCartContext);
+  // Recover the IncreaseCartQuantity function from the context
+  const { increaseCartQuantity } = useContext(ShoppingCartContext);
 
   return (
     <div className="Page">
@@ -81,7 +81,7 @@ const SelectedProduct = () => {
                 </div>
                 <div className="Page__secondPage__description__buttonCartContainer">
                   <button
-                    onClick={() => addItem(Number(id || '0'))}
+                    onClick={() => increaseCartQuantity(Number(id || '0'))}
                     type="button"
                     className="Page__secondPage__description__buttonCartContainer__buttonCart">
                     AJOUTER
