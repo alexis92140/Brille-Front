@@ -6,7 +6,7 @@
     overflow: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
-
+    // background-color: rgb(248, 254, 255);
     &::-webkit-scrollbar {
       display: none;
     }
@@ -20,11 +20,11 @@
       width: 150px;
       height: 150px;
     }
-    p{
+    p {
       padding: 5px;
     }
-    h4{
-    padding: 5px;
+    h4 {
+      padding: 5px;
     }
     &__icons {
       width: 120px;
@@ -34,6 +34,15 @@
       p {
         font-size: 17px;
         font-weight: 600;
+      }
+      &__bin {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        i {
+          cursor: pointer;
+          margin-right: 4.2rem;
+        }
       }
     }
 
@@ -51,6 +60,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      p {
+        font-weight: 600;
+      }
     }
   }
 }
