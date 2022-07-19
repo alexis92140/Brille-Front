@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import ShoppingCartContext from '../../Context/ShoppingCartContext';
 import IProduct from '../../interfaces/IProduct';
 import GoToTop from '../globals/GoToTop';

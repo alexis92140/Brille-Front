@@ -1,11 +1,12 @@
 import 'react-toastify/dist/ReactToastify.css';
+
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
+
 import ShoppingCartContext from '../../Context/ShoppingCartContext';
 import IProduct from '../../interfaces/IProduct';
-
 import GoToTop from '../globals/GoToTop';
 
 // ----------------------------------------------------------------

@@ -16,9 +16,18 @@
       justify-content: space-between;
       align-items: center;
       p {
-        font-size: 18px;
+        font-size: 17px;
         font-weight: 600;
       }
+    }
+
+    &__emptyCart {
+      width: 100%;
+      margin-top: 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;  
+      align-items: center;
     }
   }
 }
