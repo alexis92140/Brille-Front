@@ -1,0 +1,29 @@
+.cartItem {
+  width: 100%;
+
+  &__productInfos {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    img {
+      width: 150px;
+      height: 150px;
+    }
+    &__icons {
+      width: 120px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      p {
+        font-size: 18px;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
