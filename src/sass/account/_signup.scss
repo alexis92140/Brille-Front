@@ -12,9 +12,11 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-
     background-color: #f2d2a9;
     box-shadow: 0 8px 24px rgba(149, 157, 165, 0.2);
+    @media screen and (max-width: 1000px) {
+      width: 100vw;
+    }
   }
   &__hero {
     width: 100%;
@@ -22,5 +24,8 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    @media screen and (max-width: 1000px) {
+      display: none;
+    }
   }
 }

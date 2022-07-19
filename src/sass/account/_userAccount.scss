@@ -9,6 +9,10 @@
   background-repeat: no-repeat;
   background-size: cover;
 
+  @media screen and (max-width: 1000px) {
+    background-image: none;
+  }
+
   &__profil {
     width: 90%;
     height: 85vh;

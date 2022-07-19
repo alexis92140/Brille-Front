@@ -6,6 +6,10 @@
   align-items: center;
   z-index: 99;
 
+  @media screen and (max-width: 1000px) {
+    margin: none;
+  }
+
   &__title {
     margin: 0 0 1rem 0;
     letter-spacing: 2px;
@@ -31,6 +35,10 @@
 
   &__email {
     margin: 2 0 0 0;
+    @media screen and (max-width: 1000px) {
+    }
+  }
+  &__passwordContainer {
   }
 
   &__choices {

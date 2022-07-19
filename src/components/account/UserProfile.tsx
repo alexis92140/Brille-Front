@@ -2,11 +2,11 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import React, { useState } from 'react';
-import Switch from '@mui/material/Switch';
 
 import { storage } from '../../utils/firebase';
 
