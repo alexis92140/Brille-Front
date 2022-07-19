@@ -6,6 +6,7 @@ import Paper from '@mui/material/Paper';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import ShoppingCartContext from '../../Context/ShoppingCartContext';
 import IProduct from '../../interfaces/IProduct';
@@ -41,10 +42,12 @@ const CartItem = () => {
   // >> VARIABLES
   // from the shoppingcartcontext to get the items
   const ItemSelected = cartItems.length;
-
-  const shippingPrice = 3;
+  const shippingPrice = 2.99;
+  const doubleShipping = shippingPrice * 2;
   const bagPrice = 200;
-  const bagStock = 12;
+  const bagStock = 12 - quantity + 1;
+  const subTotal = bagPrice * quantity;
+  const Total = quantity < 3 ? subTotal + shippingPrice : subTotal + doubleShipping;
 
   // >> AXIOS
 
@@ -63,11 +66,15 @@ const CartItem = () => {
 
   return (
     <div className="cartItem">
-      {ItemSelected ? (
+      {!ItemSelected ? (
         <>
           {/* ----- CARD ITEM ----- */}
           <div className="cartItem__wrapper">
-            <Paper elevation={3}>
+            <Paper
+              elevation={3}
+              sx={{
+                bgcolor: '#f2d2a9',
+              }}>
               <div className="cartItem__productInfos">
                 <img
                   src="https://firebasestorage.googleapis.com/v0/b/brille-handbags.appspot.com/o/bluebag.png?alt=media&token=fffcb6a1-3d32-49c4-90c2-1d11b5dedbff"
@@ -92,6 +99,11 @@ const CartItem = () => {
                   </Fab>
                 </div>
               </div>
+              <div className="cartItem__productInfos__icons__bin">
+                <i>
+                  <DeleteIcon />
+                </i>
+              </div>
             </Paper>
             <hr />
           </div>
@@ -99,17 +111,17 @@ const CartItem = () => {
           {/* ----- ALL THE PRICES ----- */}
           <div className="cartItem__productInfos__amountInfos">
             <p>Sous-total</p>
-            <p>200 €</p>
+            <p>{subTotal} €</p>
           </div>
 
           <div className="cartItem__productInfos__amountInfos">
             <p>Frais de Livraison</p>
-            <p>{shippingPrice} €</p>
+            <p>{quantity >= 3 ? doubleShipping : shippingPrice} €</p>
           </div>
 
           <div className="cartItem__productInfos__amountInfos">
             <p>TOTAL</p>
-            <p>{bagPrice + shippingPrice}€</p>
+            <p>{Total}€</p>
           </div>
         </>
       ) : (
