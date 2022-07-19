@@ -39,6 +39,7 @@ export const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) =>
   //contient le tableau d'objet de mon panier
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
+  console.log(cartItems);
   // >> All the functions
 
   // ? Pour récuperer la quantité de produits
