@@ -15,6 +15,8 @@ const Newsletter = () => {
   );
   const notify = () => toast('Vous etes bien enregistré à notre newsletter');
 
+  // >> AXIOS
+  
   const postNewsletter = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
       await axios.post<INewsletter>(`${import.meta.env.VITE_API_URL}/api/newsletters`, {

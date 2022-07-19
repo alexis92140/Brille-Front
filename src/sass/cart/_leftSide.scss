@@ -16,12 +16,16 @@
     &__title {
       margin-left: 5px;
       color: #000000;
+      font-size: 14px;
     }
     &__textContainer {
       display: flex;
-      gap: 6.1rem;
+      gap: 10rem;
       margin-top: 2rem;
       cursor: pointer;
+      p {
+        font-size: 13px;
+      }
     }
   }
 }

@@ -1,31 +1,17 @@
 .right {
-  width: 100%;
+  min-width: 50%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-
+  padding-top: 8rem;
   &__wrapper {
-    width: 100%;
+    width: 80%;
     display: flex;
+    flex-direction: column;
+    margin-top: 5rem;
     align-items: center;
-
-    //
   }
-}
-
-// #trash {
-//   margin-top: 5px;
-// }
-
-// ! Line to separate the two parts the right side Cart component
-.separator {
-  width: 84%;
-  margin: auto;
-  margin-top: 2rem;
-  height: 0.2px;
-  background-color: #000000;
 }
 
 // &__buttons {

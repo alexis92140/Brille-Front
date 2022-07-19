@@ -25,7 +25,7 @@ const EMAIL_REGEX: any = new RegExp(
 );
 
 // ------ Pattern for the user input ------
-const USER_REGEX: any = /^[A-z][A-z0-9-_]{3,23}$/;
+const USER_REGEX: any = /^[A-z][A-z0-9-_]{1,23}$/;
 
 // ------ Pattern for the ZIPCODE input ------
 const ZIPCODE_REGEX: any = /[0-9]{5}/g;
@@ -143,7 +143,7 @@ const ConnectModal = () => {
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
-      await axios.post<IUser>(`${import.meta.env.VITE_DB_URL}api/users`, {
+      await axios.post<IUser>(`${import.meta.env.VITE_API_URL}/api/users`, {
         admin: 1,
         firstName,
         lastName,
@@ -440,7 +440,7 @@ const ConnectModal = () => {
                   : 'connectModal__noInstructions'
               }>
               <FontAwesomeIcon icon={faInfoCircle} />
-              Veuillez confirmer votre mot de passe.
+              Vos deux mots de passe doivent être identique.
             </p>
           </FormControl>
         </div>
