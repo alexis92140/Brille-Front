@@ -11,8 +11,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
+import { Link } from 'react-router-dom';
 
 import IUser from '../../interfaces/IUser';
 
@@ -451,7 +451,7 @@ const ConnectModal = () => {
                       : 'connectModal__noInstructions'
                   }>
                   <FontAwesomeIcon icon={faInfoCircle} />
-                  Veuillez confirmer votre mot de passe.
+                  Vos deux mots de passe doivent être indentiques.
                 </p>
               </FormControl>
             </div>

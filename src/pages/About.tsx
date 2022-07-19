@@ -56,8 +56,6 @@ const About = () => {
     getParagraph();
   }, []);
 
-  console.log(images);
-
   return (
     <div className="about">
       {/* ici je suis supposée recupérer le title de page>> */}

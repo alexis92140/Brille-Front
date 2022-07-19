@@ -21,11 +21,9 @@ const Landing = () => {
         withCredentials: true,
       });
       setQuote(data[0]);
-      console.log(data);
     };
     getQuote();
   }, []);
-  console.log(quote);
 
   return (
     <div className="landingPage">

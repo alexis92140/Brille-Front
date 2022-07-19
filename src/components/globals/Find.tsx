@@ -32,7 +32,6 @@ const Find = () => {
         withCredentials: true,
       });
       setAllProducts(data);
-      console.log(data);
     };
 
     getAllProducts();
@@ -51,7 +50,6 @@ const Find = () => {
               onChange={(newValue) => setUserChoice(newValue)}
             />
           </Animated>
-          {console.log(userChoice)}
         </div>
 
         {/* --- PRODUCT ITEMS FILTER & MAPPING --- */}

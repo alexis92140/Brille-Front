@@ -4,6 +4,7 @@ import { RouteObject } from 'react-router-dom';
 import Login from './components/account/Login';
 import PasswordForgot from './components/account/PasswordForgot';
 import UserAccount from './components/account/UserAccount';
+import RightSide from './components/cart/RightSide';
 import SelectedProduct from './components/collection/SelectedProduct';
 import Find from './components/globals/Find';
 import About from './pages/About';
@@ -76,11 +77,15 @@ const routesConfig: RouteObject[] = [
     path: '/panier',
     element: <Cart />,
 
-    // ! Route : CART (by id)
+    // ! Route : CART (item by id)
     children: [
       {
         path: '/panier/:id',
         element: <Cart />,
+      },
+      {
+        path: '/panier/:id',
+        element: <RightSide />,
       },
     ],
   },
@@ -94,6 +99,10 @@ const routesConfig: RouteObject[] = [
       {
         path: '/selectedProduct/:id',
         element: <SelectedProduct />,
+      },
+      {
+        path: '/selectedProduct/:id',
+        element: <RightSide />,
       },
     ],
   },
