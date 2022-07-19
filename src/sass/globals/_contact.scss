@@ -1,115 +1,121 @@
-
-.contact{
-    &__head{
-        img{
-            width : 100%;
-            height: 60vh;
-        }
+.contact {
+  @media screen and (max-width: 900px) {
+  }
+  &__head {
+    img {
+      width: 100%;
+      height: 60vh;
+      @media screen and (max-width: 900px) {
+        display: none;
+      }
     }
-&__container{
-    margin : auto;
-    margin-top :3rem;
-    margin-bottom :5rem;
-    max-width: 1000px;
-    background-color: #d9e1f9;
-
+  }
+  &__container {
+    margin: auto;
+    margin-top: 3rem;
+    width: 1000px;
+    background-color: #e3c4cb;
     height: 90vh;
 
     box-sizing: border-box;
     border: radius 15px;
     box-shadow: 10px 10px 50px -10px #d6d6d6;
-    &__titleWrapper{
-        position: absolute;
-        min-width:900px;
-        min-height: 5rem;
-        background-color: #f0cbc2;
-        margin-left: 3rem;
-        margin-top: -2rem;
-        box-shadow: 0 13px 27px -5px rgba(50,50,93,0.25), 0 8px 16px -8px rgba(74, 167, 182, 0.3);
-        display:flex;
-        justify-content: center;
-        align-items: center;
-        // @media screen and (max-width: 900px) {
-        //     min-width: 100%
-        // }
+    @media screen and (max-width: 900px) {
+      align-items: center;
+      width: fit-content;
     }
-    &__form{
-        &__credentials{
+    &__titleWrapper {
+      position: absolute;
+      color: rgb(59, 59, 59);
+      width: 900px;
+      min-height: 5rem;
+      background-color: #e3c4cb;
+      margin-left: 3rem;
+      margin-top: -2rem;
+      box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
+        0 8px 16px -8px rgba(74, 167, 182, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      // @media screen and (max-width: 900px) {
+      //     min-width: 100%
+      // }
+    }
+    &__form {
+      &__credentials {
         display: flex;
-        justify-content:space-between;
-        min-width:900px;
+        justify-content: space-between;
+        min-width: 900px;
         position: absolute;
         margin-top: 8rem;
         margin-left: 3rem;
 
-
         @media screen and (max-width: 900px) {
-            flex-direction: column;
+          flex-direction: column;
+          width: 500px;
         }
-        .button{
-            @media screen and (max-width: 900px){
-                width: auto;
-                height: auto;
-                min-width:400px;
-            }
+        .button {
+          @media screen and (max-width: 900px) {
+            min-width: 500px;
+          }
         }
-    }
-    &__mail{
+      }
+      &__mail {
         display: flex;
-        justify-content:space-between;
-        min-width:900px;
+        justify-content: space-between;
+        min-width: 900px;
         position: absolute;
         margin-top: 14rem;
         margin-left: 3rem;
-
-        @media screen and (max-width: 900px) {
-            margin-top:16rem;
-        }
-    }
-    &__textArea{
+      }
+      &__textArea {
         display: flex;
-        justify-content:space-between;
-        min-width:900px;
+        justify-content: space-between;
+        min-width: 900px;
         position: absolute;
         margin-top: 22rem;
         margin-left: 3rem;
         margin-right: 3rem;
-
-        @media screen and (max-width: 900px) {
-            min-width: 600px;
-        }
-        @media screen and (max-width: 700px) {
-            min-width: 400px;
-        }
-        @media screen and (max-width: 500px) {
-            min-width: 300px;
-        }
-        
-
-    }
-    &__button{
+      }
+      &__button {
         display: flex;
-        justify-content:space-around;
-        min-width:900px;
-        
-        margin:auto;
+        justify-content: flex-end;
+        min-width: 900px;
+        margin: auto;
         position: absolute;
         margin-top: 35rem;
-        margin-left: 4rem;
-        
+      }
     }
-
-
-    }
-}
+  }
 }
 
-
-.button{
-    @media screen and (max-width: 900px){
-        width: auto;
-        height: auto;
-        min-width:400px;
-    }
+.button {
+  @media screen and (max-width: 900px) {
+    width: auto;
+    height: auto;
+    min-width: 400px;
+  }
 }
 
+////////////////////////////////// RESPONSIVE MEDIA QUERY COMPONENT ///////////////////////////////
+
+.mainContainer {
+  display: flex;
+
+  h1 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5rem;
+  }
+  display: flex;
+  flex-direction: column;
+
+  &__formContainer {
+    display: flex;
+    flex-direction: column;
+
+    &__buttonSent {
+    }
+  }
+}

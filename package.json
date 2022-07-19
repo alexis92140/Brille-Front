@@ -33,6 +33,7 @@
     "react-icons": "^4.4.0",
     "react-js-stickynav": "^1.0.2",
     "react-player": "^2.10.1",
+    "react-responsive": "^9.0.0-beta.10",
     "react-reveal": "^1.2.2",
     "react-router-dom": "^6.2.1",
     "react-social-login-buttons": "^3.6.0",

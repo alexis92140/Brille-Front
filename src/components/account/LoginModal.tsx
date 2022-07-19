@@ -8,6 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
 import React, { useState } from 'react';
+import MediaQuery from 'react-responsive';
 import { Link } from 'react-router-dom';
 import { GoogleLoginButton } from 'react-social-login-buttons';
 import { FacebookLoginButton } from 'react-social-login-buttons';
@@ -61,129 +62,258 @@ const LoginModal = () => {
 
   // ------------------ RETURN --------------------------------
   return (
-    <div className="loginModal">
-      <p className="loginModal__title">SE CONNECTER</p>
+    <>
+      <MediaQuery query="(min-width: 1000px)">
+        <div className="loginModal">
+          <p className="loginModal__title">SE CONNECTER</p>
 
-      <form>
-        {/* ----- EMAIL INPUT ----- */}
-        <div className="loginModal__email">
-          <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
-            <TextField
-              id="standard-password-input"
-              value={email}
-              onChange={handleEmail}
-              label="Email"
-              type="email"
-              autoComplete="current-password"
-              variant="standard"
-              required
-            />
-          </FormControl>
-        </div>
+          <form>
+            {/* ----- EMAIL INPUT ----- */}
+            <div className="loginModal__email">
+              <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
+                <TextField
+                  id="standard-password-input"
+                  value={email}
+                  onChange={handleEmail}
+                  label="Email"
+                  type="email"
+                  autoComplete="current-password"
+                  variant="standard"
+                  required
+                />
+              </FormControl>
+            </div>
 
-        {/* ----- PASSWORD INPUT ----- */}
-        <div className="loginModal__password">
-          <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
-            <TextField
-              id="standard-password-input"
-              value={password}
-              label="Mot de passe"
-              type="password"
-              onChange={handlePassword}
-              autoComplete="current-password"
-              variant="standard"
-              required
-            />
-          </FormControl>
-        </div>
+            {/* ----- PASSWORD INPUT ----- */}
+            <div className="loginModal__password">
+              <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
+                <TextField
+                  id="standard-password-input"
+                  value={password}
+                  label="Mot de passe"
+                  type="password"
+                  onChange={handlePassword}
+                  autoComplete="current-password"
+                  variant="standard"
+                  required
+                />
+              </FormControl>
+            </div>
 
-        {/* ----- ERROR MESSAGE (IF PASSWORD IS WRONG)----- */}
+            {/* ----- ERROR MESSAGE (IF PASSWORD IS WRONG)----- */}
 
-        {/* ----- CHECKBOX & LOGIN BUTTON ----- */}
-        <div className="loginModal__choices">
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={isChecked}
-                onChange={handleChecked}
-                inputProps={{ 'aria-label': 'controlled' }}
-                size="small"
-                sx={{
-                  color: grey[700],
-                  '&.Mui-checked': {
-                    color: pink[700],
-                  },
-                }}
+            {/* ----- CHECKBOX & LOGIN BUTTON ----- */}
+            <div className="loginModal__choices">
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={isChecked}
+                    onChange={handleChecked}
+                    inputProps={{ 'aria-label': 'controlled' }}
+                    size="small"
+                    sx={{
+                      color: grey[700],
+                      '&.Mui-checked': {
+                        color: pink[700],
+                      },
+                    }}
+                  />
+                }
+                label="Rester connecté"
+                role="button"
               />
-            }
-            label="Rester connecté"
-            role="button"
-          />
-          <div>
-            {email !== '' && email.match(emailPattern) && password !== '' ? (
-              <Link to="/moncompte">
-                <Button
-                  variant="text"
-                  type="submit"
-                  size="small"
-                  sx={{
-                    color: grey[700],
-                    '&.Mui-checked': {
-                      color: pink[700],
-                    },
-                  }}>
-                  Se Connecter
-                </Button>
-              </Link>
-            ) : (
-              <Button
-                variant="text"
-                type="submit"
-                size="small"
-                sx={{
-                  color: grey[700],
-                  '&.Mui-checked': {
-                    color: pink[700],
-                  },
-                }}>
-                Se Connecter
-              </Button>
-            )}
+              <div>
+                {email !== '' && email.match(emailPattern) && password !== '' ? (
+                  <Link to="/moncompte">
+                    <Button
+                      variant="text"
+                      type="submit"
+                      size="small"
+                      sx={{
+                        color: grey[700],
+                        '&.Mui-checked': {
+                          color: pink[700],
+                        },
+                      }}>
+                      Se Connecter
+                    </Button>
+                  </Link>
+                ) : (
+                  <Button
+                    variant="text"
+                    type="submit"
+                    size="small"
+                    sx={{
+                      color: grey[700],
+                      '&.Mui-checked': {
+                        color: pink[700],
+                      },
+                    }}>
+                    Se Connecter
+                  </Button>
+                )}
+              </div>
+            </div>
+          </form>
+
+          {/* ----- FORGOTTEN PASSWORD ? ----- */}
+          <div className="loginModal__forgotPassword">
+            <Link to="/nouveaumotdepasse">
+              <p>Mot de passe oublié ?</p>
+            </Link>
+          </div>
+
+          {/* ----- SOCIAL MEDIA CONNECTIONS----- */}
+          <div className="loginModal__socials">
+            <GoogleLoginButton
+              onClick={displayHello}
+              text={googleText}
+              align={socialIconAlign}
+            />
+            <FacebookLoginButton
+              onClick={displayHello}
+              text={facebookText}
+              align={socialIconAlign}
+            />
+
+            {/* ----- LOG IN ----- */}
+            <div className="loginModal__logged">
+              <p>
+                Vous n&apos;avez pas compte ?
+                <Link to="/compte">
+                  <span>S&apos;inscrire</span>
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
-      </form>
+      </MediaQuery>
+      <MediaQuery query="(max-width: 1000px)">
+        <div className="loginModal">
+          <p className="loginModal__title">SE CONNECTER</p>
 
-      {/* ----- FORGOTTEN PASSWORD ? ----- */}
-      <div className="loginModal__forgotPassword">
-        <Link to="/nouveaumotdepasse">
-          <p>Mot de passe oublié ?</p>
-        </Link>
-      </div>
+          <form>
+            {/* ----- EMAIL INPUT ----- */}
+            <div className="loginModal__email">
+              <FormControl sx={{ m: 1, width: '35ch' }} variant="standard">
+                <TextField
+                  id="standard-password-input"
+                  value={email}
+                  onChange={handleEmail}
+                  label="Email"
+                  type="email"
+                  autoComplete="current-password"
+                  variant="standard"
+                  required
+                />
+              </FormControl>
+            </div>
 
-      {/* ----- SOCIAL MEDIA CONNECTIONS----- */}
-      <div className="loginModal__socials">
-        <GoogleLoginButton
-          onClick={displayHello}
-          text={googleText}
-          align={socialIconAlign}
-        />
-        <FacebookLoginButton
-          onClick={displayHello}
-          text={facebookText}
-          align={socialIconAlign}
-        />
+            {/* ----- PASSWORD INPUT ----- */}
+            <div className="loginModal__password">
+              <FormControl sx={{ m: 1, width: '35ch' }} variant="standard">
+                <TextField
+                  id="standard-password-input"
+                  value={password}
+                  label="Mot de passe"
+                  type="password"
+                  onChange={handlePassword}
+                  autoComplete="current-password"
+                  variant="standard"
+                  required
+                />
+              </FormControl>
+            </div>
 
-        {/* ----- LOG IN ----- */}
-        <div className="loginModal__logged">
-          <p>
-            Vous n&apos;avez pas compte ?
-            <Link to="/compte">
-              <span>S&apos;inscrire</span>
+            {/* ----- ERROR MESSAGE (IF PASSWORD IS WRONG)----- */}
+
+            {/* ----- CHECKBOX & LOGIN BUTTON ----- */}
+            <div className="loginModal__choices">
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={isChecked}
+                    onChange={handleChecked}
+                    inputProps={{ 'aria-label': 'controlled' }}
+                    size="small"
+                    sx={{
+                      color: grey[700],
+                      '&.Mui-checked': {
+                        color: pink[700],
+                      },
+                    }}
+                  />
+                }
+                label="Rester connecté"
+                role="button"
+              />
+              <div>
+                {email !== '' && email.match(emailPattern) && password !== '' ? (
+                  <Link to="/moncompte">
+                    <Button
+                      variant="text"
+                      type="submit"
+                      size="small"
+                      sx={{
+                        color: grey[700],
+                        '&.Mui-checked': {
+                          color: pink[700],
+                        },
+                      }}>
+                      Se Connecter
+                    </Button>
+                  </Link>
+                ) : (
+                  <Button
+                    variant="text"
+                    type="submit"
+                    size="small"
+                    sx={{
+                      color: grey[700],
+                      '&.Mui-checked': {
+                        color: pink[700],
+                      },
+                    }}>
+                    Se Connecter
+                  </Button>
+                )}
+              </div>
+            </div>
+          </form>
+
+          {/* ----- FORGOTTEN PASSWORD ? ----- */}
+          <div className="loginModal__forgotPassword">
+            <Link to="/nouveaumotdepasse">
+              <p>Mot de passe oublié ?</p>
             </Link>
-          </p>
+          </div>
+
+          {/* ----- SOCIAL MEDIA CONNECTIONS----- */}
+          <div className="loginModal__socials">
+            <GoogleLoginButton
+              onClick={displayHello}
+              text={googleText}
+              align={socialIconAlign}
+            />
+            <FacebookLoginButton
+              onClick={displayHello}
+              text={facebookText}
+              align={socialIconAlign}
+            />
+
+            {/* ----- LOG IN ----- */}
+            <div className="loginModal__logged">
+              <p>
+                Vous n&apos;avez pas compte ?
+                <Link to="/compte">
+                  <span>S&apos;inscrire</span>
+                </Link>
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </MediaQuery>
+    </>
   );
 };
 
