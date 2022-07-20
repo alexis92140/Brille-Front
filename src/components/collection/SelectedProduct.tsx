@@ -1,12 +1,10 @@
 import 'react-toastify/dist/ReactToastify.css';
 
-import { dialogContentTextClasses } from '@mui/material';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Id, toast, ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
-import addItem from '../../Context/ShoppingCartContext';
 import ShoppingCartContext from '../../Context/ShoppingCartContext';
 import IProduct from '../../interfaces/IProduct';
 import GoToTop from '../globals/GoToTop';
@@ -14,28 +12,34 @@ import GoToTop from '../globals/GoToTop';
 // ----------------------------------------------------------------
 
 const SelectedProduct = () => {
+  // >> USE PARAMS
   const { id } = useParams();
+
+  // >> STATES
   const [oneProduct, setOneProduct] = useState<IProduct>();
+  const [color, setColor] = useState('firstPage');
+
+  // >> AXIOS
 
   useEffect(() => {
     const getOneProduct = async () => {
-      // indispensable quand on veut utiliser async/await dans un useEffect
       let url: string = `${import.meta.env.VITE_API_URL}/api/products/${id}`;
 
       const { data } = await axios.get<IProduct>(url, {
         withCredentials: true,
       });
       setOneProduct(data);
-      console.log(data);
     };
     getOneProduct();
   }, [id]);
 
-  const [color, setColor] = useState('firstPage');
-  //ajouter la notif avec le message souhaité
+  // >> FUNCTIONS
+  // To trigger and notify the user that he add an item
   const notify = () => toast('Produit ajouté au panier!');
 
-  const { addItem, cartItems } = useContext(ShoppingCartContext);
+  // >> VARIABLES
+  // Recover the IncreaseCartQuantity function from the context
+  const { increaseCartQuantity } = useContext(ShoppingCartContext);
 
   return (
     <div className="Page">
@@ -77,7 +81,7 @@ const SelectedProduct = () => {
                 </div>
                 <div className="Page__secondPage__description__buttonCartContainer">
                   <button
-                    onClick={() => addItem(Number(id || '0'))}
+                    onClick={() => increaseCartQuantity(Number(id || '0'))}
                     type="button"
                     className="Page__secondPage__description__buttonCartContainer__buttonCart">
                     AJOUTER

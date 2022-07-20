@@ -451,7 +451,7 @@ const ConnectModal = () => {
                       : 'connectModal__noInstructions'
                   }>
                   <FontAwesomeIcon icon={faInfoCircle} />
-                  Veuillez confirmer votre mot de passe.
+                  Vos deux mots de passe doivent être indentiques.
                 </p>
               </FormControl>
             </div>
