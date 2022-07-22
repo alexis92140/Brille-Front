@@ -9,7 +9,7 @@ import ShoppingCartContext from '../../Context/ShoppingCartContext';
 import IProduct from '../../interfaces/IProduct';
 import GoToTop from '../globals/GoToTop';
 
-// ----------------------------------------------------------------
+// -----------------------------------------------------------
 
 const SelectedProduct = () => {
   // >> USE PARAMS
@@ -18,6 +18,42 @@ const SelectedProduct = () => {
   // >> STATES
   const [oneProduct, setOneProduct] = useState<IProduct>();
   const [color, setColor] = useState('firstPage');
+  const [selectedItem, setSelectedItem] = useState<number | null>(null);
+
+  // >> FUNCTIONS
+
+  // id: 11;
+  // productDesc: 'Sac en pépin de pomme';
+  // productName: 'CANCUN';
+  // productPrice: 175;
+  // productRef: 'e11';
+  // productStock: 2;
+
+  const notify = () => {
+    if (selectedItem === null) {
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />;
+
+      toast.success(`Article ajouté au panier !!`, {
+        position: 'top-center',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
 
   // >> AXIOS
 
@@ -29,13 +65,11 @@ const SelectedProduct = () => {
         withCredentials: true,
       });
       setOneProduct(data);
+      setSelectedItem(data.id);
+      // console.log(data);
     };
     getOneProduct();
   }, [id]);
-
-  // >> FUNCTIONS
-  // To trigger and notify the user that he add an item
-  const notify = () => toast('Produit ajouté au panier!');
 
   // >> VARIABLES
   // Recover the IncreaseCartQuantity function from the context
@@ -87,7 +121,6 @@ const SelectedProduct = () => {
                     AJOUTER
                   </button>
                 </div>
-                <ToastContainer />
               </div>
             </div>
           </div>

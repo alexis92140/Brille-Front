@@ -29,30 +29,34 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 const Navbar = () => {
   // >> STATES
 
-  // For  the hamburger menu
+  // ? For  the hamburger menu
   const [isOpened, setIsOpened] = useState<boolean>(false);
 
-  // For the navbar background-color on scroll
+  // ? For the navbar background-color on scroll
   const [isColor, setIsColor] = useState<boolean>(false);
 
   // >> FUNCTIONS
 
-  // Manage the hamburger menu
+  // ? Manage the hamburger menu
   const closeMenu = () => {
     setIsOpened(false);
   };
 
-  // Change the navbar background-color when scrolling
+  // ? Change the navbar background-color when scrolling
   const changeColor = () => {
-    window.scrollY >= 20 ? setIsColor(true) : setIsColor(false);
+    if (isOpened === false && window.scrollY >= 15) {
+      setIsColor(true);
+    } else {
+      setIsColor(false);
+    }
   };
 
-  // To listen the navbar scrolling event
+  // ? To listen the navbar scrolling event
   window.addEventListener('scroll', changeColor);
 
   // >> VARIABLES
 
-  // To use the cartItems function from the ShoppingCartContext file
+  // ? To use the cartItems function from the ShoppingCartContext file
   const { cartItems } = useContext(ShoppingCartContext);
 
   return (
