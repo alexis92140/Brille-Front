@@ -22,10 +22,10 @@ type CartItem = {
 // >> Create context of ShoppingCart
 
 const ShoppingCartContext = createContext<ShoppingCart>({
-  getItemQuantity: (id: number) => {},
-  increaseCartQuantity: (id: number) => {},
-  decreaseCartQuantity: (id: number) => {},
-  removeFromCart: (id: number) => {},
+  getItemQuantity: (_id: number) => {},
+  increaseCartQuantity: (_id: number) => {},
+  decreaseCartQuantity: (_id: number) => {},
+  removeFromCart: (_id: number) => {},
   cartItems: [],
 });
 
@@ -40,6 +40,7 @@ export const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) =>
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   console.log(cartItems);
+
   // >> All the functions
 
   // ? Pour récuperer la quantité de produits
@@ -52,7 +53,7 @@ export const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) =>
     // Pour actualiser le cartItem
     setCartItems((currItems) => {
       if (currItems.find((item) => item.id === id) == null) {
-        return [...currItems, { id, quantity: 0 }];
+        return [...currItems, { id, quantity: 1 }];
       } else {
         return currItems.map((item) => {
           if (item.id === id) {
@@ -85,9 +86,8 @@ export const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) =>
 
   // ? fonction pour supprimer un objet du panier, à partir de son ID
   const removeFromCart = (id: number) => {
-    setCartItems((currItems) => {
-      return currItems.filter((item) => item.id !== id);
-    });
+    console.log("delete de l'id" + id);
+    setCartItems(cartItems.filter((item) => item.id !== id));
   };
 
   return (

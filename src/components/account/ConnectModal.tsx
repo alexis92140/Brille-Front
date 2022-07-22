@@ -21,18 +21,21 @@ import IUser from '../../interfaces/IUser';
 // >> MY VARIABLES
 
 // ------ Pattern for the email input ------
-const EMAIL_REGEX: any = new RegExp(
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-);
+const EMAIL_REGEX: any =
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g;
 
 // ------ Pattern for the user input ------
-const USER_REGEX: any = /^[A-z][A-z0-9-_]{3,23}$/;
+const USER_REGEX: any = /^[A-z][A-z0-9-_]{3,23}$/g;
 
 // ------ Pattern for the ZIPCODE input ------
-const ZIPCODE_REGEX: any = /[0-9]{5}/g;
+// const ZIPCODE_REGEX: any = /[0-9]{5}/g;
+
+// ------ Pattern for the PHONENUMBER input ------
+const PHONE_NUMBER_REGEX: any =
+  /^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/g;
 
 // ------ Pattern for the password input ------
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const PWD_REGEX: any = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/g;
 
 // --------------------------------------------------------------
 
@@ -42,18 +45,19 @@ const ConnectModal = () => {
   const firstNameRef = useRef<HTMLInputElement>(null);
   const lastNameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
+  const phoneRef = useRef<HTMLInputElement>(null);
   const errorRef = useRef<HTMLInputElement>(null);
 
   // >> STATES<<
 
   // ---- for the firstName ----
-  const [firstName, setFirstName] = useState<string>('');
-  const [isValidFirstName, setIsValidFirstName] = useState<boolean>(false);
-  const [isFirstNameFocus, setIsFirstNameFocus] = useState<boolean>(false);
+  const [firstname, setFirstName] = useState<string>('');
+  const [isValidedFirstName, setIsValidedFirstName] = useState<boolean>(false);
+  const [isFirstNameFocused, setIsFirstNameFocused] = useState<boolean>(false);
 
   // ---- for the lastName ----
-  const [lastName, setLastName] = useState<string>('');
-  const [isValidLastName, setIsValidLastName] = useState<boolean>(false);
+  const [lastname, setLastName] = useState<string>('');
+  const [isValidedLastName, setIsValidedLastName] = useState<boolean>(false);
   const [isLastNameFocus, setIsLastNameFocus] = useState<boolean>(false);
 
   // ---- for the email ----
@@ -70,35 +74,45 @@ const ConnectModal = () => {
   const [isValidedMatch, setIsValidedMatch] = useState(false);
   const [isMatchFocused, setIsMatchFocused] = useState(false);
 
+  // ---- for the Phone ----
+  const [phone, setPhone] = useState('');
+  const [isValidedPhone, setIsValidedPhone] = useState('');
+  const [isPhoneFocused, setIsPhoneFocused] = useState(false);
+
   // ---- for the checkbox ----
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
   // ---- for the error message ----
   const [errorMessage, setErrorMessage] = useState<string>('');
 
-  // >> MY FUNCTIONS
+  // >> FUNCTIONS
 
   // ---- to handle checkbox click ------
   const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(e.target.checked);
   };
 
-  // ---- to update firstName change  ------
+  // ---- to update firstName state  ------
   const handleFirstName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFirstName(e.target.value);
   };
 
-  // ---- to update lastName change  ------
+  // ---- to update lastName state  ------
   const handleLastName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLastName(e.target.value);
   };
 
-  // ---- to update Email change  ------
+  // ---- to update Email state  ------
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  // >> USE EFFECTS
+  // ---- to update Phone state  ------
+  const handlePhone = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPhone(e.target.value);
+  };
+
+  // >> useEFFECTS
 
   // ---- Set the focus when the component load ----
   useEffect(() => {
@@ -109,13 +123,13 @@ const ConnectModal = () => {
 
   // ---- for the firstName ----
   useEffect(() => {
-    setIsValidFirstName(USER_REGEX.test(firstName));
-  }, [firstName]);
+    setIsValidedFirstName(USER_REGEX.test(firstname));
+  }, [firstname]);
 
   // ---- for the lastName ----
   useEffect(() => {
-    setIsValidLastName(USER_REGEX.test(lastName));
-  }, [lastName]);
+    setIsValidedLastName(USER_REGEX.test(lastname));
+  }, [lastname]);
 
   // ---- for the email ----
   useEffect(() => {
@@ -125,39 +139,39 @@ const ConnectModal = () => {
   // ---- for the confirmed password ----
   useEffect(() => {
     const result = PWD_REGEX.test(password);
-    console.log(result);
-    console.log(password);
     setIsValidedPassword(result);
     const match = password === matchPassword;
     setIsValidedMatch(match);
   }, [password, matchPassword]);
 
+  // ---- for the email ----
+  useEffect(() => {
+    setIsValidedPhone(PHONE_NUMBER_REGEX.test(phone));
+  }, [phone]);
+
   useEffect(() => {
     setErrorMessage('');
-  }, [firstName, lastName, password, email, matchPassword]);
-
-  // const validatePhoneNumber = (phone: string) => {
-  //   const pattern = /^\(?(\d{2})\)?[- ]?(\d{2})[- ]?(\d{2})[- ]?(\d{2})[- ]?(\d{2})$/;
-  //   return pattern.test(phone);
-  // };
+  }, [firstname, lastname, password, email, phone, matchPassword]);
 
   // >> AXIOS
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
-      await axios.post<IUser>(`${import.meta.env.VITE_DB_URL}api/users`, {
-        admin: 1,
-        firstName,
-        lastName,
+      await axios.post<IUser>(`${import.meta.env.VITE_API_URL}/api/users`, {
+        admin: 0,
+        firstname,
+        lastname,
         email,
         password,
+        phone,
       });
       setFirstName('');
       setLastName('');
-      setIsChecked(false);
       setEmail('');
       setPassword('');
+      setPhone('');
+      setIsChecked(false);
     } catch (err) {
       if (axios.isAxiosError(err)) {
         // pour gérer les erreurs de type axios
@@ -197,7 +211,7 @@ const ConnectModal = () => {
 
             <div className="connectModal">
               <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
-                {!isValidFirstName ? (
+                {!isValidedFirstName ? (
                   <TextField
                     type="text"
                     id="firstName"
@@ -207,10 +221,10 @@ const ConnectModal = () => {
                     label="Prénom"
                     variant="outlined"
                     size="small"
-                    aria-invalid={isValidFirstName ? 'false' : 'true'}
+                    aria-invalid={isValidedFirstName ? 'false' : 'true'}
                     aria-describedby="userNotification"
-                    onFocus={() => setIsFirstNameFocus(true)}
-                    onBlur={() => setIsFirstNameFocus(false)}
+                    onFocus={() => setIsFirstNameFocused(true)}
+                    onBlur={() => setIsFirstNameFocused(false)}
                     required
                   />
                 ) : (
@@ -223,11 +237,11 @@ const ConnectModal = () => {
                     label="Prénom"
                     variant="outlined"
                     size="small"
-                    aria-invalid={isValidFirstName ? 'false' : 'true'}
+                    aria-invalid={isValidedFirstName ? 'false' : 'true'}
                     aria-describedby="userNotification"
-                    onFocus={() => setIsFirstNameFocus(true)}
-                    onBlur={() => setIsFirstNameFocus(false)}
-                    color={isValidFirstName && 'success'}
+                    onFocus={() => setIsFirstNameFocused(true)}
+                    onBlur={() => setIsFirstNameFocused(false)}
+                    color={isValidedFirstName && 'success'}
                     required
                   />
                 )}
@@ -236,7 +250,7 @@ const ConnectModal = () => {
                 <p
                   id="userNotification"
                   className={
-                    isFirstNameFocus && !isValidFirstName
+                    isFirstNameFocused && !isValidedFirstName
                       ? 'connectModal__instructions'
                       : 'connectModal__noInstructions'
                   }>
@@ -245,7 +259,7 @@ const ConnectModal = () => {
                   <br />
                   Doit commencer par une lettre.
                   <br />
-                  Lettres, nombres, underscores et caractère spéciaux (ex: &quot;-&quot;)
+                  Lettres, nombres, underscores et caractères spéciaux (ex: &quot;-&quot;)
                   sont autorisés.
                 </p>
               </FormControl>
@@ -254,7 +268,7 @@ const ConnectModal = () => {
             {/* ----- LAST NAME ----- */}
             <div className="connectModal">
               <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
-                {!isValidLastName ? (
+                {!isValidedLastName ? (
                   <TextField
                     type="text"
                     id="lastName"
@@ -264,7 +278,7 @@ const ConnectModal = () => {
                     label="Nom"
                     variant="outlined"
                     size="small"
-                    aria-invalid={isValidLastName ? 'false' : 'true'}
+                    aria-invalid={isValidedLastName ? 'false' : 'true'}
                     aria-describedby="userNotification"
                     onFocus={() => setIsLastNameFocus(true)}
                     onBlur={() => setIsLastNameFocus(false)}
@@ -280,11 +294,11 @@ const ConnectModal = () => {
                     label="Nom"
                     variant="outlined"
                     size="small"
-                    aria-invalid={isValidLastName ? 'false' : 'true'}
+                    aria-invalid={isValidedLastName ? 'false' : 'true'}
                     aria-describedby="userNotification"
                     onFocus={() => setIsLastNameFocus(true)}
                     onBlur={() => setIsLastNameFocus(false)}
-                    color={isValidLastName && 'success'}
+                    color={isValidedLastName && 'success'}
                     required
                   />
                 )}
@@ -293,7 +307,7 @@ const ConnectModal = () => {
                 <p
                   id="userNotification"
                   className={
-                    isLastNameFocus && !isValidLastName
+                    isLastNameFocus && !isValidedLastName
                       ? 'connectModal__instructions'
                       : 'connectModal__noInstructions'
                   }>
@@ -302,7 +316,7 @@ const ConnectModal = () => {
                   <br />
                   Doit commencer par une lettre.
                   <br />
-                  Lettres, nombres, underscores et caractère spéciaux (ex: &quot;-&quot;)
+                  Lettres, nombres, underscores et caractères spéciaux (ex: &quot;-&quot;)
                   sont autorisés.
                 </p>
               </FormControl>
@@ -451,7 +465,57 @@ const ConnectModal = () => {
                       : 'connectModal__noInstructions'
                   }>
                   <FontAwesomeIcon icon={faInfoCircle} />
-                  Vos deux mots de passe doivent être indentiques.
+                  Veuillez confirmer votre mot de passe.
+                </p>
+              </FormControl>
+            </div>
+
+            {/* ----- PHONE_NUMBER INPUT ----- */}
+            <div className="connectModal">
+              <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
+                {!isValidedPhone ? (
+                  <TextField
+                    type="text"
+                    id="phone"
+                    ref={phoneRef}
+                    autoComplete="off"
+                    onChange={handlePhone}
+                    label="Téléphone"
+                    variant="outlined"
+                    size="small"
+                    aria-invalid={isValidedPhone ? 'false' : 'true'}
+                    aria-describedby="phoneNotification"
+                    onFocus={() => setIsPhoneFocused(true)}
+                    onBlur={() => setIsPhoneFocused(false)}
+                  />
+                ) : (
+                  <TextField
+                    type="text"
+                    id="phone"
+                    ref={phoneRef}
+                    autoComplete="off"
+                    onChange={handlePhone}
+                    label="Téléphone"
+                    variant="outlined"
+                    size="small"
+                    aria-invalid={isValidedPhone ? 'false' : 'true'}
+                    onFocus={() => setIsPhoneFocused(true)}
+                    onBlur={() => setIsPhoneFocused(false)}
+                    color={isValidedPhone && 'success'}
+                    aria-describedby="phoneNotification"
+                  />
+                )}
+
+                {/* Display the input instructions to the user */}
+                <p
+                  id="PasswordConfirmNotification"
+                  className={
+                    isPhoneFocused && !isValidedPhone
+                      ? 'connectModal__instructions'
+                      : 'connectModal__noInstructions'
+                  }>
+                  <FontAwesomeIcon icon={faInfoCircle} />
+                  Doit contenir 10 chiffres.
                 </p>
               </FormControl>
             </div>
@@ -477,8 +541,8 @@ const ConnectModal = () => {
                 role="button"
               />
               <div>
-                {!isValidFirstName ||
-                !isValidLastName ||
+                {!isValidedFirstName ||
+                !isValidedLastName ||
                 !isValidedPassword ||
                 !isValidedEmail ||
                 !isValidedMatch ? (
@@ -540,7 +604,7 @@ const ConnectModal = () => {
 
             <div className="connectModal">
               <FormControl sx={{ m: 1, width: '35ch' }} variant="standard">
-                {!isValidFirstName ? (
+                {!isValidedFirstName ? (
                   <TextField
                     type="text"
                     id="firstName"
@@ -550,10 +614,10 @@ const ConnectModal = () => {
                     label="Prénom"
                     variant="outlined"
                     size="small"
-                    aria-invalid={isValidFirstName ? 'false' : 'true'}
+                    aria-invalid={isValidedFirstName ? 'false' : 'true'}
                     aria-describedby="userNotification"
-                    onFocus={() => setIsFirstNameFocus(true)}
-                    onBlur={() => setIsFirstNameFocus(false)}
+                    onFocus={() => setIsFirstNameFocused(true)}
+                    onBlur={() => setIsFirstNameFocused(false)}
                     required
                   />
                 ) : (
@@ -566,11 +630,11 @@ const ConnectModal = () => {
                     label="Prénom"
                     variant="outlined"
                     size="small"
-                    aria-invalid={isValidFirstName ? 'false' : 'true'}
+                    aria-invalid={isValidedFirstName ? 'false' : 'true'}
                     aria-describedby="userNotification"
-                    onFocus={() => setIsFirstNameFocus(true)}
-                    onBlur={() => setIsFirstNameFocus(false)}
-                    color={isValidFirstName && 'success'}
+                    onFocus={() => setIsFirstNameFocused(true)}
+                    onBlur={() => setIsFirstNameFocused(false)}
+                    color={isValidedFirstName && 'success'}
                     required
                   />
                 )}
@@ -579,7 +643,7 @@ const ConnectModal = () => {
                 <p
                   id="userNotification"
                   className={
-                    isFirstNameFocus && !isValidFirstName
+                    isFirstNameFocused && !isValidedFirstName
                       ? 'connectModal__instructions'
                       : 'connectModal__noInstructions'
                   }>
@@ -588,7 +652,7 @@ const ConnectModal = () => {
                   <br />
                   Doit commencer par une lettre.
                   <br />
-                  Lettres, nombres, underscores et caractère spéciaux (ex: &quot;-&quot;)
+                  Lettres, nombres, underscores et caractères spéciaux (ex: &quot;-&quot;)
                   sont autorisés.
                 </p>
               </FormControl>
@@ -597,7 +661,7 @@ const ConnectModal = () => {
             {/* ----- LAST NAME ----- */}
             <div className="connectModal">
               <FormControl sx={{ m: 1, width: '35ch' }} variant="standard">
-                {!isValidLastName ? (
+                {!isValidedLastName ? (
                   <TextField
                     type="text"
                     id="lastName"
@@ -607,7 +671,7 @@ const ConnectModal = () => {
                     label="Nom"
                     variant="outlined"
                     size="small"
-                    aria-invalid={isValidLastName ? 'false' : 'true'}
+                    aria-invalid={isValidedLastName ? 'false' : 'true'}
                     aria-describedby="userNotification"
                     onFocus={() => setIsLastNameFocus(true)}
                     onBlur={() => setIsLastNameFocus(false)}
@@ -623,11 +687,11 @@ const ConnectModal = () => {
                     label="Nom"
                     variant="outlined"
                     size="small"
-                    aria-invalid={isValidLastName ? 'false' : 'true'}
+                    aria-invalid={isValidedLastName ? 'false' : 'true'}
                     aria-describedby="userNotification"
                     onFocus={() => setIsLastNameFocus(true)}
                     onBlur={() => setIsLastNameFocus(false)}
-                    color={isValidLastName && 'success'}
+                    color={isValidedLastName && 'success'}
                     required
                   />
                 )}
@@ -636,7 +700,7 @@ const ConnectModal = () => {
                 <p
                   id="userNotification"
                   className={
-                    isLastNameFocus && !isValidLastName
+                    isLastNameFocus && !isValidedLastName
                       ? 'connectModal__instructions'
                       : 'connectModal__noInstructions'
                   }>
@@ -645,7 +709,7 @@ const ConnectModal = () => {
                   <br />
                   Doit commencer par une lettre.
                   <br />
-                  Lettres, nombres, underscores et caractère spéciaux (ex: &quot;-&quot;)
+                  Lettres, nombres, underscores et caractères spéciaux (ex: &quot;-&quot;)
                   sont autorisés.
                 </p>
               </FormControl>
@@ -797,10 +861,60 @@ const ConnectModal = () => {
                         : 'connectModal__noInstructions'
                     }>
                     <FontAwesomeIcon icon={faInfoCircle} />
-                    Veuillez confirmer votre mot de passe.
+                    Les deux mots de passes doivent être identiques.
                   </p>
                 </FormControl>
               </div>
+            </div>
+
+            {/* ----- PHONE_NUMBER INPUT ----- */}
+            <div className="connectModal">
+              <FormControl sx={{ m: 1, width: '35ch' }} variant="standard">
+                {!isValidedPhone ? (
+                  <TextField
+                    type="text"
+                    id="phone"
+                    ref={phoneRef}
+                    autoComplete="off"
+                    onChange={handlePhone}
+                    label="Téléphone"
+                    variant="outlined"
+                    size="small"
+                    aria-invalid={isValidedPhone ? 'false' : 'true'}
+                    aria-describedby="phoneNotification"
+                    onFocus={() => setIsPhoneFocused(true)}
+                    onBlur={() => setIsPhoneFocused(false)}
+                  />
+                ) : (
+                  <TextField
+                    type="text"
+                    id="phone"
+                    ref={phoneRef}
+                    autoComplete="off"
+                    onChange={handlePhone}
+                    label="Téléphone"
+                    variant="outlined"
+                    size="small"
+                    aria-invalid={isValidedPhone ? 'false' : 'true'}
+                    onFocus={() => setIsPhoneFocused(true)}
+                    onBlur={() => setIsPhoneFocused(false)}
+                    color={isValidedPhone && 'success'}
+                    aria-describedby="phoneNotification"
+                  />
+                )}
+
+                {/* Display the input instructions to the user */}
+                <p
+                  id="PasswordConfirmNotification"
+                  className={
+                    isPhoneFocused && !isValidedPhone
+                      ? 'connectModal__instructions'
+                      : 'connectModal__noInstructions'
+                  }>
+                  <FontAwesomeIcon icon={faInfoCircle} />
+                  Doit contenir 10 chiffres.
+                </p>
+              </FormControl>
             </div>
 
             {/* ----- CHECKBOX & LOGIN BUTTON ----- */}
@@ -824,8 +938,8 @@ const ConnectModal = () => {
                 role="button"
               />
               <div>
-                {!isValidFirstName ||
-                !isValidLastName ||
+                {!isValidedFirstName ||
+                !isValidedLastName ||
                 !isValidedPassword ||
                 !isValidedEmail ||
                 !isValidedMatch ? (
