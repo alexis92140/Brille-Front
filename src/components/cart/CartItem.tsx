@@ -60,49 +60,97 @@ const CartItem = () => {
   console.log(products);
   return (
     <div className="cartItem">
-      {products && (
+      {products.length && (
         <>
           {cartItems.length > 0 ? (
             <>
+              {/* Pour chaque cartItem de mon cartItems, je veux afficher : MAP ICI */}
+
               {/* ----- CARD ITEM ----- */}
               <div className="cartItem__wrapper">
-                <Paper elevation={3}>
-                  <div className="cartItem__productInfos">
-                    {/* <img src={} alt="" /> */}
+                {/* {products &&
+                  products.map(
+                    ({
+                      id,
+                      productName,
+                      productDesc,
+                      productImage,
+                      productPrice,
+                      productStock,
+                    }) => ( */}
+                {cartItems.map((cartItem) => (
+                  <>
+                    <Paper elevation={3}>
+                      <div className="cartItem__productInfos">
+                        {/* Je veux récupèrer le produit et ses infos correspondant à mon cartItem.id */}
+                        {/* products.find(where mon id produit est égal à mon id de cartiteù).productImage */}
 
-                    <div>
-                      {/* <h4>{products[0].id}</h4> */}
-                      {/* <p>Sac en pépin de pomme</p> */}
-                      <p>{cartItems[0].id} €</p>
-                      {/* <p>Stock: {bagStock}</p> */}
-                    </div>
+                        <img
+                          src={
+                            products.find((product) => product.id === cartItem.id)
+                              ?.productImage
+                          }
+                          alt=""
+                        />
 
-                    {/* Increase & Decrease quantity buttons */}
-                    <div className="cartItem__productInfos__icons">
-                      <Fab
-                        size="small"
-                        aria-label="remove"
-                        onClick={() => decreaseCartQuantity(cartItems[0].id)}>
-                        <RemoveIcon />
-                      </Fab>
-                      <p>{cartItems[0].quantity}</p>
-                      <Fab
-                        size="small"
-                        aria-label="add"
-                        onClick={() => increaseCartQuantity(cartItems[0].id)}>
-                        <AddIcon />
-                      </Fab>
-                    </div>
-                  </div>
-                  <div
-                    className="cartItem__productInfos__icons__bin"
-                    onClick={() => removeFromCart(cartItems[0].id)}>
-                    <i>
-                      <DeleteIcon />
-                    </i>
-                  </div>
-                </Paper>
-                <hr />
+                        <div>
+                          <h4>
+                            {
+                              products.find((product) => product.id === cartItem.id)
+                                ?.productName
+                            }
+                          </h4>
+                          <p>
+                            {
+                              products.find((product) => product.id === cartItem.id)
+                                ?.productDesc
+                            }
+                          </p>
+                          <p>
+                            {
+                              products.find((product) => product.id === cartItem.id)
+                                ?.productPrice
+                            }{' '}
+                            €
+                          </p>
+                          <p>
+                            Stock:
+                            {
+                              products.find((product) => product.id === cartItem.id)
+                                ?.productStock
+                            }
+                          </p>
+                        </div>
+
+                        {/* Increase & Decrease quantity buttons */}
+                        <div className="cartItem__productInfos__icons">
+                          <Fab
+                            size="small"
+                            aria-label="remove"
+                            onClick={() => decreaseCartQuantity(cartItem.id)}>
+                            <RemoveIcon />
+                          </Fab>
+                          <p>{cartItem.quantity}</p>
+                          <Fab
+                            size="small"
+                            aria-label="add"
+                            onClick={() => increaseCartQuantity(cartItem.id)}>
+                            <AddIcon />
+                          </Fab>
+                        </div>
+                      </div>
+
+                      <div
+                        className="cartItem__productInfos__icons__bin"
+                        onClick={() => removeFromCart(cartItem.id)}>
+                        <i>
+                          <DeleteIcon />
+                        </i>
+                      </div>
+                    </Paper>
+                    <hr />
+                  </>
+                ))}
               </div>
 
               {/* ----- ALL THE PRICES ----- */}
@@ -113,7 +161,7 @@ const CartItem = () => {
 
               <div className="cartItem__productInfos__amountInfos">
                 <p>Frais de Livraison</p>
-                {/* <p>{quantity >= 3 ? doubleShipping : shippingPrice} €</p> */}
+                <p>{cartItems[0].quantity >= 3 ? doubleShipping : shippingPrice} €</p>
               </div>
 
               <div className="cartItem__productInfos__amountInfos">
