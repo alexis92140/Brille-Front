@@ -2,7 +2,7 @@
 import 'react-toastify/dist/ReactToastify.css';
 
 import Button from '@mui/material/Button';
-import { pink, purple} from '@mui/material/colors';
+import { pink, purple } from '@mui/material/colors';
 import { grey } from '@mui/material/colors';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';

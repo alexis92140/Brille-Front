@@ -16,7 +16,7 @@ const About = () => {
   // Ici j'appel mon interface page >>
   const [page, setPage] = useState<IPage>();
   // Ici j'appel mon interface paragraphe>>
-  const [paragraphs, setParagraphs] = useState<IParagraph[]>();
+  const [paragraphs, setParagraphs] = useState<IParagraph[]>([]);
 
   useEffect(() => {
     // je recupère la page:
@@ -61,11 +61,11 @@ const About = () => {
       {/* ici je suis supposée recupérer le title de page>> */}
       <h1> {page?.name} </h1>
       <div className="about__container">
-        {paragraphs &&
+        {paragraphs.length > 0 &&
+          images.length > 0 &&
           paragraphs.map(({ id, title, description, idImage }, index) => (
             <div key={id}>
               <div className="about__container__idx">
-                {' '}
                 {index % 2 === 0 ? (
                   <>
                     <div className="about__container__block">
@@ -74,9 +74,7 @@ const About = () => {
                     </div>
                     <img
                       id="aboutImg"
-                      src={
-                        images && images.filter((image) => image.id === idImage)[0].image
-                      }
+                      src={images.filter((image) => image.id === idImage)[0].image}
                       alt="Images descriptive du texte"
                     />
                   </>
@@ -84,9 +82,7 @@ const About = () => {
                   <>
                     <img
                       id="aboutImg"
-                      src={
-                        images && images.filter((image) => image.id === idImage)[0].image
-                      }
+                      src={images.filter((image) => image.id === idImage)[0].image}
                       alt="Images descriptive du texte"
                     />
                     <div className="about__container__block">
