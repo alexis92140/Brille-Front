@@ -6,7 +6,8 @@
     overflow: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    background-color: rgb(248, 254, 255);
+    margin-bottom: 0.5rem;
+
     &::-webkit-scrollbar {
       display: none;
     }
@@ -17,6 +18,7 @@
     justify-content: space-around;
     align-items: center;
     background-color: #e5e9f6;
+    padding-top: 1rem;
     img {
       width: 150px;
       height: 150px;
@@ -32,6 +34,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding-right: 0.3rem;
       p {
         font-size: 17px;
         font-weight: 600;
@@ -41,6 +44,7 @@
         display: flex;
         justify-content: flex-end;
         background-color: #e5e9f6;
+        padding-bottom: 1rem;
         i {
           cursor: pointer;
           margin-right: 4.2rem;
@@ -67,9 +71,7 @@
       }
     }
   }
-}
-
-hr {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  &__paper {
+    margin-bottom: 1rem;
+  }
 }

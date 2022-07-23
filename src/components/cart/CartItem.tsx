@@ -7,12 +7,15 @@ import Paper from '@mui/material/Paper';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+// import { toast, ToastContainer } from 'react-toastify';
+import { formatCurrency } from '../../utils/formatCurrency';
 
 import ShoppingCartContext from '../../Context/ShoppingCartContext';
 import IProduct from '../../interfaces/IProduct';
 
 const CartItem = () => {
+  setInterval(() => window.location.reload(), 100000);
+
   // >> STATES
 
   const [products, setProducts] = useState<IProduct[]>([]);
@@ -26,8 +29,6 @@ const CartItem = () => {
 
   // ? from the shoppingcartcontext to get the items
   const shippingPrice = 2.99;
-  const shippingPriceDoubled = shippingPrice * 2;
-  // const Total = quantity < 3 ? subTotal + shippingPrice : subTotal + doubleShipping;
 
   // >> AXIOS
 
@@ -54,7 +55,7 @@ const CartItem = () => {
               <div className="cartItem__wrapper">
                 {cartItems.map((cartItem, id) => (
                   <>
-                    <Paper elevation={3} key={id}>
+                    <Paper elevation={4} key={id} className="cartItem__paper">
                       <div className="cartItem__productInfos">
                         <img
                           src={
@@ -78,11 +79,10 @@ const CartItem = () => {
                             }
                           </p>
                           <p>
-                            {
+                            {formatCurrency(
                               products.find((product) => product.id === cartItem.id)
-                                ?.productPrice
-                            }{' '}
-                            €
+                                ?.productPrice,
+                            )}{' '}
                           </p>
                           <p>
                             Stock:
@@ -119,7 +119,6 @@ const CartItem = () => {
                         </i>
                       </div>
                     </Paper>
-                    <hr />
                   </>
                 ))}
               </div>
@@ -127,16 +126,33 @@ const CartItem = () => {
               {/* ----- ALL THE PRICES ----- */}
               <div className="cartItem__productInfos__amountInfos">
                 <p>Sous-Total:</p>
+                <p>
+                  {formatCurrency(
+                    cartItems.reduce((total, cartItem) => {
+                      const item = products.find((product) => product.id === cartItem.id);
+                      return total + (item?.productPrice || 0) * cartItem.quantity;
+                    }, 0),
+                  )}
+                </p>
               </div>
 
               <div className="cartItem__productInfos__amountInfos">
                 <p>Frais de Livraison</p>
-                <p>{cartItems.length > 3 ? shippingPriceDoubled : shippingPrice} €</p>
+                <p>{shippingPrice}</p>
               </div>
-
               <div className="cartItem__productInfos__amountInfos">
                 <p>TOTAL</p>
-                {/* <p>{Total}€</p> */}
+                <p>
+                  {formatCurrency(
+                    cartItems.reduce((total, cartItem) => {
+                      const item = products.find((product) => product.id === cartItem.id);
+                      return (
+                        total +
+                        ((item?.productPrice || 0) * cartItem.quantity + shippingPrice)
+                      );
+                    }, 0),
+                  )}
+                </p>
               </div>
             </>
           ) : (

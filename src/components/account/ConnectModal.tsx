@@ -13,6 +13,7 @@ import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import MediaQuery from 'react-responsive';
 import { Link } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 
 import IUser from '../../interfaces/IUser';
 
@@ -32,8 +33,8 @@ const USER_REGEX: any = /^[A-z][A-z0-9-_]{3,23}$/;
 // const ZIPCODE_REGEX: any = /[0-9]{5}/g;
 
 // ------ Pattern for the PHONENUMBER input ------
-const PHONE_NUMBER_REGEX: any =
-  /^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/;
+// const PHONE_NUMBER_REGEX: any =
+//   /^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/;
 
 // ------ Pattern for the password input ------
 const PWD_REGEX: any = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/g;
@@ -41,12 +42,12 @@ const PWD_REGEX: any = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
 // --------------------------------------------------------------
 
 const ConnectModal = () => {
+  setTimeout(() => window.location.reload(), 1000000);
   // >> REF HOOKS
 
   const firstNameRef = useRef<HTMLInputElement>(null);
   const lastNameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
-  const phoneRef = useRef<HTMLInputElement>(null);
   const errorRef = useRef<HTMLInputElement>(null);
 
   // >> STATES<<
@@ -75,11 +76,6 @@ const ConnectModal = () => {
   const [isValidedMatch, setIsValidedMatch] = useState(false);
   const [isMatchFocused, setIsMatchFocused] = useState(false);
 
-  // ---- for the Phone ----
-  const [phone, setPhone] = useState('');
-  const [isValidedPhone, setIsValidedPhone] = useState('');
-  const [isPhoneFocused, setIsPhoneFocused] = useState(false);
-
   // ---- for the checkbox ----
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
@@ -88,29 +84,60 @@ const ConnectModal = () => {
 
   // >> FUNCTIONS
 
-  // ---- to handle checkbox click ------
+  // ? ---- to handle checkbox click ------
   const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(e.target.checked);
   };
 
-  // ---- to update firstName state  ------
+  // ? ---- to update firstName state  ------
   const handleFirstName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFirstName(e.target.value);
   };
 
-  // ---- to update lastName state  ------
+  // ? ---- to update lastName state  ------
   const handleLastName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLastName(e.target.value);
   };
 
-  // ---- to update Email state  ------
+  // ? --- Log errors ----
+  const logError = (e: React.FormEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    console.log(`mail envoyé`);
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setPassword('');
+    setIsChecked(false);
+  };
+
+  // ? ---- to update Email state  ------
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  // ---- to update Phone state  ------
-  const handlePhone = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPhone(e.target.value);
+  // ? ------ Toastify package config------
+  const notify = () => {
+    <ToastContainer
+      position="bottom-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+    />;
+
+    toast.info(`Vous pouvez vous connecter !`, {
+      position: 'bottom-right',
+      autoClose: 10000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   // >> useEFFECTS
@@ -145,19 +172,35 @@ const ConnectModal = () => {
     setIsValidedMatch(match);
   }, [password, matchPassword]);
 
-  // ---- for the email ----
-  useEffect(() => {
-    setIsValidedPhone(PHONE_NUMBER_REGEX.test(phone));
-  }, [phone]);
-
+  // ---- Listen the events on the STATES ----
   useEffect(() => {
     setErrorMessage('');
-  }, [firstname, lastname, password, email, phone, matchPassword]);
+  }, [firstname, lastname, password, email, matchPassword]);
 
   // >> AXIOS
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
+    <ToastContainer
+      position="top-center"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+    />;
+
+    toast.success(`Vous pouvez vous connecter !`, {
+      position: 'top-center',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
     try {
       await axios.post<IUser>(`${import.meta.env.VITE_API_URL}/api/users`, {
         admin: 0,
@@ -165,14 +208,7 @@ const ConnectModal = () => {
         lastname,
         email,
         password,
-        phone,
       });
-      setFirstName('');
-      setLastName('');
-      setEmail('');
-      setPassword('');
-      setPhone('');
-      setIsChecked(false);
     } catch (err) {
       if (axios.isAxiosError(err)) {
         // pour gérer les erreurs de type axios
@@ -471,56 +507,6 @@ const ConnectModal = () => {
               </FormControl>
             </div>
 
-            {/* ----- PHONE_NUMBER INPUT ----- */}
-            <div className="connectModal">
-              <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
-                {!isValidedPhone ? (
-                  <TextField
-                    type="text"
-                    id="phone"
-                    ref={phoneRef}
-                    autoComplete="off"
-                    onChange={handlePhone}
-                    label="Téléphone"
-                    variant="outlined"
-                    size="small"
-                    aria-invalid={isValidedPhone ? 'false' : 'true'}
-                    aria-describedby="phoneNotification"
-                    onFocus={() => setIsPhoneFocused(true)}
-                    onBlur={() => setIsPhoneFocused(false)}
-                  />
-                ) : (
-                  <TextField
-                    type="text"
-                    id="phone"
-                    ref={phoneRef}
-                    autoComplete="off"
-                    onChange={handlePhone}
-                    label="Téléphone"
-                    variant="outlined"
-                    size="small"
-                    aria-invalid={isValidedPhone ? 'false' : 'true'}
-                    onFocus={() => setIsPhoneFocused(true)}
-                    onBlur={() => setIsPhoneFocused(false)}
-                    color={isValidedPhone && 'success'}
-                    aria-describedby="phoneNotification"
-                  />
-                )}
-
-                {/* Display the input instructions to the user */}
-                <p
-                  id="PasswordConfirmNotification"
-                  className={
-                    isPhoneFocused && !isValidedPhone
-                      ? 'connectModal__instructions'
-                      : 'connectModal__noInstructions'
-                  }>
-                  <FontAwesomeIcon icon={faInfoCircle} />
-                  Doit contenir 10 chiffres.
-                </p>
-              </FormControl>
-            </div>
-
             {/* ----- CHECKBOX & LOGIN BUTTON ----- */}
             <div className="connectModal__choices">
               <FormControlLabel
@@ -549,20 +535,20 @@ const ConnectModal = () => {
                 !isValidedMatch ? (
                   <Button disabled>Sinscrire</Button>
                 ) : (
-                  <Link to="/seconnecter">
-                    <Button
-                      variant="text"
-                      type="submit"
-                      size="small"
-                      sx={{
-                        color: grey[700],
-                        '&.Mui-checked': {
-                          color: pink[700],
-                        },
-                      }}>
-                      S&apos;inscrire
-                    </Button>
-                  </Link>
+                  // <Link to="/seconnecter">
+                  <Button
+                    variant="text"
+                    type="submit"
+                    size="small"
+                    sx={{
+                      color: grey[700],
+                      '&.Mui-checked': {
+                        color: pink[700],
+                      },
+                    }}>
+                    S&apos;inscrire
+                  </Button>
+                  // </Link>
                 )}
               </div>
             </div>
@@ -865,56 +851,6 @@ const ConnectModal = () => {
                   </p>
                 </FormControl>
               </div>
-            </div>
-
-            {/* ----- PHONE_NUMBER INPUT ----- */}
-            <div className="connectModal">
-              <FormControl sx={{ m: 1, width: '35ch' }} variant="standard">
-                {!isValidedPhone ? (
-                  <TextField
-                    type="text"
-                    id="phone"
-                    ref={phoneRef}
-                    autoComplete="off"
-                    onChange={handlePhone}
-                    label="Téléphone"
-                    variant="outlined"
-                    size="small"
-                    aria-invalid={isValidedPhone ? 'false' : 'true'}
-                    aria-describedby="phoneNotification"
-                    onFocus={() => setIsPhoneFocused(true)}
-                    onBlur={() => setIsPhoneFocused(false)}
-                  />
-                ) : (
-                  <TextField
-                    type="text"
-                    id="phone"
-                    ref={phoneRef}
-                    autoComplete="off"
-                    onChange={handlePhone}
-                    label="Téléphone"
-                    variant="outlined"
-                    size="small"
-                    aria-invalid={isValidedPhone ? 'false' : 'true'}
-                    onFocus={() => setIsPhoneFocused(true)}
-                    onBlur={() => setIsPhoneFocused(false)}
-                    color={isValidedPhone && 'success'}
-                    aria-describedby="phoneNotification"
-                  />
-                )}
-
-                {/* Display the input instructions to the user */}
-                <p
-                  id="PasswordConfirmNotification"
-                  className={
-                    isPhoneFocused && !isValidedPhone
-                      ? 'connectModal__instructions'
-                      : 'connectModal__noInstructions'
-                  }>
-                  <FontAwesomeIcon icon={faInfoCircle} />
-                  Doit contenir 10 chiffres.
-                </p>
-              </FormControl>
             </div>
 
             {/* ----- CHECKBOX & LOGIN BUTTON ----- */}

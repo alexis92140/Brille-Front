@@ -12,6 +12,7 @@ import { toast, ToastContainer } from 'react-toastify';
 // --------------------------------------------------------------
 
 const PasswordForgotModal = () => {
+    setTimeout(() => window.location.reload(), 1000000);
   // >> STATES
 
   // ---- for the email----

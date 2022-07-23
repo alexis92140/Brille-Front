@@ -26,25 +26,3 @@ const RightSide = () => {
 };
 
 export default RightSide;
-
-// {/* ---- Call to action buttons ---- */}
-//           <Link to="/collection">
-//             <button
-//               className="right__wrapper__secondPart__secondWrapper__buttons"
-//               type="button">
-//               <span>CONTINUER MES ACHATS</span>
-
-//               <span>
-//                 <ShoppingBagIcon />
-//               </span>
-//             </button>
-//           </Link>
-
-//           <button
-//             className="right__wrapper__secondPart__secondWrapper__buttons"
-//             type="button">
-//             <span>FINALISER MA COMMANDE</span>
-//             <span>
-//               <PaymentsIcon />
-//             </span>
-//           </button>

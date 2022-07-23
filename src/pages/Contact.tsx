@@ -2,21 +2,45 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import SendIcon from '@mui/icons-material/Send';
 import Button from '@mui/material/Button';
-import Checkbox from '@mui/material/Checkbox';
 import { grey } from '@mui/material/colors';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import MediaQuery from 'react-responsive';
-import { toast, ToastContainer } from 'react-toastify';
-
-import contactResponsive from '../components/contact/contactResponsive';
+import { toast, ToastContainer, Zoom } from 'react-toastify';
 import GoToTop from '../components/globals/GoToTop';
 import IImage from '../interfaces/IImage';
 import IPage from '../interfaces/IPage';
-const Contact = (props) => {
-  const notify = () => toast(' Votre message à bien été envoyé !!  ');
+
+const notify = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  <ToastContainer
+    position="top-center"
+    autoClose={5000}
+    transition={Zoom}
+    hideProgressBar={false}
+    newestOnTop={false}
+    closeOnClick
+    rtl={false}
+    pauseOnFocusLoss
+    draggable
+    pauseOnHover
+  />;
+
+  toast.success(`Article ajouté au panier !!`, {
+    position: 'top-center',
+    autoClose: 5000,
+    transition: Zoom,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+};
+
+const Contact = () => {
+  setInterval(() => window.location.reload(), 100000);
 
   // Ici j'appel mon interface image >>
   const [allImages, setAllImages] = useState<IImage>();
@@ -24,11 +48,7 @@ const Contact = (props) => {
   const [onePage, setOnePage] = useState<IPage>();
 
   useEffect(() => {
-    const notify = () => toast('Votre message à bien été envoyé !!');
-
-    //   // je recupère les images:
     const getAllImages = async () => {
-      //     // indispensable quand on veut utiliser async/await dans un useEffect
       let url: string = `${import.meta.env.VITE_API_URL}/api/pages/21/images`;
 
       const { data } = await axios.get<IImage>(url, {
@@ -67,11 +87,7 @@ const Contact = (props) => {
             <div className="contact__container__titleWrapper">
               <h1>Nous contacter</h1>
             </div>
-            <form
-              action="https://getform.io/f/e3635432-5c41-4623-a26f-1e7063e12bc9"
-              method="POST"
-              target="_blank"
-              className="contact__container__form">
+            <form onSubmit={notify} target="_blank" className="contact__container__form">
               <div className="contact__container__form__credentials">
                 <TextField
                   id="standard-basic"
@@ -116,13 +132,11 @@ const Contact = (props) => {
                 <Button
                   sx={{ color: { color } }}
                   style={{ backgroundColor: '#f4f7f5' }}
-                  onClick={notify}
                   type="submit"
                   variant="contained"
                   endIcon={<SendIcon />}>
                   Envoyer
                 </Button>
-                <ToastContainer />
               </div>
             </form>
           </div>
@@ -134,10 +148,7 @@ const Contact = (props) => {
           <div className="mainContainer">
             <h1>Nous contacter</h1>
             <div className="mainContainer__formContainer">
-              <form
-                action="https://getform.io/f/e3635432-5c41-4623-a26f-1e7063e12bc9"
-                method="POST"
-                target="_blank">
+              <form onSubmit={notify} target="_blank">
                 <TextField
                   id="standard-basic"
                   type="text"
@@ -175,14 +186,12 @@ const Contact = (props) => {
                 <Button
                   sx={{ color: { color } }}
                   style={{ backgroundColor: '#f4f7f5' }}
-                  onClick={notify}
                   type="submit"
                   variant="contained"
                   className="ainContainer__formContainer__buttonSent"
                   endIcon={<SendIcon />}>
                   Envoyer
                 </Button>
-                <ToastContainer />
               </form>
             </div>
           </div>

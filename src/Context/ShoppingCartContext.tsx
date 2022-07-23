@@ -1,4 +1,6 @@
-import React, { createContext, ReactNode, useContext, useState } from 'react';
+import React, { createContext, ReactNode, useContext } from 'react';
+
+import useLocalStorage from '../hooks/useLocalStorage';
 
 // >> INTERFACES
 interface ShoppingCartProviderProps {
@@ -13,14 +15,12 @@ interface ShoppingCart {
 }
 
 // >> TYPE
-
 type CartItem = {
   id: number;
   quantity: number;
 };
 
 // >> Create context of ShoppingCart
-
 const ShoppingCartContext = createContext<ShoppingCart>({
   getItemQuantity: (_id: number) => {},
   increaseCartQuantity: (_id: number) => {},
@@ -34,21 +34,20 @@ export const useShoppingCart = () => {
 };
 
 // >> MAIN SHOPPING CART PROVIDER FUNCTION
+
 export const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) => {
-  // -- STATES --
-  //contient le tableau d'objet de mon panier
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  // >> -- States --
 
-  console.log(cartItems);
+  const [cartItems, setCartItems] = useLocalStorage<CartItem[]>('shoppingCart', []);
 
-  // >> All the functions
+  // >> FUNCTIONS
 
-  // ? Pour récuperer la quantité de produits
+  // ? --- Get the items quantity ---
   const getItemQuantity = (id: number) => {
     return cartItems.find((item) => item.id === id)?.quantity || 0;
   };
 
-  // ? fonction pour ajouter un objet au panier, à partir de son ID
+  // ? --- Increase an item quantity from the cart ---
   const increaseCartQuantity = (id: number) => {
     // Pour actualiser le cartItem
     setCartItems((currItems) => {
@@ -66,7 +65,7 @@ export const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) =>
     });
   };
 
-  // ? fonction pour ajouter un objet au panier, à partir de son ID
+  // ? --- Deacrease an item quantity from the cart ---
   const decreaseCartQuantity = (id: number) => {
     // Pour actualiser le cartItem
     setCartItems((currItems) => {
@@ -84,7 +83,7 @@ export const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) =>
     });
   };
 
-  // ? fonction pour supprimer un objet du panier, à partir de son ID
+  // ? --- REMOVE AN ITEM ---
   const removeFromCart = (id: number) => {
     console.log("delete de l'id" + id);
     setCartItems(cartItems.filter((item) => item.id !== id));
