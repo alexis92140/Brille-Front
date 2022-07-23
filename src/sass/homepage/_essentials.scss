@@ -7,6 +7,10 @@
 }
 .essentialsPage {
   background-color: rgba(233, 246, 242, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   z-index: 30;
   @media screen and (min-width: 320px) and (max-width: 1026px) {
     text-align: center;
@@ -23,11 +27,10 @@
   }
 
   &__container {
-    display: grid;
+    display: flex;
+    justify-content: center;
     margin-top: 1rem;
-    gap: 6.9rem;
-    grid-template-columns: repeat(auto-fill, 400px);
-    grid-auto-flow: row;
+    width: 80%;
     @media screen and (min-width: 320px) and (max-width: 1254px) {
       display: flex;
       flex-direction: column;
@@ -36,15 +39,16 @@
 
   &__Images {
     width: 100%;
-    background-color: rgb(204, 235, 226);
+    display: flex;
+    justify-content: center;
+    border-radius: 6px;
     display: flex;
   }
 }
 
 #bags {
-  height: 400px;
   object-fit: contain;
-
+  width: 60%;
   @media screen and (min-width: 320px) and (max-width: 1026px) {
     display: flex;
     flex-direction: column;
