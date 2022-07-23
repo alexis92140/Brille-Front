@@ -64,6 +64,7 @@ const routesConfig: RouteObject[] = [
   },
   {
     // ! Route : ACCOUNT >>> USER
+
     path: '/moncompte',
     element: <UserAccount />,
   },

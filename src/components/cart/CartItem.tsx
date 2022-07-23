@@ -6,7 +6,8 @@ import Fab from '@mui/material/Fab';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 
 import ShoppingCartContext from '../../Context/ShoppingCartContext';
 import IProduct from '../../interfaces/IProduct';
@@ -14,32 +15,18 @@ import IProduct from '../../interfaces/IProduct';
 const CartItem = () => {
   // >> STATES
 
-  // const [selectedItem, setSelectedItem] = useState<IProduct>();
   const [products, setProducts] = useState<IProduct[]>([]);
-
-  // >> USE PARAMS
-  // const { id } = useParams();
 
   // >> ALL THE "SHOPPINGCARTCONTEXT" FUNCTIONS
 
   const { cartItems, removeFromCart, increaseCartQuantity, decreaseCartQuantity } =
     useContext(ShoppingCartContext);
 
-  // const increaseQuantity = () => {
-  //   setQuantity((prevNum) => prevNum + 1);
-  // };
-
-  // const decreaseQuantity = () => {
-  //   setQuantity((prevNum) => prevNum - 1);
-  //   quantity === 1 && setQuantity(1);
-  // };
-
   // >> VARIABLES
-  // from the shoppingcartcontext to get the items
+
+  // ? from the shoppingcartcontext to get the items
   const shippingPrice = 2.99;
-  const doubleShipping = shippingPrice * 2;
-  // const bagStock = 12 - quantity + 1;
-  // const subTotal = bagPrice * quantity;
+  const shippingPriceDoubled = shippingPrice * 2;
   // const Total = quantity < 3 ? subTotal + shippingPrice : subTotal + doubleShipping;
 
   // >> AXIOS
@@ -57,34 +44,18 @@ const CartItem = () => {
     getAllProducts();
   }, []);
 
-  console.log(products);
   return (
     <div className="cartItem">
       {products.length && (
         <>
           {cartItems.length > 0 ? (
             <>
-              {/* Pour chaque cartItem de mon cartItems, je veux afficher : MAP ICI */}
-
               {/* ----- CARD ITEM ----- */}
               <div className="cartItem__wrapper">
-                {/* {products &&
-                  products.map(
-                    ({
-                      id,
-                      productName,
-                      productDesc,
-                      productImage,
-                      productPrice,
-                      productStock,
-                    }) => ( */}
-                {cartItems.map((cartItem) => (
+                {cartItems.map((cartItem, id) => (
                   <>
-                    <Paper elevation={3}>
+                    <Paper elevation={3} key={id}>
                       <div className="cartItem__productInfos">
-                        {/* Je veux récupèrer le produit et ses infos correspondant à mon cartItem.id */}
-                        {/* products.find(where mon id produit est égal à mon id de cartiteù).productImage */}
-
                         <img
                           src={
                             products.find((product) => product.id === cartItem.id)
@@ -122,7 +93,7 @@ const CartItem = () => {
                           </p>
                         </div>
 
-                        {/* Increase & Decrease quantity buttons */}
+                        {/* --- Increase & Decrease items quantity buttons --- */}
                         <div className="cartItem__productInfos__icons">
                           <Fab
                             size="small"
@@ -155,13 +126,12 @@ const CartItem = () => {
 
               {/* ----- ALL THE PRICES ----- */}
               <div className="cartItem__productInfos__amountInfos">
-                <p>Sous-total</p>
-                {/* <p>{subTotal} €</p> */}
+                <p>Sous-Total:</p>
               </div>
 
               <div className="cartItem__productInfos__amountInfos">
                 <p>Frais de Livraison</p>
-                <p>{cartItems[0].quantity >= 3 ? doubleShipping : shippingPrice} €</p>
+                <p>{cartItems.length > 3 ? shippingPriceDoubled : shippingPrice} €</p>
               </div>
 
               <div className="cartItem__productInfos__amountInfos">

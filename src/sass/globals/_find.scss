@@ -59,6 +59,7 @@
         width: 400px;
         height: 400px;
         cursor: not-allowed;
+        pointer-events: none;
         opacity: 0.6;
       }
       &__available {

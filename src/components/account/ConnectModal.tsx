@@ -21,18 +21,19 @@ import IUser from '../../interfaces/IUser';
 // >> MY VARIABLES
 
 // ------ Pattern for the email input ------
-const EMAIL_REGEX: any =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g;
+const EMAIL_REGEX: any = new RegExp(
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+);
 
 // ------ Pattern for the user input ------
-const USER_REGEX: any = /^[A-z][A-z0-9-_]{3,23}$/g;
+const USER_REGEX: any = /^[A-z][A-z0-9-_]{3,23}$/;
 
 // ------ Pattern for the ZIPCODE input ------
 // const ZIPCODE_REGEX: any = /[0-9]{5}/g;
 
 // ------ Pattern for the PHONENUMBER input ------
 const PHONE_NUMBER_REGEX: any =
-  /^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/g;
+  /^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$/;
 
 // ------ Pattern for the password input ------
 const PWD_REGEX: any = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/g;
@@ -548,20 +549,20 @@ const ConnectModal = () => {
                 !isValidedMatch ? (
                   <Button disabled>Sinscrire</Button>
                 ) : (
-                  // <Link to="/seconnecter">
-                  <Button
-                    variant="text"
-                    type="submit"
-                    size="small"
-                    sx={{
-                      color: grey[700],
-                      '&.Mui-checked': {
-                        color: pink[700],
-                      },
-                    }}>
-                    S&apos;inscrire
-                  </Button>
-                  // </Link>
+                  <Link to="/seconnecter">
+                    <Button
+                      variant="text"
+                      type="submit"
+                      size="small"
+                      sx={{
+                        color: grey[700],
+                        '&.Mui-checked': {
+                          color: pink[700],
+                        },
+                      }}>
+                      S&apos;inscrire
+                    </Button>
+                  </Link>
                 )}
               </div>
             </div>
@@ -585,8 +586,7 @@ const ConnectModal = () => {
         </section>
       </MediaQuery>
 
-      {/* DEBUT DU RESPONSIVE */}
-      {/* ALERTE DEBUT DU RESPONSIVE  */}
+      {/* -- RESPONSIVE PART -- */}
       <MediaQuery query="(max-width: 1000px)">
         <section className="connectModal">
           <p className="connectModal__title">INSCRIPTION</p>

@@ -7,6 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 
 import ShoppingCartContext from '../../Context/ShoppingCartContext';
 import IProduct from '../../interfaces/IProduct';
+import CartItem from '../cart/CartItem';
 import GoToTop from '../globals/GoToTop';
 
 // -----------------------------------------------------------
@@ -21,13 +22,6 @@ const SelectedProduct = () => {
   const [selectedItem, setSelectedItem] = useState<number | null>(null);
 
   // >> FUNCTIONS
-
-  // id: 11;
-  // productDesc: 'Sac en pépin de pomme';
-  // productName: 'CANCUN';
-  // productPrice: 175;
-  // productRef: 'e11';
-  // productStock: 2;
 
   const notify = () => {
     if (selectedItem === null) {
@@ -73,7 +67,7 @@ const SelectedProduct = () => {
 
   // >> VARIABLES
   // Recover the IncreaseCartQuantity function from the context
-  const { increaseCartQuantity } = useContext(ShoppingCartContext);
+  const { increaseCartQuantity, cartItems } = useContext(ShoppingCartContext);
 
   return (
     <div className="Page">
