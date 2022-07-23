@@ -3,7 +3,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast, ToastContainer, Slide, Zoom, Flip, Bounce } from 'react-toastify';
 
 import ShoppingCartContext from '../../Context/ShoppingCartContext';
 import IProduct from '../../interfaces/IProduct';
@@ -22,37 +22,30 @@ const SelectedProduct = () => {
 
   // >> FUNCTIONS
 
-  // id: 11;
-  // productDesc: 'Sac en pépin de pomme';
-  // productName: 'CANCUN';
-  // productPrice: 175;
-  // productRef: 'e11';
-  // productStock: 2;
-
   const notify = () => {
-    if (selectedItem === null) {
-      <ToastContainer
-        position="top-center"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />;
+    <ToastContainer
+      position="top-center"
+      autoClose={5000}
+      transition={Slide}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+    />;
 
-      toast.success(`Article ajouté au panier !!`, {
-        position: 'top-center',
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    }
+    toast.success(`Article ajouté au panier !!`, {
+      position: 'top-center',
+      autoClose: 5000,
+      transition: Slide,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   // >> AXIOS
@@ -73,7 +66,7 @@ const SelectedProduct = () => {
 
   // >> VARIABLES
   // Recover the IncreaseCartQuantity function from the context
-  const { increaseCartQuantity } = useContext(ShoppingCartContext);
+  const { increaseCartQuantity, cartItems } = useContext(ShoppingCartContext);
 
   return (
     <div className="Page">
@@ -114,12 +107,14 @@ const SelectedProduct = () => {
                   </div>
                 </div>
                 <div className="Page__secondPage__description__buttonCartContainer">
-                  <button
-                    onClick={() => increaseCartQuantity(Number(id || '0'))}
-                    type="button"
-                    className="Page__secondPage__description__buttonCartContainer__buttonCart">
-                    AJOUTER
-                  </button>
+                  <div onClick={notify}>
+                    <button
+                      onClick={() => increaseCartQuantity(Number(id || '0'))}
+                      type="button"
+                      className="Page__secondPage__description__buttonCartContainer__buttonCart">
+                      AJOUTER
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

@@ -74,52 +74,43 @@ const Find = () => {
                   productDesc.toLowerCase().includes(userChoice.toLowerCase()) ||
                   !userChoice,
               )
-              .map(
-                ({
-                  id,
-                  productImage,
-                  productName,
-                  productDesc,
-                  productPrice,
-                  productStock,
-                }) => (
-                  <Animated
-                    key={id}
-                    animationIn="fadeIn"
-                    animationOut="fadeOut"
-                    isVisible={true}>
-                    <div className="searchContainer__collectionWrapper__container">
-                      <Link to={`/selectedProduct/${id}`}>
-                        <img
-                          id="collectionBags"
-                          src={productImage}
-                          alt="Sacs de la marque Brille"
-                          className={
-                            productStock > '0'
-                              ? 'searchContainer__collectionWrapper__container__imageAvailable'
-                              : 'searchContainer__collectionWrapper__container__imageNotAvailable'
-                          }
-                        />
-                      </Link>
-                      <p className="searchContainer__collectionWrapper__container__text">
-                        {productName}
-                      </p>
-                      <p className="searchContainer__collectionWrapper__container__text"></p>
-                      <p className="searchContainer__collectionWrapper__container__text"></p>
+              .map(({ id, productImage, productName, productStock }) => (
+                <Animated
+                  key={id}
+                  animationIn="fadeIn"
+                  animationOut="fadeOut"
+                  isVisible={true}>
+                  <div className="searchContainer__collectionWrapper__container">
+                    <Link to={`/selectedProduct/${id}`}>
+                      <img
+                        id="collectionBags"
+                        src={productImage}
+                        alt="Sacs de la marque Brille"
+                        className={
+                          productStock > '0'
+                            ? 'searchContainer__collectionWrapper__container__imageAvailable'
+                            : 'searchContainer__collectionWrapper__container__imageNotAvailable'
+                        }
+                      />
+                    </Link>
+                    <p className="searchContainer__collectionWrapper__container__text">
+                      {productName}
+                    </p>
+                    <p className="searchContainer__collectionWrapper__container__text"></p>
+                    <p className="searchContainer__collectionWrapper__container__text"></p>
 
-                      {Number(productStock) > 0 ? (
-                        <p className="searchContainer__collectionWrapper__container__available">
-                          Disponible
-                        </p>
-                      ) : (
-                        <p className="searchContainer__collectionWrapper__container__notAvailable">
-                          Victime de son succès
-                        </p>
-                      )}
-                    </div>
-                  </Animated>
-                ),
-              )}
+                    {Number(productStock) > 0 ? (
+                      <p className="searchContainer__collectionWrapper__container__available">
+                        Disponible
+                      </p>
+                    ) : (
+                      <p className="searchContainer__collectionWrapper__container__notAvailable">
+                        Victime de son succès
+                      </p>
+                    )}
+                  </div>
+                </Animated>
+              ))}
         </div>
       </div>
       <GoToTop />
