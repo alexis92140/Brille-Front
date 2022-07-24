@@ -1,13 +1,14 @@
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MediaQuery from 'react-responsive';
 import { toast, ToastContainer } from 'react-toastify';
+import axios from 'axios';
+import IUser from '../../interfaces/IUser';
 
 import { storage } from '../../utils/firebase';
 
@@ -200,38 +201,21 @@ const UserProfile = () => {
     }
   };
 
-  // --------------------------------------------
+  // >> Axios to get all Products
+  useEffect(() => {
+    const getUser = async () => {
+      // indispensable quand on veut utiliser async/await dans un useEffect
+      let url: string = `${import.meta.env.VITE_API_URL}/api/users/121`;
 
-  // ---------generates the color based on the name of the person
-  // function stringToColor(string: string) {
-  //   let hash = 0;
-  //   let i : number;
-
-  //   /* eslint-disable no-bitwise */
-  //   for (i = 0; i < string.length; i += 1) {
-  //     hash = string.charCodeAt(i) + ((hash << 5) - hash);
-  //   }
-
-  //   let color = '#';
-
-  //   for (i = 0; i < 3; i += 1) {
-  //     const value = (hash >> (i * 8)) & 0xff;
-  //     color += `00${value.toString(16)}`.slice(-2);
-  //   }
-
-  //   /* eslint-enable no-bitwise */
-
-  //   return color;
-  // }
-  // function stringAvatar(name: string) {
-  //   return {
-  //     sx: {
-  //       bgcolor: stringToColor(name),
-  //     },
-  //     children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
-  //   };
-  // }
-  // -------------end---------------
+      const { data } = await axios.get<IUser>(url, {
+        withCredentials: true,
+      });
+      setFirstName(data.firstname);
+      setLastName(data.lastname);
+      setEmail(data.email);
+    };
+    getUser();
+  }, []);
 
   return (
     <>
@@ -242,7 +226,7 @@ const UserProfile = () => {
             <Avatar src={url} sx={{ width: 125, height: 125 }}>
               <p className="userProfile__avatarContainer__initials">JB</p>
             </Avatar>
-            <p className="userProfile__avatarContainer__name">Jessica BRILLE</p>
+            <p className="userProfile__avatarContainer__name">{firstName}</p>
             {image && (
               <Button
                 variant="contained"

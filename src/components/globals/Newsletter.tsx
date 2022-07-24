@@ -13,7 +13,9 @@ const Newsletter = () => {
   const [errorMessage, setErrorMessage] = useState<string>(
     `Votre email n'as pas été pris en compte !`,
   );
-  const notify = () => toast('Vous etes bien enregistré à notre newsletter');
+  const notify = () => {
+    email !== '' && toast('Vous etes bien enregistré à notre newsletter');
+  };
 
   // >> AXIOS
 
@@ -45,6 +47,7 @@ const Newsletter = () => {
         <input
           type="email"
           placeholder="Entrez votre email"
+          required
           onChange={(e: React.FormEvent<HTMLInputElement>) =>
             setEmail(e.currentTarget.value)
           }
