@@ -7,11 +7,11 @@ import Paper from '@mui/material/Paper';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { toast, ToastContainer } from 'react-toastify';
-import { formatCurrency } from '../../utils/formatCurrency';
 
 import ShoppingCartContext from '../../Context/ShoppingCartContext';
 import IProduct from '../../interfaces/IProduct';
+// import { toast, ToastContainer } from 'react-toastify';
+import { formatCurrency } from '../../utils/formatCurrency';
 
 const CartItem = () => {
   setInterval(() => window.location.reload(), 100000);
