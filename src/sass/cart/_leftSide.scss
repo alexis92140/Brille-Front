@@ -8,6 +8,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  @media screen and (min-width: 320px) and (max-width: 1026px) {
+    display: none;
+  }
 
   &__wrapper {
     width: 100%;

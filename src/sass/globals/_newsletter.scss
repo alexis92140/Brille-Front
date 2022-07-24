@@ -16,9 +16,6 @@
   @media screen and (min-width: 300px) and (max-width: 700px) {
     display: flex;
     flex-direction: column;
-    
-   
-
   }
 }
 .newsletter form input {
@@ -29,24 +26,25 @@
   border: none;
   border-bottom: 1px solid #000;
   margin-right: 1rm;
+  @media screen and (min-width: 300px) and (max-width: 830px) {
+    margin-bottom: 20px;
+    width: 30vw;
+  }
+  @media screen and (min-width: 300px) and (max-width: 480px) {
+    width: 50vw;
+  }
 
   &:focus {
     &::placeholder {
       color: transparent;
     }
   }
-
-  @media screen and (min-width: 300px) and (max-width: 1020px) {
-    margin-bottom: 20px;
-  }
 }
 .newsletter form button {
   height: 2.5rem;
   width: 6rem;
   color: white;
-  background-color: red;
+  background-color: rgba(192, 106, 95, 0.7490196078);
   border: none;
   margin-left: 40px;
-  
-  
 }

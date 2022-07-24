@@ -6,6 +6,7 @@ import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import React, { useState } from 'react';
+import MediaQuery from 'react-responsive';
 import { toast, ToastContainer } from 'react-toastify';
 
 import { storage } from '../../utils/firebase';
@@ -233,274 +234,466 @@ const UserProfile = () => {
   // -------------end---------------
 
   return (
-    <div className="userProfile">
-      {/* ------ AVATAR ------- */}
-      <div className="userProfile__avatarContainer">
-        <Avatar src={url} sx={{ width: 125, height: 125 }}>
-          <p className="userProfile__avatarContainer__initials">JB</p>
-        </Avatar>
-        <p className="userProfile__avatarContainer__name">Jessica BRILLE</p>
-        {image && (
-          <Button
-            variant="contained"
-            component="label"
-            color="secondary"
-            size="small"
-            onClick={handleSubmit}>
-            Changer ma photo
-            <input type="file" hidden onChange={handleImageChange} />
-          </Button>
-        )}
+    <>
+      <MediaQuery query="(min-width: 1024px)">
+        <div className="userProfile">
+          {/* ------ AVATAR ------- */}
+          <div className="userProfile__avatarContainer">
+            <Avatar src={url} sx={{ width: 125, height: 125 }}>
+              <p className="userProfile__avatarContainer__initials">JB</p>
+            </Avatar>
+            <p className="userProfile__avatarContainer__name">Jessica BRILLE</p>
+            {image && (
+              <Button
+                variant="contained"
+                component="label"
+                color="secondary"
+                size="small"
+                onClick={handleSubmit}>
+                Changer ma photo
+                <input type="file" hidden onChange={handleImageChange} />
+              </Button>
+            )}
 
-        {!image && (
-          <Button
-            variant="contained"
-            component="label"
-            color="secondary"
-            size="small"
-            onClick={handleSubmit}>
-            Choisir ma photo
-            <input type="file" hidden onChange={handleImageChange} />
-          </Button>
-        )}
-      </div>
-
-      {/* ------ FORM LEFT SIDE ------- */}
-      <div className="userProfile__settings">
-        <h4>Paramètres du compte</h4>
-
-        <form>
-          <div className="userProfile__settings__container">
-            <div className="userProfile__settings__container__leftSide">
-              <p className="userProfile__settings__container__leftSide__title">
-                Données personnelles
-              </p>
-              {/* ----- FIRST NAME ----- */}
-              <div className="userProfile__settings__container__leftSide">
-                <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
-                  <TextField
-                    id="outlined-basic"
-                    value={firstName}
-                    onChange={handleFirstName}
-                    label="Prénom"
-                    type="text"
-                    autoComplete="current-text"
-                    variant="standard"
-                    size="small"
-                  />
-                </FormControl>
-              </div>
-
-              {/* ----- LAST NAME ----- */}
-              <div>
-                <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
-                  <TextField
-                    id="outlined-basic"
-                    value={lastName}
-                    onChange={handleLastName}
-                    label="Nom"
-                    type="text"
-                    autoComplete="current-text"
-                    variant="standard"
-                    size="small"
-                  />
-                </FormControl>
-
-                {/* ----- EMAIL INPUT ----- */}
-                <div>
-                  <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
-                    <TextField
-                      id="outlined-basic"
-                      value={email}
-                      onChange={handleEmail}
-                      label="Email"
-                      type="email"
-                      autoComplete="current-password"
-                      variant="standard"
-                      size="small"
-                    />
-                  </FormControl>
-                </div>
-
-                {/* ----- PHONE NUMBER ----- */}
-                <div className="userProfile__settings__container__leftSide">
-                  <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
-                    <TextField
-                      id="outlined-basic"
-                      value={phoneNumber}
-                      // onChange={handlePhoneNumber}
-                      label="Téléphone"
-                      type="tel"
-                      autoComplete="current-password"
-                      variant="standard"
-                      size="small"
-                    />
-                  </FormControl>
-                </div>
-
-                {/* ----- ADDRESSLINE 1 INPUT ----- */}
-                <div className="userProfile__settings__container__leftSide">
-                  <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
-                    <TextField
-                      id="outlined-basic"
-                      value={address1}
-                      label="Adresse 1"
-                      type="text"
-                      onChange={handleAddress1}
-                      autoComplete="current-password"
-                      variant="standard"
-                      size="small"
-                    />
-                  </FormControl>
-                </div>
-
-                {/* ----- ADDRESSLINE 2 INPUT ----- */}
-                <div className="userProfile__settings__container__leftSide">
-                  <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
-                    <TextField
-                      id="outlined-basic"
-                      value={address2}
-                      label="Adresse 2"
-                      type="text"
-                      onChange={handleAddress2}
-                      autoComplete="current-password"
-                      variant="standard"
-                      size="small"
-                    />
-                  </FormControl>
-                </div>
-
-                {/* ----- ZIPCODE AND CITY INPUT ----- */}
-                <div className="userProfile__settings__container__leftSide__zipAndCity">
-                  <div className="userProfile__settings__container__leftSide__zip">
-                    <FormControl sx={{ m: 1, width: '20ch' }} variant="standard">
-                      <TextField
-                        id="outlined-basic"
-                        value={zipCode}
-                        onChange={handleZipCode}
-                        label="Code postal"
-                        type="number"
-                        variant="standard"
-                        size="small"
-                      />
-                    </FormControl>
-                  </div>
-
-                  <div className="userProfile__settings__container__leftSide__city">
-                    <FormControl sx={{ m: 1, width: '20ch' }} variant="standard">
-                      <TextField
-                        id="outlined-basic"
-                        value={city}
-                        onChange={handleCity}
-                        label="Ville"
-                        type="text"
-                        variant="standard"
-                        size="small"
-                      />
-                    </FormControl>
-                  </div>
-                </div>
-
-                {/* ------ FORM LEFT SIDE BUTTON------- */}
-                <div className="userProfile__settings__container__leftSide">
-                  <Button
-                    variant="contained"
-                    component="label"
-                    color="secondary"
-                    size="small"
-                    onClick={handleSubmit}>
-                    Modifier
-                  </Button>
-                </div>
-              </div>
-            </div>
-
-            {/* ------ FORM RIGHT SIDE ------- */}
-            <div className="userProfile__settings__container__rightSide">
-              <p>Changer mon mot de passe</p>
-              {/* ----- OLD PASSWORD INPUT ----- */}
-              <div className="">
-                <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
-                  <TextField
-                    id="standard-password-input"
-                    value={oldPassword}
-                    label="Ancien mot de passe"
-                    type="password"
-                    onChange={handleOldPassword}
-                    autoComplete="current-password"
-                    variant="standard"
-                    size="small"
-                    required
-                  />
-                </FormControl>
-              </div>
-
-              {/* ----- NEW PASSWORD INPUT ----- */}
-              <div className="userProfile__settings__container__rightSide">
-                <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
-                  <TextField
-                    id="standard-password-input"
-                    value={newPassword}
-                    label="Nouveau mot de passe"
-                    type="password"
-                    onChange={handleNewPassword}
-                    autoComplete="current-password"
-                    variant="standard"
-                    size="small"
-                    required
-                  />
-                </FormControl>
-              </div>
-
-              {/* ----- CONFIRMED PASSWORD INPUT ----- */}
-              <div className="userProfile__settings__container__rightSide">
-                <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
-                  <TextField
-                    id="standard-password-input"
-                    // value={confirmedPassword}
-                    label="Confirmer le nouveau mot de passe"
-                    type="password"
-                    onChange={handleConfirmedPassword}
-                    autoComplete="current-password"
-                    variant="standard"
-                    size="small"
-                    required
-                  />
-                </FormControl>
-              </div>
-
-              {/* ------ FORM RIGHT SIDE BUTTON ------- */}
-              <div className="userProfile__settings__container__rightSide__button">
-                <Button
-                  variant="contained"
-                  component="label"
-                  color="secondary"
-                  size="small"
-                  onClick={notifyPassword}>
-                  {oldPassword !== '' &&
-                  newPassword !== '' &&
-                  confirmedPassword === newPassword ? (
-                    <p>Confirmer</p>
-                  ) : (
-                    <p>Changer mon mot de passe</p>
-                  )}
-                </Button>
-              </div>
-
-              {/* ------ FORM RIGHT SIDE SWITCH BUTTONS------- */}
-              <div className="userProfile__settings__container__rightSide__switch">
-                <p>Notifications SMS</p>
-                <Switch {...label} color="secondary" />
-              </div>
-              <div className="userProfile__settings__container__rightSide__switch">
-                <p>Notifications Email</p>
-                <Switch {...label} color="secondary" />
-              </div>
-            </div>
+            {!image && (
+              <Button
+                variant="contained"
+                component="label"
+                color="secondary"
+                size="small"
+                onClick={handleSubmit}>
+                Choisir ma photo
+                <input type="file" hidden onChange={handleImageChange} />
+              </Button>
+            )}
           </div>
-        </form>
-      </div>
-    </div>
+
+          {/* ------ FORM LEFT SIDE ------- */}
+          <div className="userProfile__settings">
+            <h4>Paramètres du compte</h4>
+
+            <form>
+              <div className="userProfile__settings__container">
+                <div className="userProfile__settings__container__leftSide">
+                  <p className="userProfile__settings__container__leftSide__title">
+                    Données personnelles
+                  </p>
+                  {/* ----- FIRST NAME ----- */}
+                  <div className="userProfile__settings__container__leftSide">
+                    <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
+                      <TextField
+                        id="outlined-basic"
+                        value={firstName}
+                        onChange={handleFirstName}
+                        label="Prénom"
+                        type="text"
+                        autoComplete="current-text"
+                        variant="standard"
+                        size="small"
+                      />
+                    </FormControl>
+                  </div>
+
+                  {/* ----- LAST NAME ----- */}
+                  <div>
+                    <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
+                      <TextField
+                        id="outlined-basic"
+                        value={lastName}
+                        onChange={handleLastName}
+                        label="Nom"
+                        type="text"
+                        autoComplete="current-text"
+                        variant="standard"
+                        size="small"
+                      />
+                    </FormControl>
+
+                    {/* ----- EMAIL INPUT ----- */}
+                    <div>
+                      <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
+                        <TextField
+                          id="outlined-basic"
+                          value={email}
+                          onChange={handleEmail}
+                          label="Email"
+                          type="email"
+                          autoComplete="current-password"
+                          variant="standard"
+                          size="small"
+                        />
+                      </FormControl>
+                    </div>
+
+                    {/* ----- PHONE NUMBER ----- */}
+                    <div className="userProfile__settings__container__leftSide">
+                      <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
+                        <TextField
+                          id="outlined-basic"
+                          value={phoneNumber}
+                          // onChange={handlePhoneNumber}
+                          label="Téléphone"
+                          type="tel"
+                          autoComplete="current-password"
+                          variant="standard"
+                          size="small"
+                        />
+                      </FormControl>
+                    </div>
+
+                    {/* ----- ADDRESSLINE 1 INPUT ----- */}
+                    <div className="userProfile__settings__container__leftSide">
+                      <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
+                        <TextField
+                          id="outlined-basic"
+                          value={address1}
+                          label="Adresse 1"
+                          type="text"
+                          onChange={handleAddress1}
+                          autoComplete="current-password"
+                          variant="standard"
+                          size="small"
+                        />
+                      </FormControl>
+                    </div>
+
+                    {/* ----- ADDRESSLINE 2 INPUT ----- */}
+                    <div className="userProfile__settings__container__leftSide">
+                      <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
+                        <TextField
+                          id="outlined-basic"
+                          value={address2}
+                          label="Adresse 2"
+                          type="text"
+                          onChange={handleAddress2}
+                          autoComplete="current-password"
+                          variant="standard"
+                          size="small"
+                        />
+                      </FormControl>
+                    </div>
+
+                    {/* ----- ZIPCODE AND CITY INPUT ----- */}
+                    <div className="userProfile__settings__container__leftSide__zipAndCity">
+                      <div className="userProfile__settings__container__leftSide__zip">
+                        <FormControl sx={{ m: 1, width: '20ch' }} variant="standard">
+                          <TextField
+                            id="outlined-basic"
+                            value={zipCode}
+                            onChange={handleZipCode}
+                            label="Code postal"
+                            type="number"
+                            variant="standard"
+                            size="small"
+                          />
+                        </FormControl>
+                      </div>
+
+                      <div className="userProfile__settings__container__leftSide__city">
+                        <FormControl sx={{ m: 1, width: '20ch' }} variant="standard">
+                          <TextField
+                            id="outlined-basic"
+                            value={city}
+                            onChange={handleCity}
+                            label="Ville"
+                            type="text"
+                            variant="standard"
+                            size="small"
+                          />
+                        </FormControl>
+                      </div>
+                    </div>
+
+                    {/* ------ FORM LEFT SIDE BUTTON------- */}
+                    <div className="userProfile__settings__container__leftSide">
+                      <Button
+                        variant="contained"
+                        component="label"
+                        color="secondary"
+                        size="small"
+                        onClick={handleSubmit}>
+                        Modifier
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* ------ FORM RIGHT SIDE ------- */}
+                <div className="userProfile__settings__container__rightSide">
+                  <p>Changer mon mot de passe</p>
+                  {/* ----- OLD PASSWORD INPUT ----- */}
+                  <div className="">
+                    <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
+                      <TextField
+                        id="standard-password-input"
+                        value={oldPassword}
+                        label="Ancien mot de passe"
+                        type="password"
+                        onChange={handleOldPassword}
+                        autoComplete="current-password"
+                        variant="standard"
+                        size="small"
+                        required
+                      />
+                    </FormControl>
+                  </div>
+
+                  {/* ----- NEW PASSWORD INPUT ----- */}
+                  <div className="userProfile__settings__container__rightSide">
+                    <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
+                      <TextField
+                        id="standard-password-input"
+                        value={newPassword}
+                        label="Nouveau mot de passe"
+                        type="password"
+                        onChange={handleNewPassword}
+                        autoComplete="current-password"
+                        variant="standard"
+                        size="small"
+                        required
+                      />
+                    </FormControl>
+                  </div>
+
+                  {/* ----- CONFIRMED PASSWORD INPUT ----- */}
+                  <div className="userProfile__settings__container__rightSide">
+                    <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
+                      <TextField
+                        id="standard-password-input"
+                        // value={confirmedPassword}
+                        label="Confirmer le nouveau mot de passe"
+                        type="password"
+                        onChange={handleConfirmedPassword}
+                        autoComplete="current-password"
+                        variant="standard"
+                        size="small"
+                        required
+                      />
+                    </FormControl>
+                  </div>
+
+                  {/* ------ FORM RIGHT SIDE BUTTON ------- */}
+                  <div className="userProfile__settings__container__rightSide__button">
+                    <Button
+                      variant="contained"
+                      component="label"
+                      color="secondary"
+                      size="small"
+                      onClick={notifyPassword}>
+                      {oldPassword !== '' &&
+                      newPassword !== '' &&
+                      confirmedPassword === newPassword ? (
+                        <p>Confirmer</p>
+                      ) : (
+                        <p>Changer mon mot de passe</p>
+                      )}
+                    </Button>
+                  </div>
+
+                  {/* ------ FORM RIGHT SIDE SWITCH BUTTONS------- */}
+                  <div className="userProfile__settings__container__rightSide__switch">
+                    <p>Notifications SMS</p>
+                    <Switch {...label} color="secondary" />
+                  </div>
+                  <div className="userProfile__settings__container__rightSide__switch">
+                    <p>Notifications Email</p>
+                    <Switch {...label} color="secondary" />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </MediaQuery>
+      {/* /////////////////////////////////////////////////////// RESPONSIVE COMPONANT */}
+      <MediaQuery query="(max-width: 1024px)">
+        <div className="">
+          {/* ------ AVATAR ------- */}
+          <div className="userProfile__avatarContainer">
+            <Avatar src={url} sx={{ width: 125, height: 125 }}>
+              <p className="">JB</p>
+            </Avatar>
+            <p className="">Jessica BRILLE</p>
+            {image && (
+              <Button
+                variant="contained"
+                component="label"
+                color="secondary"
+                size="small"
+                onClick={handleSubmit}>
+                Changer ma photo
+                <input type="file" hidden onChange={handleImageChange} />
+              </Button>
+            )}
+
+            {!image && (
+              <Button
+                variant="contained"
+                component="label"
+                color="secondary"
+                size="small"
+                onClick={handleSubmit}>
+                Choisir ma photo
+                <input type="file" hidden onChange={handleImageChange} />
+              </Button>
+            )}
+          </div>
+
+          {/* ------ FORM LEFT SIDE ------- */}
+          <div className="">
+            <h4>Paramètres du compte</h4>
+
+            <form>
+              <div className="userProfile__settings__container">
+                <div className="userProfile__settings__container__leftSide">
+                  <p className="userProfile__settings__container__leftSide__title">
+                    Données personnelles
+                  </p>
+                  {/* ----- FIRST NAME ----- */}
+                  <div className="userProfile__settings__container__leftSide">
+                    <FormControl sx={{ m: 1, width: '35ch' }} variant="standard">
+                      <TextField
+                        id="outlined-basic"
+                        value={firstName}
+                        onChange={handleFirstName}
+                        label="Prénom"
+                        type="text"
+                        autoComplete="current-text"
+                        variant="standard"
+                        size="small"
+                      />
+                    </FormControl>
+                  </div>
+
+                  {/* ----- LAST NAME ----- */}
+                  <div>
+                    <FormControl sx={{ m: 1, width: '35ch' }} variant="standard">
+                      <TextField
+                        id="outlined-basic"
+                        value={lastName}
+                        onChange={handleLastName}
+                        label="Nom"
+                        type="text"
+                        autoComplete="current-text"
+                        variant="standard"
+                        size="small"
+                      />
+                    </FormControl>
+
+                    {/* ----- EMAIL INPUT ----- */}
+                    <div>
+                      <FormControl sx={{ m: 1, width: '35ch' }} variant="standard">
+                        <TextField
+                          id="outlined-basic"
+                          value={email}
+                          onChange={handleEmail}
+                          label="Email"
+                          type="email"
+                          autoComplete="current-password"
+                          variant="standard"
+                          size="small"
+                        />
+                      </FormControl>
+                    </div>
+
+                    {/* ----- PHONE NUMBER ----- */}
+                    <div className="userProfile__settings__container__leftSide">
+                      <FormControl sx={{ m: 1, width: '35ch' }} variant="standard">
+                        <TextField
+                          id="outlined-basic"
+                          value={phoneNumber}
+                          // onChange={handlePhoneNumber}
+                          label="Téléphone"
+                          type="tel"
+                          autoComplete="current-password"
+                          variant="standard"
+                          size="small"
+                        />
+                      </FormControl>
+                    </div>
+
+                    {/* ----- ADDRESSLINE 1 INPUT ----- */}
+                    <div className="userProfile__settings__container__leftSide">
+                      <FormControl sx={{ m: 1, width: '35ch' }} variant="standard">
+                        <TextField
+                          id="outlined-basic"
+                          value={address1}
+                          label="Adresse 1"
+                          type="text"
+                          onChange={handleAddress1}
+                          autoComplete="current-password"
+                          variant="standard"
+                          size="small"
+                        />
+                      </FormControl>
+                    </div>
+
+                    {/* ----- ADDRESSLINE 2 INPUT ----- */}
+                    <div className="userProfile__settings__container__leftSide">
+                      <FormControl sx={{ m: 1, width: '35ch' }} variant="standard">
+                        <TextField
+                          id="outlined-basic"
+                          value={address2}
+                          label="Adresse 2"
+                          type="text"
+                          onChange={handleAddress2}
+                          autoComplete="current-password"
+                          variant="standard"
+                          size="small"
+                        />
+                      </FormControl>
+                    </div>
+
+                    {/* ----- ZIPCODE AND CITY INPUT ----- */}
+                    <div className="userProfile__settings__container__leftSide__zipAndCity">
+                      <div className="userProfile__settings__container__leftSide__zip">
+                        <FormControl sx={{ m: 1, width: '15ch' }} variant="standard">
+                          <TextField
+                            id="outlined-basic"
+                            value={zipCode}
+                            onChange={handleZipCode}
+                            label="Code postal"
+                            type="number"
+                            variant="standard"
+                            size="small"
+                          />
+                        </FormControl>
+                      </div>
+
+                      <div className="userProfile__settings__container__leftSide__city">
+                        <FormControl sx={{ m: 1, width: '12ch' }} variant="standard">
+                          <TextField
+                            id="outlined-basic"
+                            value={city}
+                            onChange={handleCity}
+                            label="Ville"
+                            type="text"
+                            variant="standard"
+                            size="small"
+                          />
+                        </FormControl>
+                      </div>
+                    </div>
+
+                    {/* ------ FORM LEFT SIDE BUTTON------- */}
+                    <div className="userProfile__settings__container__leftSide">
+                      <Button
+                        variant="contained"
+                        component="label"
+                        color="inherit"
+                        size="small"
+                        onClick={handleSubmit}>
+                        Modifier
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </MediaQuery>
+    </>
   );
 };
 

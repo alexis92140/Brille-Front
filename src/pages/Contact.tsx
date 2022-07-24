@@ -8,6 +8,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import MediaQuery from 'react-responsive';
 import { toast, ToastContainer, Zoom } from 'react-toastify';
+
 import GoToTop from '../components/globals/GoToTop';
 import IImage from '../interfaces/IImage';
 import IPage from '../interfaces/IPage';
