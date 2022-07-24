@@ -1,8 +1,8 @@
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import PaymentsIcon from '@mui/icons-material/Payments';
-import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import RemoveIcon from '@mui/icons-material/Remove';
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import Button from '@mui/material/Button';
 import Fab from '@mui/material/Fab';
 import Paper from '@mui/material/Paper';
@@ -176,9 +176,9 @@ const CartItem = () => {
             <div className="cartItem__productInfos__emptyCart">
               <h4>Votre panier est actuellement vide.</h4>
               <Link to="/collection">
-                <Button variant="outlined" sx={{ width: 300, padding: 1, margin: 2 }}>
+                <button type="button" className="button-51">
                   Continuer mes achats
-                </Button>
+                </button>
               </Link>
             </div>
           )}

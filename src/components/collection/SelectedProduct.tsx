@@ -59,7 +59,6 @@ const SelectedProduct = () => {
       });
       setOneProduct(data);
       setSelectedItem(data.id);
-      // console.log(data);
     };
     getOneProduct();
   }, [id]);

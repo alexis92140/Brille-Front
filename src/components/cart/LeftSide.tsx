@@ -1,6 +1,6 @@
+import Button from '@mui/material/Button';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import Button from '@mui/material/Button';
 
 // ! ----- USER CONTEXT -----
 import CurrentUserContext from '../../Context/CurrentUser';

@@ -7,12 +7,12 @@ import { grey } from '@mui/material/colors';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
+import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import MediaQuery from 'react-responsive';
-import { NavigateFunction, useNavigate, Link } from 'react-router-dom';
+import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
 import { GoogleLoginButton } from 'react-social-login-buttons';
 import { FacebookLoginButton } from 'react-social-login-buttons';
-import axios from 'axios';
 
 import CurrentUserContext from '../../Context/CurrentUser';
 import IUser from '../../interfaces/IUser';

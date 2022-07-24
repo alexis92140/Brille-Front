@@ -5,6 +5,7 @@ import SearchBar from 'material-ui-search-bar';
 import React, { useEffect, useState } from 'react';
 import { Animated } from 'react-animated-css';
 import { Link } from 'react-router-dom';
+
 import IProduct from '../../interfaces/IProduct';
 import GoToTop from '../globals/GoToTop';
 
