@@ -1,14 +1,10 @@
-// ---- @mui components -----
 import Button from '@mui/material/Button';
 import { blue } from '@mui/material/colors';
 import axios from 'axios';
 import SearchBar from 'material-ui-search-bar';
 import React, { useEffect, useState } from 'react';
-// ---- react-animated-css package  -----
 import { Animated } from 'react-animated-css';
 import { Link } from 'react-router-dom';
-
-// ---- Imported components -----
 import IProduct from '../../interfaces/IProduct';
 import GoToTop from '../globals/GoToTop';
 

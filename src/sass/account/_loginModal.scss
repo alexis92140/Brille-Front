@@ -50,4 +50,14 @@
       margin-left: 1rem;
     }
   }
+  &__error {
+    width: 100%;
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      color: red;
+    }
+  }
 }

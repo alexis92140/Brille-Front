@@ -27,7 +27,7 @@ const EMAIL_REGEX: any = new RegExp(
 );
 
 // ------ Pattern for the user input ------
-const USER_REGEX: any = /^[A-z][A-z0-9-_]{3,23}$/;
+const USER_REGEX: any = /^[A-z][A-z0-9-_]{1,23}$/;
 
 // ------ Pattern for the ZIPCODE input ------
 // const ZIPCODE_REGEX: any = /[0-9]{5}/g;
@@ -42,7 +42,6 @@ const PWD_REGEX: any = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
 // --------------------------------------------------------------
 
 const ConnectModal = () => {
-  setTimeout(() => window.location.reload(), 1000000);
   // >> REF HOOKS
 
   const firstNameRef = useRef<HTMLInputElement>(null);
@@ -50,7 +49,7 @@ const ConnectModal = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const errorRef = useRef<HTMLInputElement>(null);
 
-  // >> STATES<<
+  // >> STATES
 
   // ---- for the firstName ----
   const [firstname, setFirstName] = useState<string>('');
@@ -180,34 +179,48 @@ const ConnectModal = () => {
   // >> AXIOS
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
-    <ToastContainer
-      position="top-center"
-      autoClose={5000}
-      hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-    />;
-
-    toast.success(`Vous pouvez vous connecter !`, {
-      position: 'top-center',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
     try {
-      await axios.post<IUser>(`${import.meta.env.VITE_API_URL}/api/users`, {
-        admin: 0,
-        firstname,
-        lastname,
-        email,
-        password,
+      e.preventDefault();
+      await axios.post<IUser>(
+        `${import.meta.env.VITE_API_URL}/api/users`,
+        {
+          admin: 0,
+          firstname,
+          lastname,
+          email,
+          password,
+        },
+        {
+          // for cookies
+          withCredentials: true,
+        },
+      );
+      console.log(`mail envoyé`);
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setPassword('');
+      setIsChecked(false);
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />;
+
+      toast.success(`Vous pouvez vous connecter !`, {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
       });
     } catch (err) {
       if (axios.isAxiosError(err)) {

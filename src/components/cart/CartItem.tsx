@@ -1,5 +1,7 @@
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import PaymentsIcon from '@mui/icons-material/Payments';
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Button from '@mui/material/Button';
 import Fab from '@mui/material/Fab';
@@ -14,8 +16,6 @@ import IProduct from '../../interfaces/IProduct';
 import { formatCurrency } from '../../utils/formatCurrency';
 
 const CartItem = () => {
-  setInterval(() => window.location.reload(), 100000);
-
   // >> STATES
 
   const [products, setProducts] = useState<IProduct[]>([]);
@@ -28,7 +28,7 @@ const CartItem = () => {
   // >> VARIABLES
 
   // ? from the shoppingcartcontext to get the items
-  const shippingPrice = 2.99;
+  const shippingPrice = 4.99;
 
   // >> AXIOS
 
@@ -84,13 +84,19 @@ const CartItem = () => {
                                 ?.productPrice,
                             )}{' '}
                           </p>
-                          <p>
-                            Stock:
-                            {
-                              products.find((product) => product.id === cartItem.id)
-                                ?.productStock
-                            }
-                          </p>
+
+                          {parseFloat(
+                            products.find((product) => product.id === cartItem.id)
+                              ?.productStock!,
+                          ) <= 5 && (
+                            <p>
+                              Articles disponibles: {''}
+                              {
+                                products.find((product) => product.id === cartItem.id)
+                                  ?.productStock
+                              }
+                            </p>
+                          )}
                         </div>
 
                         {/* --- Increase & Decrease items quantity buttons --- */}
@@ -138,7 +144,7 @@ const CartItem = () => {
 
               <div className="cartItem__productInfos__amountInfos">
                 <p>Frais de Livraison</p>
-                <p>{shippingPrice}</p>
+                <p> {formatCurrency(shippingPrice)}</p>
               </div>
               <div className="cartItem__productInfos__amountInfos">
                 <p>TOTAL</p>
@@ -153,6 +159,17 @@ const CartItem = () => {
                     }, 0),
                   )}
                 </p>
+              </div>
+              <div>
+                {/* ---- Call to action buttons ---- */}
+                <div className="cartItem__wrapper__secondPart__secondWrapper">
+                  <Link to="/collection">
+                    <button type="button">CONTINUER MES ACHATS</button>
+                  </Link>
+                  <Link to="/">
+                    <button type="button">PAIEMENT</button>
+                  </Link>
+                </div>
               </div>
             </>
           ) : (

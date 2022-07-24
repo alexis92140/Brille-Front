@@ -3,7 +3,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { toast, ToastContainer, Slide, Zoom, Flip, Bounce } from 'react-toastify';
+import { Bounce, Flip, Slide, toast, ToastContainer, Zoom } from 'react-toastify';
 
 import ShoppingCartContext from '../../Context/ShoppingCartContext';
 import IProduct from '../../interfaces/IProduct';
@@ -66,7 +66,7 @@ const SelectedProduct = () => {
 
   // >> VARIABLES
   // Recover the IncreaseCartQuantity function from the context
-  const { increaseCartQuantity, cartItems } = useContext(ShoppingCartContext);
+  const { increaseCartQuantity } = useContext(ShoppingCartContext);
 
   return (
     <div className="Page">
@@ -108,12 +108,22 @@ const SelectedProduct = () => {
                 </div>
                 <div className="Page__secondPage__description__buttonCartContainer">
                   <div onClick={notify}>
-                    <button
-                      onClick={() => increaseCartQuantity(Number(id || '0'))}
-                      type="button"
-                      className="Page__secondPage__description__buttonCartContainer__buttonCart">
-                      AJOUTER
-                    </button>
+                    {parseFloat(oneProduct.productStock) >= 1 ? (
+                      <button
+                        onClick={() => increaseCartQuantity(Number(id || '0'))}
+                        type="button"
+                        className="Page__secondPage__description__buttonCartContainer__buttonCart">
+                        AJOUTER
+                      </button>
+                    ) : (
+                      <button
+                        disabled
+                        onClick={() => increaseCartQuantity(Number(id || '0'))}
+                        type="button"
+                        className="Page__secondPage__description__buttonCartContainer__buttonCart">
+                        Victime de son succès
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
