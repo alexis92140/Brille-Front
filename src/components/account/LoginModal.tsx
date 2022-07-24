@@ -7,11 +7,15 @@ import { grey } from '@mui/material/colors';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useContext, useState } from 'react';
 import MediaQuery from 'react-responsive';
-import { Link } from 'react-router-dom';
+import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
 import { GoogleLoginButton } from 'react-social-login-buttons';
 import { FacebookLoginButton } from 'react-social-login-buttons';
+
+import CurrentUserContext from '../../Context/CurrentUser';
+import IUser from '../../interfaces/IUser';
 
 // --------------------------------------------------------------
 
@@ -28,27 +32,38 @@ const LoginModal = () => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
   // ---- set th error message----
-  // const [errorMessage, setErrorMessage] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>();
+
+  // ---- Hook----
+  const navigate: NavigateFunction = useNavigate();
 
   // >> MY FUNCTIONS
 
-  // ---- to handle click on the socials buttons ------
+  // ? ---- Social Buttons state handling -----
   const displayHello = () => alert('Social Authentication OK !');
 
-  // ---- to handle checkbox click ------
+  // ? ---- Email state handling -----
   const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(e.target.checked);
   };
 
-  // ---- to update Email change  ------
+  // ? ---- Email state handling -----
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  // ---- to uptade Password change  ------
+  // ? ---- Password state handling -----
   const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
+
+  // ? --- Handling the home redirection ---
+  const redirectToTheCart = () => {
+    navigate('/panier');
+  };
+
+  // ? --- UserContext setters ---
+  const { setId, setAdmin, setFirstname } = useContext(CurrentUserContext);
 
   // >> MY VARIABLES
 
@@ -60,14 +75,47 @@ const LoginModal = () => {
   // ------ Pattern for the email input ------
   const emailPattern = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,3}');
 
-  // ------------------ RETURN --------------------------------
+  // >> AXIOS
+
+  const userLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault();
+      const { data } = await axios.post<IUser>(
+        `${import.meta.env.VITE_API_URL}/api/login`,
+        { email, password },
+        {
+          // for cookies
+          withCredentials: true,
+        },
+      );
+      setErrorMessage('');
+      setId(data.id);
+      setFirstname(data.firstname);
+      setAdmin(data.admin === 1);
+      redirectToTheCart();
+    } catch (err) {
+      // ! err est renvoyé potentiellement par axios ou par le code, il peut avoir différents types
+      if (axios.isAxiosError(err)) {
+        // pour gérer les erreurs de type axios
+        if (err.response?.status === 401) {
+          setErrorMessage('Email ou mot de passe incorrect');
+        }
+      } else {
+        // pour gérer les erreurs non axios
+        if (err instanceof Error) setErrorMessage(err.message);
+      }
+    }
+  };
+
+  // -------------------------------------------
   return (
     <>
+      {/* --- ** DESKTOP VERSION ** ----*/}
       <MediaQuery query="(min-width: 1000px)">
         <div className="loginModal">
           <p className="loginModal__title">SE CONNECTER</p>
 
-          <form>
+          <form onSubmit={(e: React.FormEvent<HTMLFormElement>) => userLogin(e)}>
             {/* ----- EMAIL INPUT ----- */}
             <div className="loginModal__email">
               <FormControl sx={{ m: 1, width: '50ch' }} variant="standard">
@@ -99,8 +147,6 @@ const LoginModal = () => {
                 />
               </FormControl>
             </div>
-
-            {/* ----- ERROR MESSAGE (IF PASSWORD IS WRONG)----- */}
 
             {/* ----- CHECKBOX & LOGIN BUTTON ----- */}
             <div className="loginModal__choices">
@@ -143,6 +189,7 @@ const LoginModal = () => {
                     variant="text"
                     type="submit"
                     size="small"
+                    disabled
                     sx={{
                       color: grey[700],
                       '&.Mui-checked': {
@@ -153,6 +200,10 @@ const LoginModal = () => {
                   </Button>
                 )}
               </div>
+            </div>
+            {/* ----- ERROR MESSAGE (IF PASSWORD IS WRONG)----- */}
+            <div className="loginModal__error">
+              {errorMessage && <p>{errorMessage}</p>}
             </div>
           </form>
 
@@ -188,6 +239,8 @@ const LoginModal = () => {
           </div>
         </div>
       </MediaQuery>
+
+      {/* ------ ** MOBILE VERSION ** ------ */}
       <MediaQuery query="(max-width: 1000px)">
         <div className="loginModal">
           <p className="loginModal__title">SE CONNECTER</p>
@@ -225,8 +278,6 @@ const LoginModal = () => {
               </FormControl>
             </div>
 
-            {/* ----- ERROR MESSAGE (IF PASSWORD IS WRONG)----- */}
-
             {/* ----- CHECKBOX & LOGIN BUTTON ----- */}
             <div className="loginModal__choices">
               <FormControlLabel
@@ -268,6 +319,7 @@ const LoginModal = () => {
                     variant="text"
                     type="submit"
                     size="small"
+                    disabled
                     sx={{
                       color: grey[700],
                       '&.Mui-checked': {
@@ -278,6 +330,10 @@ const LoginModal = () => {
                   </Button>
                 )}
               </div>
+            </div>
+            {/* ----- ERROR MESSAGE (IF PASSWORD IS WRONG)----- */}
+            <div className="loginModal__error">
+              {errorMessage && <p>{errorMessage}</p>}
             </div>
           </form>
 

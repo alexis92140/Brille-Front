@@ -12,7 +12,7 @@ import { toast, ToastContainer } from 'react-toastify';
 // --------------------------------------------------------------
 
 const PasswordForgotModal = () => {
-    setTimeout(() => window.location.reload(), 1000000);
+  setTimeout(() => window.location.reload(), 1000000);
   // >> STATES
 
   // ---- for the email----
@@ -73,6 +73,7 @@ const PasswordForgotModal = () => {
               variant="outlined"
               type="email"
               onChange={handleEmail}
+              color="secondary"
               autoComplete="current-email"
               required
             />
@@ -83,35 +84,19 @@ const PasswordForgotModal = () => {
         <div>
           {email !== '' && email.match(emailPattern) ? (
             <div className="passwordForgotContainer__button" onClick={notify}>
-              <Link to="/seconnecter">
-                <Button
-                  variant="contained"
-                  type="submit"
-                  size="small"
-                  sx={{
-                    color: purple[50],
-                    '&.Mui-checked': {
-                      color: purple[600],
-                    },
-                  }}>
-                  Réinitialiser
-                </Button>
-              </Link>
+              {/* <Link to="/seconnecter"> */}
+              <button className="button-56" type="button">
+                Réinitialiser
+              </button>
+              {/* </Link> */}
             </div>
           ) : (
             <div className="passwordForgotContainer__button" onClick={notify}>
-              <Button
-                variant="contained"
-                type="submit"
-                size="medium"
-                sx={{
-                  color: purple[50],
-                  '&.Mui-checked': {
-                    color: purple[600],
-                  },
-                }}>
+              {/* <Link to="/seconnecter"> */}
+              <button className="button-56" type="button">
                 Réinitialiser
-              </Button>
+              </button>
+              {/* </Link> */}
             </div>
           )}
         </div>

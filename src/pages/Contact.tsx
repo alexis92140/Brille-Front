@@ -28,7 +28,7 @@ const notify = (e: React.FormEvent<HTMLFormElement>) => {
     pauseOnHover
   />;
 
-  toast.success(`Article ajouté au panier !!`, {
+  toast.success(``, {
     position: 'top-center',
     autoClose: 5000,
     transition: Zoom,
@@ -41,13 +41,13 @@ const notify = (e: React.FormEvent<HTMLFormElement>) => {
 };
 
 const Contact = () => {
-  setInterval(() => window.location.reload(), 100000);
-
-  // Ici j'appel mon interface image >>
+  // >> STATES
   const [allImages, setAllImages] = useState<IImage>();
-  // Ici j'appel mon interface page pour UNE page >>
   const [onePage, setOnePage] = useState<IPage>();
 
+  // >> USE EFFECTS
+
+  // ? Get all my images
   useEffect(() => {
     const getAllImages = async () => {
       let url: string = `${import.meta.env.VITE_API_URL}/api/pages/21/images`;
@@ -60,7 +60,7 @@ const Contact = () => {
 
     getAllImages();
 
-    // je recupère UN titre
+    // ? Get a Title
     const getOnePage = async () => {
       // indispensable quand on veut utiliser async/await dans un useEffect
       let url: string = `${import.meta.env.VITE_API_URL}/api/pages/21`;
@@ -74,10 +74,9 @@ const Contact = () => {
     getOnePage();
   }, []);
 
-  const color = grey[900];
-
   return (
     <>
+      {/* --- DESKTOP VERSION --- */}
       <MediaQuery query="(min-width: 1000px)">
         <div className="contact">
           <div className="contact__head">
@@ -96,6 +95,7 @@ const Contact = () => {
                   name="Nom"
                   label="Nom"
                   variant="standard"
+                  required
                   sx={{ m: 1, width: '40ch' }}
                 />
                 <TextField
@@ -104,6 +104,7 @@ const Contact = () => {
                   label="Prénom"
                   name="Prénom"
                   variant="standard"
+                  required
                   sx={{ m: 1, width: '40ch' }}
                 />
               </div>
@@ -114,6 +115,7 @@ const Contact = () => {
                   label="Email"
                   name="Email"
                   variant="standard"
+                  required
                   sx={{ m: 1, width: '40ch' }}
                 />
               </div>
@@ -125,25 +127,24 @@ const Contact = () => {
                   name="votre demande"
                   placeholder="Ecrivez votre texte ici"
                   multiline
+                  required
                   rows={4}
                   sx={{ m: 1, width: '100%' }}
                 />
               </div>
               <div className="contact__container__form__button">
-                <Button
-                  sx={{ color: { color } }}
-                  style={{ backgroundColor: '#f4f7f5' }}
-                  type="submit"
-                  variant="contained"
-                  endIcon={<SendIcon />}>
-                  Envoyer
-                </Button>
+                <button className="button-57" type="submit">
+                  <span className="text">Envoyer</span>
+                  <span>Merci !</span>
+                </button>
               </div>
             </form>
           </div>
           <GoToTop />
         </div>
       </MediaQuery>
+
+      {/* --- MOBILE VERSION --- */}
       <div>
         <MediaQuery query="(max-width: 1000px)">
           <div className="mainContainer">
@@ -155,6 +156,7 @@ const Contact = () => {
                   type="text"
                   name="Nom"
                   label="Nom"
+                  required
                   variant="standard"
                   sx={{ m: 1, width: '40ch' }}
                 />
@@ -163,6 +165,7 @@ const Contact = () => {
                   type="text"
                   label="Prénom"
                   name="Prénom"
+                  required
                   variant="standard"
                   sx={{ m: 1, width: '40ch' }}
                 />
@@ -171,6 +174,7 @@ const Contact = () => {
                   type="email"
                   label="Email"
                   name="Email"
+                  required
                   variant="standard"
                   sx={{ m: 1, width: '40ch' }}
                 />
@@ -179,20 +183,17 @@ const Contact = () => {
                   type="text"
                   label="Votre demande"
                   name="votre demande"
+                  required
                   placeholder="Ecrivez votre texte ici"
                   multiline
                   rows={4}
                   sx={{ m: 1, width: '100%' }}
                 />
-                <Button
-                  sx={{ color: { color } }}
-                  style={{ backgroundColor: '#f4f7f5' }}
-                  type="submit"
-                  variant="contained"
-                  className="ainContainer__formContainer__buttonSent"
-                  endIcon={<SendIcon />}>
-                  Envoyer
-                </Button>
+
+                <button className="button-57" type="submit">
+                  <span className="text">Envoyer</span>
+                  <span>Merci !</span>
+                </button>
               </form>
             </div>
           </div>

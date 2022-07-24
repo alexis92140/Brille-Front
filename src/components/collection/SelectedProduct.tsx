@@ -3,7 +3,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { toast, ToastContainer, Slide, Zoom, Flip, Bounce } from 'react-toastify';
+import { Bounce, Flip, Slide, toast, ToastContainer, Zoom } from 'react-toastify';  
 
 import ShoppingCartContext from '../../Context/ShoppingCartContext';
 import IProduct from '../../interfaces/IProduct';
@@ -19,6 +19,7 @@ const SelectedProduct = () => {
   const [oneProduct, setOneProduct] = useState<IProduct>();
   const [color, setColor] = useState('firstPage');
   const [selectedItem, setSelectedItem] = useState<number | null>(null);
+  const [add, setAdd] = useState<string>('Ajouter');
 
   // >> FUNCTIONS
 
@@ -46,6 +47,7 @@ const SelectedProduct = () => {
       draggable: true,
       progress: undefined,
     });
+    setAdd('Excellent choix !');
   };
 
   // >> AXIOS
@@ -59,14 +61,13 @@ const SelectedProduct = () => {
       });
       setOneProduct(data);
       setSelectedItem(data.id);
-      // console.log(data);
     };
     getOneProduct();
   }, [id]);
 
   // >> VARIABLES
   // Recover the IncreaseCartQuantity function from the context
-  const { increaseCartQuantity, cartItems } = useContext(ShoppingCartContext);
+  const { increaseCartQuantity } = useContext(ShoppingCartContext);
 
   return (
     <div className="Page">
@@ -108,12 +109,22 @@ const SelectedProduct = () => {
                 </div>
                 <div className="Page__secondPage__description__buttonCartContainer">
                   <div onClick={notify}>
-                    <button
-                      onClick={() => increaseCartQuantity(Number(id || '0'))}
-                      type="button"
-                      className="Page__secondPage__description__buttonCartContainer__buttonCart">
-                      AJOUTER
-                    </button>
+                    {parseFloat(oneProduct.productStock) >= 1 ? (
+                      <button
+                        onClick={() => increaseCartQuantity(Number(id || '0'))}
+                        type="button"
+                        className="Page__secondPage__description__buttonCartContainer__buttonCart">
+                        {add}
+                      </button>
+                    ) : (
+                      <button
+                        disabled
+                        onClick={() => increaseCartQuantity(Number(id || '0'))}
+                        type="button"
+                        className="Page__secondPage__description__buttonCartContainer__buttonCart">
+                        Victime de son succès
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
