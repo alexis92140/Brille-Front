@@ -45,10 +45,13 @@ const Essentials = () => {
       </div>
       <div className="essentialsPage__container">
         {images &&
-          images.map(({ id, image }, index) => (
+          images.map(({ id, image, name }, index) => (
             <div key={index}>
               <div key={id} className="essentialsPage__Images">
                 <img id="bags" src={image} alt="bag and model" />
+                <Link to="/collection">
+                  <h6 className="essentialsPage__bagsName">{name}</h6>
+                </Link>
               </div>
             </div>
           ))}

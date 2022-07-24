@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
 
-import GoToTop from '../components/globals/GoToTop';
 import Essentials from '../components/homepage/Essentials';
 import IParagraph from '../interfaces/IParagraph';
 
@@ -44,7 +43,6 @@ const Landing = () => {
         muted={true}
       />
       <Essentials />
-      <GoToTop />
     </div>
   );
 };
