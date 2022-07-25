@@ -32,10 +32,24 @@
       align-items: center;
       margin: auto;
       .btn-one {
-        color: rgba(252, 152, 138, 0.749);
-        transition: all 0.3s;
+        background-color: transparent;
+        border: 1px solid #8b98b0d4;
+        box-sizing: border-box;
+        color: #00132c;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 24px;
+        padding: 16px 23px;
         position: relative;
-        padding: 1rem;
+        text-decoration: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        margin-top: 2rem;
+        &:hover {
+          color: white;
+        }
         p {
           font-family: 'Josefin Sans', sans-serif;
           font-size: 30px;
