@@ -53,7 +53,7 @@ const Footer = () => {
                 <img
                   className="logoInstagram"
                   alt="instagram"
-                  src="/assets/images/instagram.svg"
+                  src="../../../public/assets/images/instagram.svg"
                 />
               </a>
             </li>
@@ -62,7 +62,7 @@ const Footer = () => {
                 <img
                   className="logoFacebook"
                   alt="Facebook"
-                  src="/assets/images/facebook.svg"
+                  src="../../../public/assets/images/facebook.svg"
                 />
               </a>
             </li>
