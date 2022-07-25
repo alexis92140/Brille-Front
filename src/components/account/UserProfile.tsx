@@ -3,13 +3,13 @@ import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
+import axios from 'axios';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import React, { useEffect, useState } from 'react';
 import MediaQuery from 'react-responsive';
 import { toast, ToastContainer } from 'react-toastify';
-import axios from 'axios';
-import IUser from '../../interfaces/IUser';
 
+import IUser from '../../interfaces/IUser';
 import { storage } from '../../utils/firebase';
 
 // ---------------- @mui/material switch button setting ---------------
@@ -213,6 +213,7 @@ const UserProfile = () => {
       setFirstName(data.firstname);
       setLastName(data.lastname);
       setEmail(data.email);
+      setPhoneNumber(String(data.phone));
     };
     getUser();
   }, []);
@@ -224,7 +225,10 @@ const UserProfile = () => {
           {/* ------ AVATAR ------- */}
           <div className="userProfile__avatarContainer">
             <Avatar src={url} sx={{ width: 125, height: 125 }}>
-              <p className="userProfile__avatarContainer__initials">JB</p>
+              <div className="userProfile__avatarContainer__initialsContainer">
+                <p className="userProfile__avatarContainer__initials">{firstName}</p>
+                <p className="userProfile__avatarContainer__initials">{lastName}</p>
+              </div>
             </Avatar>
             <p className="userProfile__avatarContainer__name">{firstName}</p>
             {image && (
@@ -315,7 +319,7 @@ const UserProfile = () => {
                         <TextField
                           id="outlined-basic"
                           value={phoneNumber}
-                          // onChange={handlePhoneNumber}
+                          onChange={handlePhoneNumber}
                           label="Téléphone"
                           type="tel"
                           autoComplete="current-password"
@@ -477,7 +481,7 @@ const UserProfile = () => {
                   {/* ------ FORM RIGHT SIDE SWITCH BUTTONS------- */}
                   <div className="userProfile__settings__container__rightSide__switch">
                     <p>Notifications SMS</p>
-                    <Switch {...label} color="secondary" />
+                    <Switch {...label} color="secondary" defaultChecked />
                   </div>
                   <div className="userProfile__settings__container__rightSide__switch">
                     <p>Notifications Email</p>

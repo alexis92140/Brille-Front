@@ -11,9 +11,9 @@ import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import MediaQuery from 'react-responsive';
 import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
-import { GoogleLoginButton } from 'react-social-login-buttons';
-import { FacebookLoginButton } from 'react-social-login-buttons';
 
+// import { GoogleLoginButton } from 'react-social-login-buttons';
+// import { FacebookLoginButton } from 'react-social-login-buttons';
 import CurrentUserContext from '../../Context/CurrentUser';
 import IUser from '../../interfaces/IUser';
 
@@ -215,8 +215,8 @@ const LoginModal = () => {
           </div>
 
           {/* ----- SOCIAL MEDIA CONNECTIONS----- */}
-          <div className="loginModal__socials">
-            <GoogleLoginButton
+          {/* <div className="loginModal__socials"> */}
+          {/* <GoogleLoginButton
               onClick={displayHello}
               text={googleText}
               align={socialIconAlign}
@@ -225,18 +225,18 @@ const LoginModal = () => {
               onClick={displayHello}
               text={facebookText}
               align={socialIconAlign}
-            />
+            /> */}
 
-            {/* ----- LOG IN ----- */}
-            <div className="loginModal__logged">
-              <p>
-                Vous n&apos;avez pas compte ?
-                <Link to="/compte">
-                  <span>S&apos;inscrire</span>
-                </Link>
-              </p>
-            </div>
+          {/* ----- LOG IN ----- */}
+          <div className="loginModal__logged">
+            <p>
+              Vous n&apos;avez pas compte ?
+              <Link to="/compte">
+                <span>S&apos;inscrire</span>
+              </Link>
+            </p>
           </div>
+          {/* </div> */}
         </div>
       </MediaQuery>
 
@@ -345,7 +345,7 @@ const LoginModal = () => {
           </div>
 
           {/* ----- SOCIAL MEDIA CONNECTIONS----- */}
-          <div className="loginModal__socials">
+          {/* <div className="loginModal__socials">
             <GoogleLoginButton
               onClick={displayHello}
               text={googleText}
@@ -355,18 +355,18 @@ const LoginModal = () => {
               onClick={displayHello}
               text={facebookText}
               align={socialIconAlign}
-            />
+            /> */}
 
-            {/* ----- LOG IN ----- */}
-            <div className="loginModal__logged">
-              <p>
-                Vous n&apos;avez pas compte ?
-                <Link to="/compte">
-                  <span>S&apos;inscrire</span>
-                </Link>
-              </p>
-            </div>
+          {/* ----- LOG IN ----- */}
+          <div className="loginModal__logged">
+            <p>
+              Vous n&apos;avez pas compte ?
+              <Link to="/compte">
+                <span>S&apos;inscrire</span>
+              </Link>
+            </p>
           </div>
+          {/* </div> */}
         </div>
       </MediaQuery>
     </>
