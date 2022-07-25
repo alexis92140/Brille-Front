@@ -1,4 +1,5 @@
 .container__footer {
+  width: 100%;
   border-top: 1px solid #000;
   border-bottom: 1px solid #000;
   color: #333;
@@ -6,10 +7,9 @@
   display: flex;
   justify-content: center;
   margin: 0 auto;
-  width: 100%;
   align-items: flex-start;
   padding: 3rem 3rem;
-  
+
   @media screen and (min-width: 300px) and (max-width: 1020px) {
     flex-wrap: wrap;
     display: flex;
@@ -18,11 +18,9 @@
   }
 
   ul {
-
     margin: 0 auto;
     list-style-type: none;
     gap: 3rem;
-    
   }
   li {
     @media screen and (min-width: 300px) and (max-width: 1020px) {
@@ -32,8 +30,15 @@
       text-decoration: none;
       color: #333;
       vertical-align: 3em;
-   
     }
   }
 }
 
+.reseaux {
+  width: 100px;
+  height: 90px;
+  img {
+    width: 20px;
+    height: 20px;
+  }
+}
