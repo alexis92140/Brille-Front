@@ -38,7 +38,7 @@ export const CurrentUserContextProvider: React.FC<Props> = ({ children }) => {
   const [email, setEmail] = useState<string>('');
   const [admin, setAdmin] = useState<boolean>(false);
   const removeCookie = useCookies(['user_token'])[2];
-
+  console.log(id);
   const logout = (): void => {
     setId(0);
     setFirstname('');
