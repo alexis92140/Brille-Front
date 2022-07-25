@@ -79,6 +79,7 @@ const LoginModal = () => {
 
   const userLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
+      console.log('yes');
       e.preventDefault();
       const { data } = await axios.post<IUser>(
         `${import.meta.env.VITE_API_URL}/api/login`,
@@ -88,6 +89,7 @@ const LoginModal = () => {
           withCredentials: true,
         },
       );
+      console.log(data.id);
       setErrorMessage('');
       setId(data.id);
       setFirstname(data.firstname);
@@ -170,32 +172,22 @@ const LoginModal = () => {
               />
               <div>
                 {email !== '' && email.match(emailPattern) && password !== '' ? (
-                  <Link to="/moncompte">
-                    <Button
-                      variant="text"
-                      type="submit"
-                      size="small"
-                      sx={{
-                        color: grey[700],
-                        '&.Mui-checked': {
-                          color: pink[700],
-                        },
-                      }}>
-                      Se Connecter
-                    </Button>
-                  </Link>
-                ) : (
+                  // <Link to="/moncompte">
                   <Button
                     variant="text"
                     type="submit"
                     size="small"
-                    disabled
                     sx={{
                       color: grey[700],
                       '&.Mui-checked': {
                         color: pink[700],
                       },
                     }}>
+                    Se Connecter
+                  </Button>
+                ) : (
+                  // </Link>
+                  <Button type="submit" disabled>
                     Se Connecter
                   </Button>
                 )}

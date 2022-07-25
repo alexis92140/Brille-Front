@@ -49,7 +49,7 @@ const Essentials = () => {
             <div key={index}>
               <div key={id} className="essentialsPage__Images">
                 <img id="bags" src={image} alt="bag and model" />
-                <Link to="/collection">
+                <Link to={`/selectedProduct/41`}>
                   <h6 className="essentialsPage__bagsName">{name}</h6>
                 </Link>
               </div>

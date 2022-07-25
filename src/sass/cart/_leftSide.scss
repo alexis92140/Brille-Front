@@ -6,8 +6,7 @@
   align-items: center;
   padding-left: 5rem;
   padding-bottom: 2rem;
-  background: no-repeat
-    url('https://firebasestorage.googleapis.com/v0/b/brille-handbags.appspot.com/o/palmier-shadow.png?alt=media&token=1c4d6a0e-5b30-4293-bcc2-bfea759cedf6');
+  background-color: #9eb0cfd4;
   background-size: cover;
 
   flex-direction: column;
@@ -18,15 +17,13 @@
   }
 
   &__wrapper {
-    width: 100%;
     display: flex;
+
     flex-direction: column;
     &__title {
-      width: 100%;
-
-      margin-left: 5px;
+      font-family: 'Josefin Sans', sans-serif;
       color: #000000;
-      font-size: 14px;
+      font-size: 23px;
     }
     &__button {
       width: 100%;
@@ -42,7 +39,6 @@
         p {
           font-family: 'Josefin Sans', sans-serif;
           font-size: 30px;
-          font-weight: bold;
         }
       }
       .btn-one span {
