@@ -53,7 +53,7 @@ const Footer = () => {
                 <img
                   className="logoInstagram"
                   alt="instagram"
-                  src="../../../public/assets/images/instagram.svg"
+                  src="https://firebasestorage.googleapis.com/v0/b/brille-handbags.appspot.com/o/instagram.svg?alt=media&token=6a56d1da-e730-4fa7-b70a-cacbd3435d35"
                 />
               </a>
             </li>
@@ -62,7 +62,7 @@ const Footer = () => {
                 <img
                   className="logoFacebook"
                   alt="Facebook"
-                  src="../../../public/assets/images/facebook.svg"
+                  src="https://firebasestorage.googleapis.com/v0/b/brille-handbags.appspot.com/o/facebook.svg?alt=media&token=9ccbdc13-980a-490e-b263-717f6e2d1157"
                 />
               </a>
             </li>

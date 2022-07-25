@@ -12,9 +12,7 @@ import React, { useContext, useState } from 'react';
 import MediaQuery from 'react-responsive';
 import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
 
-// import { GoogleLoginButton } from 'react-social-login-buttons';
-// import { FacebookLoginButton } from 'react-social-login-buttons';
-import CurrentUserContext from '../../Context/CurrentUser';
+import CurrentUserContext from '../../Context/CurrentUserContext';
 import IUser from '../../interfaces/IUser';
 
 // --------------------------------------------------------------
@@ -79,7 +77,6 @@ const LoginModal = () => {
 
   const userLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
-      console.log('yes');
       e.preventDefault();
       const { data } = await axios.post<IUser>(
         `${import.meta.env.VITE_API_URL}/api/login`,
@@ -172,7 +169,6 @@ const LoginModal = () => {
               />
               <div>
                 {email !== '' && email.match(emailPattern) && password !== '' ? (
-                  // <Link to="/moncompte">
                   <Button
                     variant="text"
                     type="submit"
@@ -186,8 +182,17 @@ const LoginModal = () => {
                     Se Connecter
                   </Button>
                 ) : (
-                  // </Link>
-                  <Button type="submit" disabled>
+                  <Button
+                    variant="text"
+                    type="submit"
+                    size="small"
+                    disabled
+                    sx={{
+                      color: grey[700],
+                      '&.Mui-checked': {
+                        color: pink[700],
+                      },
+                    }}>
                     Se Connecter
                   </Button>
                 )}
@@ -205,19 +210,6 @@ const LoginModal = () => {
               <p>Mot de passe oublié ?</p>
             </Link>
           </div>
-
-          {/* ----- SOCIAL MEDIA CONNECTIONS----- */}
-          {/* <div className="loginModal__socials"> */}
-          {/* <GoogleLoginButton
-              onClick={displayHello}
-              text={googleText}
-              align={socialIconAlign}
-            />
-            <FacebookLoginButton
-              onClick={displayHello}
-              text={facebookText}
-              align={socialIconAlign}
-            /> */}
 
           {/* ----- LOG IN ----- */}
           <div className="loginModal__logged">
@@ -292,20 +284,18 @@ const LoginModal = () => {
               />
               <div>
                 {email !== '' && email.match(emailPattern) && password !== '' ? (
-                  <Link to="/moncompte">
-                    <Button
-                      variant="text"
-                      type="submit"
-                      size="small"
-                      sx={{
-                        color: grey[700],
-                        '&.Mui-checked': {
-                          color: pink[700],
-                        },
-                      }}>
-                      Se Connecter
-                    </Button>
-                  </Link>
+                  <Button
+                    variant="text"
+                    type="submit"
+                    size="small"
+                    sx={{
+                      color: grey[700],
+                      '&.Mui-checked': {
+                        color: pink[700],
+                      },
+                    }}>
+                    Se Connecter
+                  </Button>
                 ) : (
                   <Button
                     variant="text"
