@@ -85,7 +85,6 @@ export const ShoppingCartProvider = ({ children }: ShoppingCartProviderProps) =>
 
   // ? --- REMOVE AN ITEM ---
   const removeFromCart = (id: number) => {
-    console.log("delete de l'id" + id);
     setCartItems(cartItems.filter((item) => item.id !== id));
   };
 

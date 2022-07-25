@@ -17,9 +17,7 @@
   }
 
   &__wrapper {
-    display: flex;
-
-    flex-direction: column;
+    margin: auto;
     &__title {
       font-family: 'Josefin Sans', sans-serif;
       color: #000000;
@@ -27,10 +25,10 @@
     }
     &__button {
       width: 100%;
+      margin: auto;
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: auto;
       .btn-one {
         background-color: transparent;
         border: 1px solid #8b98b0d4;
@@ -40,9 +38,10 @@
         font-size: 16px;
         font-weight: 700;
         line-height: 24px;
-        padding: 16px 23px;
+        padding: 16px;
         position: relative;
         text-decoration: none;
+        cursor: pointer;
         user-select: none;
         -webkit-user-select: none;
         touch-action: manipulation;
@@ -53,6 +52,7 @@
         p {
           font-family: 'Josefin Sans', sans-serif;
           font-size: 30px;
+          padding: 15px;
         }
       }
       .btn-one span {

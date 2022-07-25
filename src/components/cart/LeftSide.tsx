@@ -3,13 +3,13 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 // ! ----- USER CONTEXT -----
-import CurrentUserContext from '../../Context/CurrentUserContext';
+import CurrentUserContext from '../../Context/CurrentUser';
 
 // ----------------------------------------------------------------
 
 const LeftSide = () => {
   const { firstname } = useContext(CurrentUserContext);
-
+  console.log(firstname);
   return (
     <div className="leftSide">
       <div className="leftSide__wrapper">
