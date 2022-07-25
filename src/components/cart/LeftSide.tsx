@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 // ! ----- USER CONTEXT -----
-import CurrentUserContext from '../../Context/CurrentUser';
+import CurrentUserContext from '../../Context/CurrentUserContext';
 
 // ----------------------------------------------------------------
 
