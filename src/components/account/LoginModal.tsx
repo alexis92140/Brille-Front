@@ -11,9 +11,9 @@ import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import MediaQuery from 'react-responsive';
 import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
+
 // import { GoogleLoginButton } from 'react-social-login-buttons';
 // import { FacebookLoginButton } from 'react-social-login-buttons';
-
 import CurrentUserContext from '../../Context/CurrentUser';
 import IUser from '../../interfaces/IUser';
 
