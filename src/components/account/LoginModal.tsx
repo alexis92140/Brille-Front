@@ -12,7 +12,7 @@ import React, { useContext, useState } from 'react';
 import MediaQuery from 'react-responsive';
 import { Link, NavigateFunction, useNavigate } from 'react-router-dom';
 
-import CurrentUserContext from '../../Context/CurrentUserContext';
+import CurrentUserContext from '../../Context/CurrentUser';
 import IUser from '../../interfaces/IUser';
 
 // --------------------------------------------------------------
@@ -64,12 +64,6 @@ const LoginModal = () => {
   const { setId, setAdmin, setFirstname } = useContext(CurrentUserContext);
 
   // >> MY VARIABLES
-
-  // ------ store the social icons styles ------
-  const socialIconAlign: string | any = 'center';
-  const facebookText: string = 'Se connecter avec Facebook';
-  const googleText: string = 'Se connecter avec Google';
-
   // ------ Pattern for the email input ------
   const emailPattern = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,3}');
 
@@ -86,7 +80,6 @@ const LoginModal = () => {
           withCredentials: true,
         },
       );
-      console.log(data.id);
       setErrorMessage('');
       setId(data.id);
       setFirstname(data.firstname);
@@ -325,19 +318,6 @@ const LoginModal = () => {
               <p>Mot de passe oublié ?</p>
             </Link>
           </div>
-
-          {/* ----- SOCIAL MEDIA CONNECTIONS----- */}
-          {/* <div className="loginModal__socials">
-            <GoogleLoginButton
-              onClick={displayHello}
-              text={googleText}
-              align={socialIconAlign}
-            />
-            <FacebookLoginButton
-              onClick={displayHello}
-              text={facebookText}
-              align={socialIconAlign}
-            /> */}
 
           {/* ----- LOG IN ----- */}
           <div className="loginModal__logged">

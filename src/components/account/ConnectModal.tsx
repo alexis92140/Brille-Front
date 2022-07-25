@@ -101,7 +101,6 @@ const ConnectModal = () => {
   // ? --- Log errors ----
   const logError = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
-    console.log(`mail envoyé`);
     setFirstName('');
     setLastName('');
     setEmail('');
@@ -195,7 +194,6 @@ const ConnectModal = () => {
           withCredentials: true,
         },
       );
-      console.log(`mail envoyé`);
       setFirstName('');
       setLastName('');
       setEmail('');
