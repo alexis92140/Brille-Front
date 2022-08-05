@@ -15,9 +15,14 @@ const LeftSide = () => {
       <div className="leftSide__wrapper">
         {/* ----- User greetings ----- */}
         {firstname ? (
-          <p className="leftSide__wrapper__title">
-            Bonjour {''} {firstname} ,
-          </p>
+          <>
+            <p className="leftSide__wrapper__title">
+              Bonjour {''} {firstname} ,
+            </p>
+            <Link to="/moncompte">
+              <p className="leftSide__wrapper__title">Allez sur mon compte</p>
+            </Link>
+          </>
         ) : (
           <div className="leftSide__wrapper__button">
             <Link to="/seconnecter">

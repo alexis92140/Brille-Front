@@ -11,6 +11,7 @@ import { StickyNav } from 'react-js-stickynav';
 import { Link, NavLink } from 'react-router-dom';
 
 import navlinks from '../../../data/navLinks';
+import Burgerlinks from '../../../data/BurgerLinks';
 import ShoppingCartContext from '../../Context/ShoppingCartContext';
 
 // ---------------Cart icon style config ----------------------------
@@ -126,12 +127,12 @@ const Navbar = () => {
           </div>
           {/* ----- MOBILE MENU ----- */}
           <ul className={!isOpened ? 'hiddenMenu' : 'showMenu'}>
-            {navlinks &&
-              navlinks.map(({ id, responsiveTitle, path }) => (
+            {Burgerlinks &&
+              Burgerlinks.map(({ id, title, path }) => (
                 <div role="button" tabIndex={0} onClick={closeMenu} key={id}>
                   <li className="hamburgerList">
                     <Link to={path} onClick={closeMenu}>
-                      <p className="hamburgerList__title">{responsiveTitle}</p>
+                      <p className="hamburgerList__title">{title}</p>
                     </Link>
                   </li>
                 </div>
